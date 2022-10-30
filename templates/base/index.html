@@ -10,6 +10,11 @@
 </head>
 <body>
     
+    {% if  user.is_authenticated %}
+    Hello {{user.get_full_name}}
+    {% else %}
+    Login friend
+    {% endif %}
 
 </body>
 </html>
