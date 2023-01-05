@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="{% static 'base/styles/results.css'%}">
+    <title>Results</title>
+</head>
+<body>
+    <div class="titles">
+        Congratulations! <br> You have made it to the next round!
+    </div>
+    <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus non iusto nesciunt soluta placeat enim ad ducimus atque dolorem eum sed nam eos quia nihil quaerat, vitae vel aut cumque. <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, tenetur fuga numquam quam culpa id porro optio blanditiis hic deleniti nemo qui autem, quibusdam atque aliquam sint repellendus, laborum quisquam!</p>
+<div class="titles" style="padding-top:40px; padding-bottom: 20px;">Core Team</div>
+<!-- <div class="table-title">
+    <h3>Data Table</h3>
+    </div> -->
+    <div class="container animate__animated animate__fadeInUp">
+    <table class="table-fill">
+    <thead>
+    <tr>
+    <th class="text-left">Name</th>
+    <th class="text-left">Domain</th>
+    </tr>
+    </thead>
+    <tbody class="table-hover">
+    <tr>
+    <td class="text-left">Anshu Agarwal</td>
+    <td class="text-left">Event Management</td>
+    </tr>
+    <tr>
+    <td class="text-left">ipsum</td>
+    <td class="text-left">Content Writing</td>
+    </tr>
+    <tr>
+    <td class="text-left">lorem</td>
+    <td class="text-left">Content Writing</td>
+    </tr>
+    <tr>
+    <td class="text-left">XYZ</td>
+    <td class="text-left">Content Writing</td>
+    </tr>
+    <tr>
+    <td class="text-left">ABC</td>
+    <td class="text-left">Event Management</td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+    <script src="{% static 'base/scripts/confetti.js'%}"></script>
+    <script>
+        const startit = () => {
+        setTimeout(function () {
+          confetti.start();
+        }, 1000);
+      };
+
+      const stopit = () => {
+        setTimeout(function () {
+          confetti.stop();
+        }, 3000);
+      };
+
+      startit();
+      stopit();
+    </script>
+</body>
+</html>

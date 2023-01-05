@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
+    'import_export',
     'django.contrib.sites',
     'base',
     'allauth',
@@ -145,7 +146,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SITE_ID = 3
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/register/'
 
 SOCIALACCOUNT_PROVIDERS ={
     'google':{

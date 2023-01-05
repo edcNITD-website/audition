@@ -1,0 +1,573 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image:
+    linear-gradient(to right, rgba(121, 122, 128, 0.8), rgba(17, 5, 48, 0.8)),
+    url('static/base/media/edc_img1.jpg');
+    /* background-image:
+    linear-gradient(to right,rgba(218, 165, 32,0.2), rgba(17, 5, 48, 0.8)),
+    url('edc_img1.jpg'); */
+}
+.heading{
+    color: white;
+    padding: 50px;
+    text-align: center;
+}
+.sub-heading{
+    color: white;
+    padding-left: 100px;
+}
+section{
+    /* transform: translateY(-400px); */
+    padding-top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    /* min-height: 100vh; */
+}
+.flex-container{
+    display: flex;
+}
+.profile-card{
+    position: relative;
+    width: 600px;
+    height: 350px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+.profile-card .circle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.profile-card .circle::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(1, 42, 64);
+    /* background: teal; */
+    clip-path: circle(120px at center);
+    /* clip-path: inset(50px,50px); */
+    transition: 0.5s;
+}
+.profile-card:hover .circle::before{
+    border-radius: 20px;
+    /* border: 2px solid white; */
+    clip-path: circle(400px at center);
+    /* clip-path: inset(400px,400px); */
+    background:white;
+}
+.read{
+  color: white;
+  position: absolute;
+  top: 75%;
+  left: 44%;
+  pointer-events: none;
+}
+.profile-card:hover .read{
+  display: none;
+}
+.profile-card2:hover .read{
+  display: none;
+}
+.team{
+  color: white;
+  position: absolute;
+    top: 21%;
+    left: 42%;
+    pointer-events: none;
+}
+.profile-card:hover .team{
+  display: none;
+}
+.profile-card2:hover .team{
+  display: none;
+}
+.profile-card i{
+  color: white;
+    position: absolute;
+    top: 32%;
+    left: 39%;
+    transform: translateY(-50%,-50%);
+    height: 225px;
+    pointer-events: none;
+    transition: .5s;
+    font-size: 120px;
+}
+.profile-card:hover i{
+    left: 53%;
+    top: 17%;
+    font-size: 210px;
+    color: teal;
+}
+.profile-card .content{
+    position: relative;
+    width: 50%;
+    padding: 20px 20px 20px 40px;
+    left: 0%;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+}
+.profile-card:hover .content{
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+.profile-card .content h2{
+    color: teal;
+    text-transform: uppercase;
+    font-size: 2em;
+    line-height: 1em;
+    margin: 10px;
+}
+.profile-card .content p{
+    color: teal;
+}
+.profile-card2{
+  position: relative;
+  width: 600px;
+  height: 350px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+.profile-card2 .circle{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.profile-card2 .circle::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(1, 42, 64);
+  clip-path: circle(120px at center);
+  transition: 0.5s;
+}
+.profile-card2:hover .circle::before{
+  border-radius: 20px;
+  clip-path: circle(400px at center);
+  background-color: white;
+}
+.profile-card2 i{
+  color: white;
+    position: absolute;
+    top: 28%;
+    left: 36%;
+    transform: translateY(-50%,-50%);
+    height: 225px;
+    pointer-events: none;
+    transition: .5s;
+    font-size: 150px;
+}
+.profile-card2:hover i{
+  left: 53%;
+  top: 17%;
+  font-size: 230px;
+  color: teal;
+}
+.profile-card2 .content{
+  position: relative;
+  width: 50%;
+  padding: 20px 20px 20px 40px;
+  left: 0%;
+  transition: .5s;
+  opacity: 0;
+  visibility: hidden;
+}
+.profile-card2:hover .content{
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+}
+.profile-card2 .content h2{
+  color: teal;
+  text-transform: uppercase;
+  font-size: 2em;
+  line-height: 1em;
+  margin: 10px;
+}
+.profile-card2 .content p{
+  color: teal;
+}
+@media(max-width : 700px){
+    .profile-card{
+        width: auto;
+        max-width: 350px;
+        align-items: flex-start;
+    }
+    .profile-card:hover{
+        height: 600px;
+    }
+    .profile-card .content{
+        width: 100%;
+        left:52%;
+        padding: 30px;
+        }
+    .profile-card:hover img{
+        top: 45%;
+        left: 5%;
+        height: 320px;
+    }
+    .profile-card img{
+        left:21%;
+        top: 20%;
+    }
+    .profile-card2{
+      width: auto;
+      max-width: 350px;
+      align-items: flex-start;
+  }
+  .profile-card2:hover{
+      height: 600px;
+  }
+  .profile-card2 .content{
+      width: 100%;
+      left:50%;
+      padding: 30px;
+      }
+  .profile-card2:hover img{
+      top: 45%;
+      left: -6%;
+      height: 280px;
+  }
+  .profile-card2 img{
+      left:16%;
+  }
+    .flex-container{
+        flex-direction: column;
+    }.team{
+      top: 21%;
+      left: 36%;
+    }
+   
+}
+.titles{
+    color: white;
+    /* color: rgba(130, 104, 194, 0.8); */
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+.titles::after {
+  content: '';
+  position: relative;
+  border-radius: 2px;
+  display: block;
+  width: 40px;
+  height: 4px;
+  background: white;
+  bottom: -3px;
+  left: calc(50% - 20px);
+}
+.card {
+    font-size: 18px;
+    color: white;
+    background:transparent;
+    border-radius: 18px;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 0px 20px 20px 20px;
+    margin-top: 0vh;
+    margin-left: 12vw;
+    margin-right: 12vw;
+}
+.questions{
+    padding-top: 40px;
+    font-size: 19px;
+}
+.example {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-size: 400% 400%;
+}
+.example2 {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  background-size: 400% 400%;
+}
+.wrapper .input-data {
+  height: 40px;
+  width: 100%;
+  margin: 37px 0px;
+  position: relative;
+}
+
+.wrapper .input-data input {
+  height: 100%;
+  width: 100%;
+  background: none;
+  text-decoration: none;
+  border: none;
+  font-size: 17px;
+  border-bottom: 2px solid silver;
+}
+
+.input-data input:focus ~ label,
+.input-data input:valid ~ label {
+  transform: translateY(-37px);
+  font-size: 15px;
+  color: white;
+  font-weight: 500;
+}
+
+.wrapper .input-data label {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  color: #ffffff;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  font-weight: 400;
+}
+
+.wrapper .input-data .underline {
+  position: absolute;
+  bottom: 0px;
+  height: 2px;
+  width: 100%;
+}
+
+.input-data .underline:before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background: white;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.input-data input:focus ~ .underline:before,
+.input-data input:valid ~ .underline:before {
+  transform: scaleX(1);
+}
+
+.box {
+  overflow: hidden;
+  position: relative;
+  padding: 10px;
+  width: 60%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(93, 102, 105, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.7);
+  transition: 1s;
+}
+.box:hover{
+  background: rgba(0, 0,0, .1);
+  width: 63%;
+  height: 100%;
+}
+.box::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 5px;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 15%,
+    transparent 50%,
+    transparent 85%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+}
+.form p{
+  font-size: 20px;
+  font-weight: 600;
+}
+.box .form {
+  position: relative;
+  width: 100%;
+}
+
+.box .form h1 {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 10px;
+}
+
+.number-input,
+.checkbox,
+.textarea,
+p {
+  margin: 10px 0px;
+  padding: 5px;
+  color: #fff;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+}
+
+button {
+  text-transform: uppercase;
+  background: transparent;
+  border: 3px solid teal;
+  font-size: 20px;
+  border-radius: 25px;
+  color: white;
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+  width: 170px;
+  height: 45px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+span{
+  background: teal;
+  height: 100%;
+  width: 00%;
+  border-radius: 25px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: .5s;
+}
+button:hover span{
+  width: 100%;
+}
+button:hover{
+  border: none;
+}
+.title-text{
+  display: flex;
+  width: 200%;
+}
+.slide-controls{
+  position: relative;
+  display: flex;
+  /* display: none; */
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+  margin: 30px 0 10px 0;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+.slide-controls .slide{
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.6s ease;
+}
+.slide-controls label.signup{
+  color: #000;
+}
+.slide-controls .slider-tab{
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  left: 0;
+  z-index: 0;
+  border-radius: 5px;
+  background-color: teal;
+  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+.slide-controls input[type="radio"]{
+  display: none;
+}
+#signup:checked ~ .slider-tab{
+  left: 50%;
+}
+#signup:checked ~ label.signup{
+  color: #fff;
+  /* font-weight: 900; */
+  cursor: default;
+  user-select: none;
+}
+#signup:checked ~ label.login{
+  color: #fff;
+  /* font-weight: 900; */
+}
+#login:checked ~ label.signup{
+  color: #fff;
+  /* font-weight: 900; */
+}
+#login:checked ~ label.login{
+  cursor: default;
+  user-select: none;
+}
+.form-inner form .input-data input:focus{
+  border:3px solid teal;
+}
+.wrapper .form-container{
+  width: 100%;
+  overflow: hidden;
+}
+.form-container .form-inner{
+  display: flex;
+  width: 200%;
+}
+.form-container .form-inner form{
+  width: 50%;
+  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+form{
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.radios{
+  padding-top: 15px;
+  color: white;
+  line-height: 25px;
+
+}
+.radios input{
+  background: none;
+  font-size: 17px;
+}

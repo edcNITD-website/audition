@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'base/styles/questions.css'%}">
+    <title>Q form</title>
+</head>
+<body>
+    <h1 class="titles" style="padding-top: 40px;">Welcome To the Auditions of <br> Entrepreneurship Development Cell <br>NIT Durgapur</h1>
+    <h1 class="heading">Roles We Offer:</h1>
+    <section>
+        <div class="flex-container">
+            <div class="profile-card">
+                <div class="circle"></div>
+                <div class="content">
+                    <h2>Core Team</h2>
+                   <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ipsum quam vitae amet tempora dolorem deleniti voluptatum ad facilis temporibus consectetur illum, dicta, cum molestiae vel ex itaque, autem suscipit.</p>
+                </div>
+                <h4 class="team">Core Team</h4>
+                <!-- <img src="core team.png" alt=""> -->
+                <i class="fa fa-users" aria-hidden="true"></i>
+                <h5 class="read">Read more</h5>
+            </div>
+            <div class="profile-card2">
+                <div class="circle"></div>
+                <div class="content">
+                    <h2>Tech Team</h2>
+                   <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ipsum quam vitae amet tempora dolorem deleniti voluptatum ad facilis temporibus consectetur illum, dicta, cum molestiae vel ex itaque, autem suscipit.</p>
+                </div>
+                <h4 class="team">Tech Team</h4>
+                <!-- <img src="tech team.png" alt=""> -->
+                <i class="fa fa-laptop" aria-hidden="true"></i>
+                <h5 class="read">Read more</h5>
+            </div>
+        </div>     
+</section>
+   <div class="example">
+   <div class="box">
+     <div class="form">
+       <h1 class = "titles">Student Details</h1>
+       <p id="description">Fill in this form to go ahead with the audition procedure. Hope to see you in the next round. All the best!</p>
+       <form id="survey-form" autocomplete="off" method="POST">
+        {% csrf_token %}
+         <div class="wrapper">
+           <div class="input-data">
+             <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
+             <div class="underline"></div>
+             <label id="name-label" for="name">Name</label>
+           </div>
+           <div class="input-data">
+            <input type="text" style="color: white;" id="name" name="branch" autocomplete="new-password" required />
+            <div class="underline"></div>
+            <label id="name-label" for="name">Department</label>
+          </div>
+          <div class="input-data">
+            <input type="text" style="color: white;" id="name" name="year" autocomplete="new-password" required />
+            <div class="underline"></div>
+            <label id="name-label" for="name">Year of study</label>
+          </div>
+          <div class="input-data">
+            <input type="text" style="color: white;" id="name" name="phone_number" autocomplete="new-password" required />
+            <div class="underline"></div>
+            <label id="name-label" for="name">Mobile Number</label>
+          </div>
+          <div class="input-data">
+            <input type="text" style="color: white;" id="name" name="place" autocomplete="new-password" required />
+            <div class="underline"></div>
+            <label id="name-label" for="name">Native place</label>
+          </div>
+          <div class="input-data">
+            <input type="text" style="color: white;" id="name" name="roll_number" autocomplete="new-password" required />
+            <div class="underline"></div>
+            <label id="name-label" for="name">Roll Number</label>
+          </div>
+           
+           <div class="radios">
+            What do you choose? <br>
+            <input type="radio" value="core" name="showtech" id="showtech" onchange="showhideTechForm(this.value);">Only Core Team<br>
+            <input type="radio" value="core-tech" name="showtech" id="showtech" onchange="showhideTechForm(this.value);">Core Team and Tech Team
+         </div>
+           <div>
+             <button id="submit" type="submit"><span></span> Submit</button>
+           </div>
+         </div>
+       </form>
+     </div>
+   </div>
+</div>
+<!-- 2nd part -->
+<div class="example2" style="display: none;" id="form2">
+   <div class="box">
+     <div class="form">
+         <div class="titles">
+            Questionaire Time!
+         </div>
+         
+       <!-- <p id="description">Fill in this form to go ahead with the audition procedure. Hope to see you in the next round. All the best!</p> -->
+       <div class="form-container">
+       <div class="slide-controls" id="slide-control">
+         <input type="radio" name="slide" id="login" checked>
+         <input type="radio" name="slide" id="signup">
+         <label for="login" class="slide login">Core team</label>
+         <label for="signup" class="slide signup">Tech team</label>
+         <div class="slider-tab"></div>
+      </div>
+      <div class="form-inner">
+       <form id="survey-form" autocomplete="off" action="#" class="login">
+         <!-- <div class="titles login">
+            Questionaire Time!
+         </div> -->
+         <div class="wrapper">
+            <div class="radios">
+               What do you want to audition for? <br>
+               <input type="radio" value="event" name="showform" id="showform" onchange="showhideForm(this.value);">Event management <br>
+               <input type="radio" value="content" name="showform" id="showform" onchange="showhideForm(this.value);">Content Writing <br>
+               <input type="radio" value="both" name="showform" id="showform" onchange="showhideForm(this.value);">All of the above
+            </div>
+            <div id="event-manage" style="display: none;">
+              <div class="input-data">
+                <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
+                <div class="underline"></div>
+                <label id="name-label" for="name">What are your strengths and weaknesses?</label>
+              </div>
+              <div class="input-data">
+               <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
+               <div class="underline"></div>
+               <label id="name-label" for="name">What do you do if you have been unjustly blamed for something you did not do?</label>
+             </div>
+            </div>
+           <div id="content-write" style="display: none;">
+            <div class="input-data">
+              <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
+              <div class="underline"></div>
+              <label id="name-label" for="name">Tell us about a time you made a mistake.</label>
+            </div>
+            <div class="radios">
+              What do you choose? <br>
+              <input type="radio">lorem<br>
+              <input type="radio">ipsum
+           </div>
+             <div class="input-data">
+               <input type="text" style="color: white;" id="name" name="name" required />
+               <div class="underline"></div>
+               <label id="email-label" for="email">What can we expect from you as a member of EDC or what will be your contribution towards EDC?</label>
+             </div>
+           </div>
+           <div>
+             <button id="submit" type="submit"><span></span> Submit</button>
+           </div>
+         </div>
+       </form>
+
+       <form id="survey-form-tech" autocomplete="off" action="#" class="signup">
+         <div class="wrapper">
+          <div class="radios">
+            What do you want to audition for? <br>
+            <input type="radio" value="gd" name="showform2" id="showform2" onchange="showhideForm2(this.value);">Graphic Designing <br>
+            <input type="radio" value="webd" name="showform2" id="showform2" onchange="showhideForm2(this.value);">Web Development <br>
+            <input type="radio" value="video" name="showform2" id="showform2" onchange="showhideForm2(this.value);">Video Editing
+         </div>
+         <div id="gds" style="display: none;">
+          <div class="radios">
+            What do you choose? <br>
+            <input type="radio">lorem<br>
+            <input type="radio">ipsum
+         </div>
+        <div class="input-data">
+          <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
+          <div class="underline"></div>
+          <label id="name-label" for="name">Give the link to your github profile.</label>
+        </div>
+         </div>
+            <div id="webds" style="display: none;">
+              <div class="input-data">
+                <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
+                <div class="underline"></div>
+                <label id="name-label" for="name">What do you know about after-effects?</label>
+              </div>
+              <div class="radios">
+                What do you choose? <br>
+                <input type="radio">lorem<br>
+                <input type="radio">ipsum
+             </div>
+            </div>
+           <div id="videos" style="display: none;">
+            <div class="input-data">
+              <input type="text" id="name" style="color: white;" name="name" autocomplete="new-password" required />
+              <div class="underline"></div>
+              <label id="name-label" for="name">What do you know about backend and frontend web development</label>
+            </div>
+             <div class="input-data">
+               <input type="name" id="name" style="color: white;" name="name" required />
+               <div class="underline"></div>
+               <label id="email-label" for="email">Which software do you use for designing posters?</label>
+             </div>
+           </div>
+           <div>
+             <button id="submit" type="submit"><span></span> Submit</button>
+           </div>
+         </div>
+       </form>
+      </div>
+      </div>
+     </div>
+   </div>
+</div>
+<script>
+   const loginText = document.querySelector(".title-text .login");
+   const loginForm = document.querySelector("form.login");
+   const loginBtn = document.querySelector("label.login");
+   const signupBtn = document.querySelector("label.signup");
+   const signupLink = document.querySelector("form .signup-link a");
+   signupBtn.onclick = (()=>{
+     loginForm.style.marginLeft = "-50%";
+     loginText.style.marginLeft = "-50%";
+   });
+   loginBtn.onclick = (()=>{
+     loginForm.style.marginLeft = "0%";
+     loginText.style.marginLeft = "0%";
+   });
+   signupLink.onclick = (()=>{
+     signupBtn.click();
+     return false;
+   });
+
+   function showhideForm(showform) {
+         if (showform == "event") {
+            document.getElementById("event-manage").style.display = 'block';
+            document.getElementById("content-write").style.display = 'none';
+         }
+         else if (showform == "content") {
+            document.getElementById("content-write").style.display = 'block';
+            document.getElementById("event-manage").style.display = 'none';
+         }
+         else if (showform == "both") {
+            document.getElementById("content-write").style.display = 'block';
+            document.getElementById("event-manage").style.display = 'block';
+         }
+      }
+
+      function showhideForm2(showform2) {
+         if (showform2 == "gd") {
+            document.getElementById("gds").style.display = 'block';
+            document.getElementById("webds").style.display = 'none';
+            document.getElementById("videos").style.display = 'none';
+         }
+         else if (showform2 == "webd") {
+          document.getElementById("gds").style.display = 'none';
+            document.getElementById("webds").style.display = 'block';
+            document.getElementById("videos").style.display = 'none';
+         }
+         else if (showform2 == "video") {
+          document.getElementById("gds").style.display = 'none';
+            document.getElementById("webds").style.display = 'none';
+            document.getElementById("videos").style.display = 'block';
+         }
+      }
+
+      function showhideTechForm(showtech) {
+         if (showtech == "core") {
+            document.getElementById("survey-form-tech").style.display = 'none';
+            document.getElementById("slide-control").style.display = 'none';
+            document.getElementById("form2").style.display = 'flex';
+         }
+         else if (showtech == "core-tech") {
+            document.getElementById("slide-control").style.display = 'flex';
+            document.getElementById("survey-form-tech").style.display = 'block';
+            document.getElementById("form2").style.display = 'flex';
+         }
+      }
+</script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+/* Import Font Dancing Script */
+/* @import url(https://fonts.googleapis.com/css?family=Dancing+Script); */
+
+* {
+    margin: 0;
+}
+
+body {
+    /* background-color: rgb(16, 41, 41) !important; */
+    background-color: rgb(49, 49, 49) !important;
+    font-family: Arial !important;
+}
+/* Sidenav */
+.sidenav {
+    background-color: #fff;
+    color: #333;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    height: 500px;
+    left: 0;
+    /* overflow-x: hidden; */
+    padding-top: 20px;
+    position: absolute;
+    top: 70px;
+    width: 20vw;
+}
+
+.profile {
+    padding-top: 40px;
+    margin-bottom: 20px;
+    margin-top: -12px;
+    text-align: center;
+}
+
+.profile img {
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 1px grey;
+}
+.profile_2 img {
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 1px grey;
+}
+.profile_3 img {
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 1px grey;
+    max-width: 50vw;
+}
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.job {
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+.stage{
+    padding-top: 20px;
+    font-size: 18px;
+}
+/* navbar */
+.sidenav_2{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2%;
+    margin-left: 29%;
+    font-size: 28px;
+    padding: 0 10px;
+    padding-right: 120px;
+}
+.sidenav_2 .card {
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: 1px 1px 8px 0 grey;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px 0 20px 20px;
+}
+.sidenav_3 .card {
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: 1px 1px 8px 0 grey;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px 10px 20px 10px;
+}
+.sidenav_3{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2%;
+    margin-left: 0%;
+    font-size: 28px;
+    padding: 0 10px;
+    padding-right: 50px;
+    padding-left: 50px;
+    /* padding-left: 5px; */
+}
+/* .left{
+    width: 45%;
+}
+.right{
+    width: 55%;
+} */
+/* Main */
+.main {
+    margin-top: 2%;
+    margin-left: 29%;
+    font-size: 28px;
+    padding: 0 10px;
+    /* width: 58%; */
+    padding-right: 120px;
+}
+
+.main h2 {
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.main .card {
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: 1px 1px 8px 0 grey;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px 0 20px 50px;
+}
+
+.main .card table {
+    border: none;
+    font-size: 16px;
+    height: 270px;
+    width: 80%;
+}
+
+.edit {
+    position: absolute;
+    color: #e7e7e8;
+    right: 14%;
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-evenly;
+    column-gap: 10px;
+    /* width: 700px; */
+}
+.grid-item1, .grid-item2{
+    font-size: 20px;
+}
+.grid-item2{
+    padding-top: 25px;
+}
+@media only screen and (max-width: 1300px) {
+    .main{
+        padding-right: 100px;
+    }
+}
+@media only screen and (max-width: 1150px) {
+    .sidenav{
+        width: 25vw !important;
+    }
+}
+@media only screen and (max-width: 950px) {
+    .sidenav{
+        display: none;
+    }
+    .sidenav_2{
+        display: block !important;
+        margin-left: 10vw;
+        margin-right: 10vw;
+        padding: 10px 10px 10px 10px;
+        /* margin-right: 5%; */
+    }
+    .main{
+        margin-left: 10vw;
+        margin-right: 10vw;
+        padding: 10px 10px 10px 10px;
+    }
+    
+}
+@media only screen and (max-width: 600px) {
+    .profile_2 img{
+        width: 98px;
+        height: 98px;
+    }
+    .name{
+        padding-top: 0;
+    }
+    .grid-item1{
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .grid-item2{
+        font-size: 20px;
+    }
+    .main .card table {
+        font-size: 2.8vw;
+    }
+    .stage{
+        font-size: 17px;
+    } 
+}
+@media only screen and (max-width: 500px){
+    .main .card table {
+        font-size: 3.2vw;
+    }
+    .card{       
+        padding: 20px 0 20px 20px !important; 
+    }
+    .sidenav_3 .card{
+        padding: 20px 0 20px 0px !important; 
+    }
+}
+@media only screen and (max-width: 450px) {
+    .main .card{
+        padding: 20px 0 20px 5px;
+    }
+    .main .card table {
+        font-size: 3.4vw;
+    }
+    .sidenav_3{
+        display: block !important;
+    }
+    .sidenav_2{
+        display: none !important;
+    }
+    .sidenav_3 .name{
+        padding-top: 20px;
+    }  
+    .stage{
+        font-size: 17px;
+    }  
+    .container{
+        display: flex;
+    }
+}
+@media only screen and (max-width: 380px){
+    .card{       
+        padding: 20px 0 20px 0px !important;
+    }
+    .main .card table {
+        font-size: 3.8vw;
+    }
+    .main{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .sidenav_3{
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+    .main h2{
+        font-size: 22px;
+    }
+}
+@media only screen and (max-width: 300px){
+    .main .card table {
+        font-size: 4.6vw;
+    }
+    .sidenav_3 .name, .job, .stage{
+        font-size: 15px;
+    }
+    .main .card .card-body{
+        padding: 5px 5px 5px 5px;
+    }
+    .main h2{
+        font-size: 20px;
+    }
+}
+/* End */
