@@ -51,3 +51,16 @@ class Response(models.Model):
     def __str__(self):
         return str(self.student) + str(self.question_text)
         
+
+# Admin Functionality
+class ClubMember(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.user.first_name + " " + self.user.last_name
+
+class MemberFeedback(models.Model):
+    member = models.ForeignKey(ClubMember, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    feedback = models.TextField()
+    def __str__(self):
+        return self.member.user.first_name + " " + self.member.user.last_name + " | " + self.student.user.first_name + " " + self.student.user.last_name

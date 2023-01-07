@@ -7,6 +7,7 @@ urlpatterns = [
     path('questions/', views.questions, name='questions'),
     path('export', views.export, name='export'),
     path('results', views.results, name="results"),
+    path('members', views.members, name="members"),
     
 
     

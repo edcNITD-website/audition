@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Student, CQuestion, NCQuestion , Response
+from .models import Student, CQuestion, NCQuestion , Response, ClubMember, MemberFeedback
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required 
 import csv
@@ -28,7 +28,7 @@ def register(request):
         stage = '0'
         user = user
         student = Student.objects.create( user=user,name=name, year=year, stage=stage, branch=branch, place=place, roll_number=roll_number, phone_number=phone_number)
-        student.save();
+        student.save()
         return redirect('index')
     # context={
     #     'student':student,
@@ -110,3 +110,17 @@ def export(request):
 
 def results(request):
     return render(request, 'base/results.html')
+
+def members(request):
+    if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
+        students = Student.objects.all()
+        data = []
+        for student in students:
+            resposne = Response.objects.filter(student=student).all()
+            data.append({
+                'student': student,
+                'resposne': resposne
+            })
+        return render(request, 'base/members.html', { 'data': data })
+    else:
+        return redirect('/')
