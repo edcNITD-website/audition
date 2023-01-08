@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css?h=afad4525f1b4b0f8763e671324ba37b3'%}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'base/styles/form2.css'%}">
+    <title>Q form</title>
+</head>
+<body>
+  <div class="nav-container">
+    <div class="navbar">
+        <a href="https://www.edcnitd.co.in/" target="_blank"><img src="{% static 'base\media\edcW.png' %}" alt="My image" class="logo" alt=""></a>
+        <nav class="nav">
+          <ul class="nav-links">
+            <li><a href="form2.html">Home</a></li>
+            <li><a href="/accounts/logout">Logout</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+        </nav>
+        <a id="menu-icon" class="menu-icon">
+          <i class="fa fa-bars"></i>
+      </a>
+    </div>
+</div>
+    <h1 class="titles" style="padding-top: 130px;font-size: 60px;">Auditions</h1>
+    <h1 class="heading">Roles We Offer:</h1>
+    <!-- <section>
+        <div class="flex-container">
+            <div class="profile-card">
+                <div class="circle"></div>
+                <div class="content">
+                    <h2>Content Writing</h2>
+                   <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ipsum quam vitae amet tempora </p>
+                </div>
+                <h4 class="team">Content Writing</h4>
+                <img src="notebook.gif" alt="">
+                <h5 class="read">Read more</h5>
+            </div>
+            <div class="profile-card2">
+                <div class="circle"></div>
+                <div class="content">
+                    <h2>Graphic Designing</h2>
+                   <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ipsum quam vitae amet tempora.Quidem ipsum quam vitae amet</p>
+                </div>
+                <h4 class="team">Graphic Designing</h4>
+                <img src="monitor.gif" alt="">
+                <h5 class="read">Read more</h5>
+            </div>
+            <div class="profile-card">
+              <div class="circle"></div>
+              <div class="content">
+                  <h2>Web Development</h2>
+                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ipsum facilis dicta, cum molestiae vel ex itaque, autem suscipit.</p>
+              </div>
+              <h4 class="team">Web Development</h4>
+              <img src="hacker.gif" alt="">
+              <h5 class="read">Read more</h5>
+          </div>
+          <div class="profile-card2">
+            <div class="circle"></div>
+            <div class="content">
+                <h2>Video Editing</h2>
+               <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem  voluptatum dicta, cum molestiae vel ex itaque, autem suscipit.</p>
+            </div>
+            <h4 class="team">Video Editing</h4>
+            <img src="film-strip.gif" alt="">
+            <h5 class="read">Read more</h5>
+        </div>
+        </div>     
+</section> -->
+<section class="roles" id="roles">
+  <div class="max-width">
+      <div class="serv-content">
+          <div class="cards">
+              <div class="boxs">
+                 <i class="fa fa-pencil"></i>
+                  <div class="text">Content Writers</div>
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
+              </div>
+          </div>
+          <div class="cards">
+              <div class="boxs">
+                  <i class="fa fa-image"></i>
+                  <div class="text">Graphic Designers</div>
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
+              </div>
+          </div>
+          <div class="cards" style="margin-top: 10px;">
+              <div class="boxs">
+                <i class="fa fa-laptop"></i>
+                  <div class="text">Web Developers</div>
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
+              </div>
+          </div>
+          <div class="cards" style="margin-top: 10px;">
+              <div class="boxs">
+                  <i class="fa fa-video-camera"></i>
+                  <div class="text">Video Editors</div>
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
+              </div>
+          </div>
+         </div>
+      </div>
+  </div>
+</section>
+   <div class="example">
+   <div class="box">
+     <div class="form">
+       <h1 class = "titles">Student Details</h1>
+       <!-- <p id="description">Fill in this form to go ahead with the audition procedure. Hope to see you in the next round. All the best!</p> -->
+       <form id="survey-form" autocomplete="off">
+         <div class="wrapper">
+           <div class="input-data">
+             <input type="text" style="color: white;" value="{{saved_data.name}}" id="name" name="name" autocomplete="new-password" required />
+             <div class="underline"></div>
+             <label id="name-label" for="name">Name</label>
+           </div>
+           <div class="input-data">
+            <input type="text" style="color: white;" value="{{saved_data.branch}}" id="branch" name="branch" autocomplete="new-password" required />
+            <div class="underline"></div>
+            <label id="name-label" for="name">Department</label>
+          </div>
+          <div class="input-data">
+            <input type="text" style="color: white;" value="{{saved_data.year}}"id="year" name="year" autocomplete="new-password" required />
+            <div class="underline"></div>
+            <label id="name-label" for="name">Year of study</label>
+          </div>
+           <!-- <div class="input-data">
+             <input type="email" style="color: white;" id="email" name="email" required />
+             <div class="underline"></div>
+             <label id="email-label" for="email">Enter your Email</label>
+           </div> -->
+           <div class="input-data">
+            <input type="text" style="color: white;"value="{{saved_data.phone_number}}" id="phone_number" name="phone_number" autocomplete="new-password" required />
+            <div class="underline"></div>
+            <label id="name-label" for="name">Mobile Number</label>
+          </div>
+          <div class="input-data">
+            <input type="text" style="color: white;" value="{{saved_data.place}}"id="place" name="place" autocomplete="new-password" required />
+            <div class="underline"></div>
+            <label id="name-label" for="name">Native place</label>
+          </div>
+          <div class="input-data">
+            <input type="text" style="color: white;"value="{{saved_data.roll_number}}" id="roll_number" name="roll_number" autocomplete="new-password" required />
+            <div class="underline"></div>
+            <label id="name-label" for="name">Roll Number</label>
+          </div>
+
+           <div class="radios">
+            What do you choose? <br>
+            <input type="radio" value="core" name="showtech" id="showtech" onchange="showhideTechForm(this.value);">Only Core Team<br>
+            <input type="radio" value="core-tech" name="showtech" id="showtech" onchange="showhideTechForm(this.value);">Core Team and Tech Team
+         </div> <br>
+           <!-- <div>
+             <button id="submit" type="submit"><span></span> Submit</button>
+           </div> -->
+         </div>
+       </form>
+     </div>
+   </div>    
+</div>
+<!-- 2nd part -->
+<div class="example2" style="display: none;" id="form2">
+   <div class="box">
+     <div class="form">
+         <div class="titles" id="q-title">
+            Core team Questions
+         </div>
+         
+       <!-- <p id="description">Fill in this form to go ahead with the audition procedure. Hope to see you in the next round. All the best!</p> -->
+       <div class="form-container">
+       <div class="slide-controls" id="slide-control">
+         <input type="radio" name="slide" id="login" checked>
+         <input type="radio" name="slide" id="signup">
+         <label for="login" class="slide login">Core team</label>
+         <label for="signup" class="slide signup">Tech team</label>
+         <div class="slider-tab"></div>
+      </div>
+      <div class="form-inner">
+       <form id="survey-form" autocomplete="off" action="#" class="login">
+         <!-- <div class="titles login">
+            Questionaire Time!
+         </div> -->
+         <div class="wrapper">
+            <div class="radios">
+               What do you want to audition for? <br>
+               <input type="radio" value="event" name="showform" id="showform" onchange="showhideForm(this.value);">Event management <br>
+               <input type="radio" value="content" name="showform" id="showform" onchange="showhideForm(this.value);">Content Writing <br>
+               <input type="radio" value="both" name="showform" id="showform" onchange="showhideForm(this.value);">All of the above
+            </div>
+            <div id="event-manage" style="display: none;">
+              <div class="input-data">
+                <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
+                <div class="underline"></div>
+                <label id="name-label" for="name">What are your strengths and weaknesses?</label>
+              </div>
+              <div class="input-data">
+               <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
+               <div class="underline"></div>
+               <label id="name-label" for="name">What do you do if you have been unjustly blamed for something you did not do?</label>
+             </div>
+            </div>
+           <div id="content-write" style="display: none;">
+            <div class="input-data">
+              <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
+              <div class="underline"></div>
+              <label id="name-label" for="name">Tell us about a time you made a mistake.</label>
+            </div>
+            <div class="radios">
+              What do you choose? <br>
+              <input type="radio">lorem<br>
+              <input type="radio">ipsum
+           </div>
+             <div class="input-data">
+               <input type="text" style="color: white;" id="name" name="name" required />
+               <div class="underline"></div>
+               <label id="email-label" for="email">What can we expect from you as a member of EDC or what will be your contribution towards EDC?</label>
+             </div>
+           </div>
+           
+           <!-- <div>
+             <button id="submit" type="submit"><span></span> Submit</button>
+           </div>
+           <div>
+            <button id="submit" type="submit"><span></span>Save and <br> edit later</button>
+          </div> -->
+         </div>
+        </form>
+
+       <div id="survey-form-tech" autocomplete="off" action="#" class="signup">
+         <div class="wrapper">
+          <div class="radios">
+            What do you want to audition for? <br>
+            <input type="radio" value="gd" name="showform2" id="showform2" onchange="showhideForm2(this.value);">Graphic Designing <br>
+            <input type="radio" value="webd" name="showform2" id="showform2" onchange="showhideForm2(this.value);">Web Development <br>
+            <input type="radio" value="video" name="showform2" id="showform2" onchange="showhideForm2(this.value);">Video Editing
+         </div>
+         <div id="gds" style="display: none;">
+          <div class="radios">
+            What do you choose? <br>
+            <input type="radio">lorem<br>
+            <input type="radio">ipsum
+         </div>
+        <div class="input-data">
+          <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
+          <div class="underline"></div>
+          <label id="name-label" for="name">Give the link to your github profile.</label>
+        </div>
+         </div>
+            <div id="webds" style="display: none;">
+              <div class="input-data">
+                <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
+                <div class="underline"></div>
+                <label id="name-label" for="name">What do you know about after-effects?</label>
+              </div>
+              <div class="radios">
+                What do you choose? <br>
+                <input type="radio">lorem<br>
+                <input type="radio">ipsum
+             </div>
+            </div>
+           <div id="videos" style="display: none;">
+            <div class="input-data">
+              <input type="text" id="name" style="color: white;" name="name" autocomplete="new-password" required />
+              <div class="underline"></div>
+              <label id="name-label" for="name">What do you know about backend and frontend web development</label>
+            </div>
+             <div class="input-data">
+               <input type="name" id="name" style="color: white;" name="name" required />
+               <div class="underline"></div>
+               <label id="email-label" for="email">Which software do you use for designing posters?</label>
+             </div>
+           </div>
+           <!-- <div>
+             <button id="submit" type="submit"><span></span> Submit</button>
+           </div>
+           <div>
+            <button id="submit" type="submit"><span></span>Save and edit later</button>
+          </div> -->
+         </div>
+       </div>
+      </div>
+      </div>
+     </div>
+   </div>
+</div>
+<div class="submit">
+<div>
+  <button id="submit" type="submit" style="margin-right: 15px;"><span></span> Submit</button>
+</div>
+<div>
+ <button id="submit2" type="submit2" style="margin-left: 15px;" ><span></span>Save and edit later</button>
+</div>
+</div>
+
+<footer class="footer">
+  <div class="leftFooter">
+    <div class="leftFooterContent">
+      <h2>
+        Entrepreneurship <br />
+        Development Cell
+      </h2>
+      <h3>Nit Durgapur</h3>
+    </div>
+    <p>
+      Made with <i class="fa fa-heart" aria-hidden="true"></i> by Web-Team
+      <br />© 2022 EDC. All Rights Reserved.
+    </p>
+  </div>
+  <div class="middleFooter">
+    <div class="bottomBorder">
+      <h2>CONTACT US</h2>
+    </div>
+    <p>
+      <i class="fa fa-map-marker"></i> : Mahatma Gandhi Avenue,<br />
+      A-Zone, Durgapur, West Bengal <br />
+      Durgapur: 713209
+      <br />
+      <i class="fa fa-phone"></i> : +91 9123001251(Purvi)
+      <br>
+      <i class="fa fa-phone"></i> : +91 9831436985(Manzer)
+      <br />
+      <i class="fa fa-envelope-o"></i> : edc@nitdgp.ac.in
+    </p>
+    <div class="socials">
+      <div class="circles" id="twitter">
+        <a href="https://twitter.com/edcnitd" target="_blank" rel="noopener noreferrer"
+          ><i id="twitter-icon" class="fa fa-twitter"></i
+        ></a>
+      </div>
+      <div class="circles" id="fb">
+        <a href="https://www.facebook.com/edc.nitd" target="_blank" rel="noopener noreferrer"
+          ><i id="fb-icon" class="fa fa-facebook"></i
+        ></a>
+      </div>
+      <div class="circles" id="insta">
+        <a href="https://www.instagram.com/edc.nitd/" target="_blank" rel="noopener noreferrer"
+          ><i id="insta-icon" class="fa fa-instagram"></i
+        ></a>
+      </div>
+      <div class="circles" id="yt">
+        <a href="https://www.youtube.com/@entrepreneurshipdevelopmen7605" target="_blank" rel="noopener noreferrer"
+          ><i id="yt-icon" class="fa fa-youtube"></i
+        ></a>
+      </div>
+      <div class="circles" id="linkedin">
+        <a href="https://in.linkedin.com/company/edcnitd" target="_blank" rel="noopener noreferrer"
+          ><i id="linkedin-icon" class="fa fa-linkedin"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+  <div class="rightFooter">
+    <div class="bottomBorder">
+      <h2>USEFUL LINKS</h2>
+    </div>
+    <div class="usefulLinks">
+      <ul>
+        <li><a href="#" rel="noopener noreferrer">Home</a></li>
+      </ul>
+      <ul>
+        <li>
+          <a href="https://www.edcnitd.co.in/" target="_blank" rel="noopener noreferrer">EDC</a>
+        </li>
+      </ul>
+      <ul>
+        <li><a href="#" rel="noopener noreferrer">Register</a></li>
+      </ul>
+      <ul>
+        <li><a href="#" rel="noopener noreferrer">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+   const loginText = document.querySelector(".title-text .login");
+   const loginForm = document.querySelector("form.login");
+   const loginBtn = document.querySelector("label.login");
+   const signupBtn = document.querySelector("label.signup");
+   const signupLink = document.querySelector("form .signup-link a");
+   signupBtn.onclick = (()=>{
+     loginForm.style.marginLeft = "-50%";
+     loginText.style.marginLeft = "-50%";
+   });
+   loginBtn.onclick = (()=>{
+     loginForm.style.marginLeft = "0%";
+     loginText.style.marginLeft = "0%";
+   });
+   signupLink.onclick = (()=>{
+     signupBtn.click();
+     return false;
+   });
+   $(document).ready(function(){
+   $(window).scroll(function(){
+        // sticky navbar on scroll script
+        if(this.scrollY > 20){
+            $('.navbar').addClass("sticky");
+        }else{
+            $('.navbar').removeClass("sticky");
+        }
+        
+        // scroll-up button show/hide script
+        if(this.scrollY > 500){
+            $('.scroll-up-btn').addClass("show");
+        }else{
+            $('.scroll-up-btn').removeClass("show");
+        }
+    });})
+   function showhideForm(showform) {
+         if (showform == "event") {
+            document.getElementById("event-manage").style.display = 'block';
+            document.getElementById("content-write").style.display = 'none';
+         }
+         else if (showform == "content") {
+            document.getElementById("content-write").style.display = 'block';
+            document.getElementById("event-manage").style.display = 'none';
+         }
+         else if (showform == "both") {
+            document.getElementById("content-write").style.display = 'block';
+            document.getElementById("event-manage").style.display = 'block';
+         }
+      }
+
+      function showhideForm2(showform2) {
+         if (showform2 == "gd") {
+            document.getElementById("gds").style.display = 'block';
+            document.getElementById("webds").style.display = 'none';
+            document.getElementById("videos").style.display = 'none';
+         }
+         else if (showform2 == "webd") {
+          document.getElementById("gds").style.display = 'none';
+            document.getElementById("webds").style.display = 'block';
+            document.getElementById("videos").style.display = 'none';
+         }
+         else if (showform2 == "video") {
+          document.getElementById("gds").style.display = 'none';
+            document.getElementById("webds").style.display = 'none';
+            document.getElementById("videos").style.display = 'block';
+         }
+      }
+
+      function showhideTechForm(showtech) {
+         if (showtech == "core") {
+            document.getElementById("survey-form-tech").style.display = 'none';
+            document.getElementById("slide-control").style.display = 'none';
+            document.getElementById("form2").style.display = 'flex';
+            document.getElementById("q-title").style.display = 'block';
+         }
+         else if (showtech == "core-tech") {
+            document.getElementById("slide-control").style.display = 'flex';
+            document.getElementById("survey-form-tech").style.display = 'block';
+            document.getElementById("form2").style.display = 'flex';
+            document.getElementById("q-title").style.display = 'none';
+         }
+      }
+	
+</script>
+
+</body>
+</html>
