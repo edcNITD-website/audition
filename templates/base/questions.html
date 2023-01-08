@@ -11,20 +11,63 @@
 
     <form action="" method="POST">
         {% csrf_token %}
-        {% for question in cquestions%}
+        {% for question in core_questions %}
 
         <fieldset>
-            <legend><h3>{{question}}</h3></legend>
+            <legend><h3>{{question.question}}</h3></legend>
                 
-            
-                <input type="text" style="width:1000; height:100;" value="{{question.question_text_response}}" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" >
+                <input type="hidden" name="category" value="Core">
+                <input type="text" style="width:1000; height:100;" value="{{question.my_response}}" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" >
 
         </fieldset>
-    {% endfor%}
+        {% endfor%}
     <input type="submit">
     </form>
 
-    
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for question in web_questions %}
+
+        <fieldset>
+            <legend><h3>{{question.question}}</h3></legend>
+                
+                <input type="hidden" name="category" value="Web">
+                <input type="text" style="width:1000; height:100;" value="{{question.my_response}}" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" >
+
+        </fieldset>
+        {% endfor%}
+    <input type="submit">
+    </form>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for question in gd_questions %}
+
+        <fieldset>
+            <legend><h3>{{question.question}}</h3></legend>
+                
+            <input type="hidden" name="category" value="GD">
+                <input type="text" style="width:1000; height:100;" value="{{question.my_response}}" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" >
+
+        </fieldset>
+        {% endfor%}
+    <input type="submit">
+    </form>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for question in video_questions %}
+
+        <fieldset>
+            <legend><h3>{{question.question}}</h3></legend>
+                
+                <input type="hidden" name="category" value="Video">
+                <input type="text" style="width:1000; height:100;" value="{{question.my_response}}" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" >
+
+        </fieldset>
+        {% endfor%}
+    <input type="submit">
+    </form>
 
 </body>
 </html>
