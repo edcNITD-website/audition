@@ -15,7 +15,9 @@ def register(request):
     user= request.user
     context={
 
-     }
+    }
+
+     
     if request.method == 'POST':
         name = request.POST['name']        
         place = request.POST['place']
@@ -40,10 +42,9 @@ def register(request):
 
     return render (request, 'base/form.html', { 'saved_data': saved_data })
 
-
 def profile(request):
     
-    return render(request, 'base/profile.html')
+    return render(request, 'base/profile2.html')
 
 @login_required
 def questions(request):
@@ -206,7 +207,7 @@ def export(request):
 
 
 def results(request):
-    return render(request, 'base/results.html')
+    return render(request, 'base/results2.html')
 
 def members(request):
     if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:

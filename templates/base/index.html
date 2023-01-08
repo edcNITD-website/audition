@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load socialaccount %}
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -110,7 +111,7 @@
                 <a
                   class="btn btn-outline-warning btn-xl"
                   role="button"
-                  href="http://127.0.0.1:8000/accounts/login/"
+                  href="{% provider_login_url 'google' %}"
                   >Register</a
                 >
               </div>
