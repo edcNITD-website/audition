@@ -21,23 +21,19 @@ class Student(models.Model):
         return self.name
 # C - Compulsory
 class CQuestion(models.Model):
-    student = models.ForeignKey( Student, null=True, blank=False, on_delete=models.CASCADE)
-    #remove student's response if he/she gets removed from db
+    student = models.ForeignKey(Student, null=True, blank=False, on_delete=models.CASCADE)
     question_text = models.CharField(max_length=500, blank=False, null=True)
-    question_response = models.CharField(max_length=2000, blank=False, null=True)
-
+    question_response = models.TextField(default="", blank=True, null=True)
+    category = models.CharField(max_length=100, default="Core")
     def __str__(self):
-        return self.question_text
+        return self.category + " | " + self.question_text
 
 class NCQuestion(models.Model):
-    student = models.ForeignKey( Student, null=True, blank=False, on_delete=models.CASCADE)
-    #remove student's response if he/she gets removed from db
+    student = models.ForeignKey(Student, null=True, blank=False, on_delete=models.CASCADE)
     question_text = models.CharField(max_length=500, blank=False, null=True)
-    question_response = models.CharField(max_length=2000, blank=True, null=True)
-
+    question_response = models.TextField(default="", blank=True, null=True)
     def __str__(self):
         return self.question_text
-
 
 
 class Response(models.Model):
@@ -47,9 +43,10 @@ class Response(models.Model):
     #remove student's response if he/she gets removed from db
     question_text = models.CharField(max_length=500, blank=False, null=True)
     question_response = models.CharField(max_length=2000, blank=True, null=True)
+    category = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return str(self.student) + str(self.question_text)
+        return str(self.student) + " | " + self.category + " | " + str(self.question_text)
         
 
 # Admin Functionality
