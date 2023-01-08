@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="{% static 'base/styles/results2.css'%}">
+    <title>Results</title>
+</head>
+<body>
+  <div class="nav-container">
+    <div class="navbar">
+      <a href="https://www.edcnitd.co.in/" target="_blank"><img src="{% static 'base\media\edcW.png' %}" class="logo" alt=""></a>
+        <ul class="links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Logout</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <a href="#" class="icon" onclick="menu()">
+          <i class="fa fa-bars"></i>
+        </a>
+    </div>
+</div>
+    <div class="titles">
+        Congratulations!
+    </div>
+    <p class="typewriter"
+          ><span data-text="You are one step closer! "></span>
+            
+          </p>
+    <!-- <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus non iusto nesciunt soluta placeat enim ad ducimus atque dolorem eum sed nam eos quia nihil quaerat, vitae vel aut cumque. <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, tenetur fuga numquam quam culpa id porro optio blanditiis hic deleniti nemo qui autem, quibusdam atque aliquam sint repellendus, laborum quisquam!</p> -->
+<div class="titles animate__animated animate__fadeInUp" style="padding-top:40px; padding-bottom: 20px;">Core Team</div>
+<!-- <div class="table-title">
+    <h3>Data Table</h3>
+    </div> -->
+    <div class="container animate__animated animate__fadeInUp">
+    <table class="table-fill">
+    <thead>
+    <tr>
+    <th class="text-left">Name</th>
+    <th class="text-left">Domain</th>
+    </tr>
+    </thead>
+    <tbody class="table-hover">
+    <tr>
+    <td class="text-left">Anshu Agarwal</td>
+    <td class="text-left">Event Management</td>
+    </tr>
+    <tr>
+    <td class="text-left">ipsum</td>
+    <td class="text-left">Content Writing, Event Management</td>
+    </tr>
+    <tr>
+    <td class="text-left">lorem</td>
+    <td class="text-left">Content Writing</td>
+    </tr>
+    <tr>
+    <td class="text-left">XYZ</td>
+    <td class="text-left">Content Writing</td>
+    </tr>
+    <tr>
+    <td class="text-left">ABC</td>
+    <td class="text-left">Event Management</td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+
+<div class="titles animate__animated animate__fadeInUp" style="padding-top:40px; padding-bottom: 20px;">Tech Team</div>
+<!-- <div class="table-title">
+    <h3>Data Table</h3>
+    </div> -->
+    <div class="container animate__animated animate__fadeInUp">
+    <table class="table-fill">
+    <thead>
+    <tr>
+    <th class="text-left">Name</th>
+    <th class="text-left">Domain</th>
+    </tr>
+    </thead>
+    <tbody class="table-hover">
+    <tr>
+    <td class="text-left">Anshu Agarwal</td>
+    <td class="text-left">Event Management</td>
+    </tr>
+    <tr>
+    <td class="text-left">ipsum</td>
+    <td class="text-left">Content Writing</td>
+    </tr>
+    <tr>
+    <td class="text-left">lorem</td>
+    <td class="text-left">Content Writing</td>
+    </tr>
+    <tr>
+    <td class="text-left">XYZ</td>
+    <td class="text-left">Content Writing</td>
+    </tr>
+    <tr>
+    <td class="text-left">ABC</td>
+    <td class="text-left">Event Management,Content Writing</td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+<footer class="footer">
+  <div class="leftFooter">
+    <div class="leftFooterContent">
+      <h2>
+        Entrepreneurship <br />
+        Development Cell
+      </h2>
+      <h3>Nit Durgapur</h3>
+    </div>
+    <p>
+      Made with <i class="fa fa-heart" aria-hidden="true"></i> by Web-Team
+      <br />© 2022 EDC. All Rights Reserved.
+    </p>
+  </div>
+  <div class="middleFooter">
+    <div class="bottomBorder">
+      <h2>CONTACT US</h2>
+    </div>
+    <p>
+      <i class="fa fa-map-marker"></i> : Mahatma Gandhi Avenue,<br />
+      A-Zone, Durgapur, West Bengal <br />
+      Durgapur: 713209
+      <br />
+      <i class="fa fa-phone"></i> : +91 9123001251(Purvi)
+      <br>
+      <i class="fa fa-phone"></i> : +91 8335810111(Yash)
+      <br />
+      <i class="fa fa-envelope-o"></i> : edc@nitdgp.ac.in
+    </p>
+    <div class="socials">
+      <div class="circle" id="twitter">
+        <a href="https://twitter.com/edcnitd" target="_blank" rel="noopener noreferrer"
+          ><i id="twitter-icon" class="fa fa-twitter"></i
+        ></a>
+      </div>
+      <div class="circle" id="fb">
+        <a href="https://www.facebook.com/edc.nitd" target="_blank" rel="noopener noreferrer"
+          ><i id="fb-icon" class="fa fa-facebook"></i
+        ></a>
+      </div>
+      <div class="circle" id="insta">
+        <a href="https://www.instagram.com/edc.nitd/" target="_blank" rel="noopener noreferrer"
+          ><i id="insta-icon" class="fa fa-instagram"></i
+        ></a>
+      </div>
+      <div class="circle" id="yt">
+        <a href="https://www.youtube.com/@entrepreneurshipdevelopmen7605" target="_blank" rel="noopener noreferrer"
+          ><i id="yt-icon" class="fa fa-youtube"></i
+        ></a>
+      </div>
+      <div class="circle" id="linkedin">
+        <a href="https://in.linkedin.com/company/edcnitd" target="_blank" rel="noopener noreferrer"
+          ><i id="linkedin-icon" class="fa fa-linkedin"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+  <div class="rightFooter">
+    <div class="bottomBorder">
+      <h2>USEFUL LINKS</h2>
+    </div>
+    <div class="usefulLinks">
+      <ul>
+        <li><a href="#" rel="noopener noreferrer">Home</a></li>
+      </ul>
+      <ul>
+        <li>
+          <a href="https://www.edcnitd.co.in/" target="_blank" rel="noopener noreferrer">EDC</a>
+        </li>
+      </ul>
+      <ul>
+        <li><a href="#" rel="noopener noreferrer">Register</a></li>
+      </ul>
+      <ul>
+        <li><a href="#" rel="noopener noreferrer">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    <script src="{% static 'base\scripts\confetti2.js'%}"></script>
+    <script>
+        const startit = () => {
+        setTimeout(function () {
+          confetti.start();
+        }, 1000);
+      };
+
+      const stopit = () => {
+        setTimeout(function () {
+          confetti.stop();
+        }, 3000);
+      };
+
+      startit();
+      stopit();
+
+      var span = document.querySelector(".typewriter span");
+var textArr = span.getAttribute("data-text").split(", ");
+var maxTextIndex = textArr.length;
+
+var sPerChar = 0.15;
+var sBetweenWord = 1.5;
+var textIndex = 0;
+
+typing(textIndex, textArr[textIndex]);
+
+function typing(textIndex, text) {
+  var charIndex = 0;
+  var maxCharIndex = text.length - 1;
+
+  var typeInterval = setInterval(function () {
+    span.innerHTML += text[charIndex];
+    if (charIndex == maxCharIndex) {
+      clearInterval(typeInterval);
+      setTimeout(function () {
+        deleting(textIndex, text);
+      }, sBetweenWord * 1000);
+    } else {
+      charIndex += 1;
+    }
+  }, sPerChar * 1000);
+}
+
+function deleting(textIndex, text) {
+  var minCharIndex = 0;
+  var charIndex = text.length - 1;
+
+  var typeInterval = setInterval(function () {
+    span.innerHTML = text.substr(0, charIndex);
+    if (charIndex == minCharIndex) {
+      clearInterval(typeInterval);
+      textIndex + 1 == maxTextIndex ? (textIndex = 0) : (textIndex += 1);
+      setTimeout(function () {
+        typing(textIndex, textArr[textIndex]);
+      }, sBetweenWord * 50);
+    } else {
+      charIndex -= 1;
+    }
+  }, sPerChar * 50);
+}
+
+    </script>
+</body>
+</html>
