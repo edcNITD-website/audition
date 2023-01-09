@@ -4,6 +4,7 @@
 }
 body {
   background-color: black !important;
+  font-family: 'Sofia Sans Semi Condensed', sans-serif;
 }
 .container {
   max-width: 960px !important;

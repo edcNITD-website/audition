@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 {% load static %}
+{% load socialaccount %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css?h=afad4525f1b4b0f8763e671324ba37b3'%}"/>
+    {% comment %} <link rel="stylesheet" href="{% static 'base/styles/bootstrap.min.css'%}"/> {% endcomment %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% comment %} <link
+      rel="stylesheet"
+      href="{% static 'base/styles/bootstrap.min.css'%}"
+    /> {% endcomment %}
     <link rel="stylesheet" href="{% static 'base/styles/form2.css'%}">
-    <title>Q form</title>
+    <title>Student Details</title>
 </head>
 <body>
   <div class="nav-container">
     <div class="navbar">
-        <a href="https://www.edcnitd.co.in/" target="_blank"><img src="{% static 'base\media\edcW.png' %}" alt="My image" class="logo" alt=""></a>
+        <a href="/"><img src="{% static 'base/media/edc-logo.png' %}" alt="My image" class="logo" alt=""></a>
         <nav class="nav">
           <ul class="nav-links">
-            <li><a href="form2.html">Home</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/register">Profile</a></li>
             <li><a href="/accounts/logout">Logout</a></li>
-            <li><a href="">Contact</a></li>
         </ul>
         </nav>
         <a id="menu-icon" class="menu-icon">
@@ -112,7 +117,8 @@
      <div class="form">
        <h1 class = "titles">Student Details</h1>
        <!-- <p id="description">Fill in this form to go ahead with the audition procedure. Hope to see you in the next round. All the best!</p> -->
-       <form id="survey-form" autocomplete="off">
+       <form id="survey-form" autocomplete="off" method="POST" action="/register/">
+        {% csrf_token %}
          <div class="wrapper">
            <div class="input-data">
              <input type="text" style="color: white;" value="{{saved_data.name}}" id="name" name="name" autocomplete="new-password" required />
@@ -149,22 +155,188 @@
             <div class="underline"></div>
             <label id="name-label" for="name">Roll Number</label>
           </div>
-
-           <div class="radios">
+          <div>
+            <button id="submit" type="submit"><span></span> Submit</button>
+          </div>
+           {% comment %} <div class="radios">
             What do you choose? <br>
             <input type="radio" value="core" name="showtech" id="showtech" onchange="showhideTechForm(this.value);">Only Core Team<br>
             <input type="radio" value="core-tech" name="showtech" id="showtech" onchange="showhideTechForm(this.value);">Core Team and Tech Team
-         </div> <br>
-           <!-- <div>
+         </div> <br> {% endcomment %}
+           {% comment %} <div>
              <button id="submit" type="submit"><span></span> Submit</button>
-           </div> -->
+           </div> {% endcomment %}
          </div>
        </form>
      </div>
    </div>    
 </div>
+<div class="example2" id="form2">
+<div class="box">
+  <div class="form">
+      <div class="titles" id="q-title">
+         Core team Questions
+      </div>
+      <div class="form-container">
+        <div class="form-inner">
+          <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login">
+            {% csrf_token %}
+            <div class="wrapper">
+              {% for q in core_questions %}
+                <div class="input-data">
+                  <input type="hidden" name="category" value="Core">
+                  <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                  <div class="underline"></div>
+                  <label id="name-label" for="name">{{ q.question }}</label>
+                </div>
+              {% endfor %}
+            </div>
+            <div>
+              <button id="submit" type="submit"><span></span> Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="example2" id="form2">
+  <div class="box">
+    <div class="form">
+      <div class="radios">
+        <h3>What do you choose?</h3> <br>
+        <input type="checkbox" value="content-check" name="content-check" id="content-check" onchange="auditioningFor(this.value);">Content<br>
+        <input type="checkbox" value="gd-check" name="gd-check" id="gd-check" onchange="auditioningFor(this.value);">Graphic Designing<br>
+        <input type="checkbox" value="video-check" name="video-check" id="video-check" onchange="auditioningFor(this.value);">Video Editing<br>
+        <input type="checkbox" value="web-check" name="web-check" id="web-check" onchange="auditioningFor(this.value);">Web Development<br>
+     </div>
+    </div>
+  </div>
+</div>
+
+<div class="example2 content-box" id="form2" style="display:none">
+  <div class="box">
+    <div class="form">
+        <div class="titles" id="q-title">
+           Content Writing Questions
+        </div>
+        <div class="form-container">
+          <div class="form-inner">
+            <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login">
+              {% csrf_token %}
+              <div class="wrapper">
+                {% for q in content_questions %}
+                  <div class="input-data">
+                    <input type="hidden" name="category" value="Content">
+                    <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                    <div class="underline"></div>
+                    <label id="name-label" for="name">{{ q.question }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+              <div>
+                <button id="submit" type="submit"><span></span>Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="example2 gd-box" id="form2" style="display:none">
+  <div class="box">
+    <div class="form">
+        <div class="titles" id="q-title">
+           Graphic Design Questions
+        </div>
+        <div class="form-container">
+          <div class="form-inner">
+            <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login">
+              {% csrf_token %}
+              <div class="wrapper">
+                {% for q in gd_questions %}
+                  <div class="input-data">
+                    <input type="hidden" name="category" value="GD">
+                    <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                    <div class="underline"></div>
+                    <label id="name-label" for="name">{{ q.question }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+              <div>
+                <button id="submit" type="submit"><span></span>Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example2 web-box" id="form2" style="display:none">
+    <div class="box">
+      <div class="form">
+          <div class="titles" id="q-title">
+             Web Development Questions
+          </div>
+          <div class="form-container">
+            <div class="form-inner">
+              <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login">
+                {% csrf_token %}
+                <div class="wrapper">
+                  {% for q in web_questions %}
+                    <div class="input-data">
+                      <input type="hidden" name="category" value="Web">
+                      <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                      <div class="underline"></div>
+                      <label id="name-label" for="name">{{ q.question }}</label>
+                    </div>
+                  {% endfor %}
+                </div>
+                <div>
+                  <button id="submit" type="submit"><span></span>Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="example2 video-box" id="form2" style="display:none">
+      <div class="box">
+        <div class="form">
+            <div class="titles" id="q-title">
+               Video Editing Questions
+            </div>
+            <div class="form-container">
+              <div class="form-inner">
+                <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login">
+                  {% csrf_token %}
+                  <div class="wrapper">
+                    {% for q in video_questions %}
+                      <div class="input-data">
+                        <input type="hidden" name="category" value="Video">
+                        <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                        <div class="underline"></div>
+                        <label id="name-label" for="name">{{ q.question }}</label>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <div>
+                    <button id="submit" type="submit"><span></span>Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 <!-- 2nd part -->
-<div class="example2" style="display: none;" id="form2">
+{% comment %} <div class="example2" style="display: none;" id="form2">
    <div class="box">
      <div class="form">
          <div class="titles" id="q-title">
@@ -287,15 +459,15 @@
       </div>
      </div>
    </div>
-</div>
-<div class="submit">
+</div> {% endcomment %}
+{% comment %} <div class="submit">
 <div>
   <button id="submit" type="submit" style="margin-right: 15px;"><span></span> Submit</button>
 </div>
 <div>
  <button id="submit2" type="submit2" style="margin-left: 15px;" ><span></span>Save and edit later</button>
 </div>
-</div>
+</div> {% endcomment %}
 
 <footer class="footer">
   <div class="leftFooter">
@@ -308,7 +480,7 @@
     </div>
     <p>
       Made with <i class="fa fa-heart" aria-hidden="true"></i> by Web-Team
-      <br />© 2022 EDC. All Rights Reserved.
+      <br />© 2023 EDC. All Rights Reserved.
     </p>
   </div>
   <div class="middleFooter">
@@ -378,6 +550,18 @@
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+  if(localStorage.getItem("content-check") == "true") {
+    document.getElementById('content-check').click();
+  }
+  if(localStorage.getItem("gd-check") == "true") {
+    document.getElementById('gd-check').click();
+  }
+  if(localStorage.getItem("web-check") == "true") {
+    document.getElementById('web-check').click();
+  }
+  if(localStorage.getItem("video-check") == "true") {
+    document.getElementById('video-check').click();
+  }
    const loginText = document.querySelector(".title-text .login");
    const loginForm = document.querySelector("form.login");
    const loginBtn = document.querySelector("label.login");
@@ -458,8 +642,51 @@
             document.getElementById("q-title").style.display = 'none';
          }
       }
-	
-</script>
 
+      
+
+      function auditioningFor(e) {
+        if(e == 'content-check') {
+          if(document.getElementById('content-check').checked == true) {
+            document.querySelector('.content-box').style.display = "flex";
+            localStorage.setItem("content-check", true);
+          }
+          else {
+            document.querySelector('.content-box').style.display = "none";
+            localStorage.setItem("content-check", false);
+          }
+        }
+        if(e == 'gd-check') {
+          if(document.getElementById('gd-check').checked == true) {
+            document.querySelector('.gd-box').style.display = "flex";
+            localStorage.setItem("gd-check", true);
+          }
+          else {
+            document.querySelector('.gd-box').style.display = "none";
+            localStorage.setItem("gd-check", false);
+          }
+        }
+        if(e == 'web-check') {
+          if(document.getElementById('web-check').checked == true) {
+            document.querySelector('.web-box').style.display = "flex";
+            localStorage.setItem("web-check", true);
+          }
+          else {
+            document.querySelector('.web-box').style.display = "none";
+            localStorage.setItem("web-check", false);
+          }
+        }
+        if(e == 'video-check') {
+          if(document.getElementById('video-check').checked == true) {
+            document.querySelector('.video-box').style.display = "flex";
+            localStorage.setItem("video-check", true);
+          }
+          else {
+            document.querySelector('.video-box').style.display = "none";
+            localStorage.setItem("video-check", false);
+          }
+        }
+      }
+</script>
 </body>
 </html>

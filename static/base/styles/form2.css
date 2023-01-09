@@ -395,7 +395,8 @@ section{
   align-items: center;
   min-height: 50vh;
   background-size: 400% 400%;
-  padding-bottom: 200px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 .wrapper .input-data {
   height: 40px;
@@ -744,8 +745,8 @@ li a{
   color: #E2DCC8;
 }
 .logo{
-  height: 100px;
-  width: 170px;
+  /* height: 100px;
+  width: 170px; */
   padding-top: 15px;
 }
 .nav_links li{

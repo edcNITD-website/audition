@@ -10,14 +10,7 @@ def index(request):
 
 @login_required
 def register(request):
-    
-     # stage    year
     user= request.user
-    context={
-
-    }
-
-     
     if request.method == 'POST':
         name = request.POST['name']        
         place = request.POST['place']
@@ -25,94 +18,42 @@ def register(request):
         roll_number = request.POST['roll_number']
         phone_number = request.POST['phone_number']
         year = request.POST['year']
-    
-        
         stage = '0'
         if Student.objects.filter(user=user).first() is not None:
-            Student.objects.filter(user=user).first().delete()
-        student = Student.objects.create( user=user,name=name, year=year, stage=stage, branch=branch, place=place, roll_number=roll_number, phone_number=phone_number)
-        student.save()
-        return redirect('index')
-    # context={
-    #     'student':student,
-
-    # }
+            s = Student.objects.get(user=user)
+            s.user = user
+            s.name = name
+            s.place = place
+            s.year = year
+            s.branch = branch
+            s.roll_number = roll_number
+            s.phone_number = phone_number
+            s.stage = '0'
+            s.save(update_fields=['name', 'place', 'year', 'branch', 'roll_number', 'phone_number'])
+        else:    
+            student = Student.objects.create( user=user,name=name, year=year, stage=stage, branch=branch, place=place, roll_number=roll_number, phone_number=phone_number)
+            student.save()
+        return redirect('/register')
 
     saved_data = Student.objects.filter(user=user).first()
-
-    return render (request, 'base/form.html', { 'saved_data': saved_data })
-
-def profile(request):
-    
-    return render(request, 'base/profile2.html')
-
-@login_required
-def questions(request):
-    if request.method == 'POST':
-        user = request.user
-        student = Student.objects.filter(user=user)
-        member = student.first()
-        phone_number = member.phone_number
-
-        name = member.name
-
-
-        Cquestions= CQuestion.objects.all()
-        NCquestions = NCQuestion.objects.all()
-        # Response.objects.filter(student=member).all().delete()
-        category = request.POST['category']
-        Response.objects.filter(student=member, category=category).all().delete()
-        for i in range(1,len(Cquestions)+1):
-            response= "response"+str(i)
-            if response in request.POST:
-                ans = request.POST[response]
-                Response.objects.create(student = student[0], question_text = Cquestions[i-1].question_text, question_response = ans, student_phone_number= phone_number, student_name = name, category=category)
-                
-            else:
-                pass
-
-        return redirect('/questions')    
-
- 
-     
-    # my_responses = Response.objects.filter(student=Student.objects.filter(user=request.user).first())
-    # c_questions = CQuestion.objects.all()
-    # nc_questions = NCQuestion.objects.all()
-    # c_questions_new = []
-    # nc_questions_new = []
-    # context = {}
-    # index = 0
-    # for q in c_questions:
-        # if index < len(my_responses):
-        #     c_questions_new.append({
-        #         'question': q.question_text,
-        #         'my_response': my_responses[index].question_response
-        #     })
-        # else:
-        #     c_questions_new.append({
-        #         'question': q.question_text,
-        #         'my_response': ""
-        #     })
-        # index = index + 1
-    # context={
-    #     'cquestions': c_questions_new,
-    #     'ncquestions': NCQuestion.objects.all()
-    # }
 
     core_questions = CQuestion.objects.filter(category="Core").all()
     web_questions = CQuestion.objects.filter(category="Web").all()
     gd_questions = CQuestion.objects.filter(category="GD").all()
     video_questions = CQuestion.objects.filter(category="Video").all()
+    content_questions = CQuestion.objects.filter(category="Content").all()
 
     core_responses = Response.objects.filter(student=Student.objects.filter(user=request.user).first(), category="Core").all()
     web_responses = Response.objects.filter(student=Student.objects.filter(user=request.user).first(), category="Web").all()
     gd_responses = Response.objects.filter(student=Student.objects.filter(user=request.user).first(), category="GD").all()
     video_responses = Response.objects.filter(student=Student.objects.filter(user=request.user).first(), category="Video").all()
+    content_responses = Response.objects.filter(student=Student.objects.filter(user=request.user).first(), category="Content").all()
 
     core_questions_new = []
     web_questions_new = []
     gd_questions_new = []
     video_questions_new = []
+    content_questions_new = []
 
     index = 0
     for q in core_questions:
@@ -169,12 +110,151 @@ def questions(request):
                 'my_response': ""
             })
         index = index + 1
+    
+    index = 0
+    for q in content_questions:
+        if index < len(content_responses):
+            content_questions_new.append({
+                'question': q.question_text,
+                'my_response': content_responses[index].question_response
+            })
+        else:
+            content_questions_new.append({
+                'question': q.question_text,
+                'my_response': ""
+            })
+        index = index + 1
+
+    context = {
+        'saved_data': saved_data,
+        'core_questions': core_questions_new,
+        'web_questions': web_questions_new,
+        'gd_questions': gd_questions_new,
+        'video_questions': video_questions_new,
+        'content_questions': content_questions_new
+    }
+    return render (request, 'base/form2.html', context)
+
+def profile(request):
+    return render(request, 'base/profile2.html')
+
+@login_required
+def questions(request):
+    if request.method == 'POST':
+        user = request.user
+        student = Student.objects.filter(user=user)
+        member = student.first()
+        phone_number = member.phone_number
+        name = member.name
+        Cquestions= CQuestion.objects.all()
+        NCquestions = NCQuestion.objects.all()
+        category = request.POST['category']
+        Response.objects.filter(student=member, category=category).all().delete()
+        for i in range(1,len(Cquestions)+1):
+            response= "response"+str(i)
+            if response in request.POST:
+                ans = request.POST[response]
+                Response.objects.create(student = student[0], question_text = Cquestions[i-1].question_text, question_response = ans, student_phone_number= phone_number, student_name = name, category=category)
+                
+            else:
+                pass
+
+        return redirect('/register')    
+
+    core_questions = CQuestion.objects.filter(category="Core").all()
+    web_questions = CQuestion.objects.filter(category="Web").all()
+    gd_questions = CQuestion.objects.filter(category="GD").all()
+    video_questions = CQuestion.objects.filter(category="Video").all()
+    content_questions = CQuestion.objects.filter(category="Content").all()
+
+    core_responses = Response.objects.filter(student=Student.objects.filter(user=request.user).first(), category="Core").all()
+    web_responses = Response.objects.filter(student=Student.objects.filter(user=request.user).first(), category="Web").all()
+    gd_responses = Response.objects.filter(student=Student.objects.filter(user=request.user).first(), category="GD").all()
+    video_responses = Response.objects.filter(student=Student.objects.filter(user=request.user).first(), category="Video").all()
+    content_responses = Response.objects.filter(student=Student.objects.filter(user=request.user).first(), category="Content").all()
+
+    core_questions_new = []
+    web_questions_new = []
+    gd_questions_new = []
+    video_questions_new = []
+    content_questions_new = []
+
+    index = 0
+    for q in core_questions:
+        if index < len(core_responses):
+            core_questions_new.append({
+                'question': q.question_text,
+                'my_response': core_responses[index].question_response
+            })
+        else:
+            core_questions_new.append({
+                'question': q.question_text,
+                'my_response': ""
+            })
+        index = index + 1
+
+    index = 0
+    for q in web_questions:
+        if index < len(web_responses):
+            web_questions_new.append({
+                'question': q.question_text,
+                'my_response': web_responses[index].question_response
+            })
+        else:
+            web_questions_new.append({
+                'question': q.question_text,
+                'my_response': ""
+            })
+        index = index + 1
+
+    index = 0
+    for q in gd_questions:
+        if index < len(gd_responses):
+            gd_questions_new.append({
+                'question': q.question_text,
+                'my_response': gd_responses[index].question_response
+            })
+        else:
+            gd_questions_new.append({
+                'question': q.question_text,
+                'my_response': ""
+            })
+        index = index + 1
+
+    index = 0
+    for q in video_questions:
+        if index < len(video_responses):
+            video_questions_new.append({
+                'question': q.question_text,
+                'my_response': video_responses[index].question_response
+            })
+        else:
+            video_questions_new.append({
+                'question': q.question_text,
+                'my_response': ""
+            })
+        index = index + 1
+    
+    index = 0
+    for q in content_questions:
+        if index < len(content_responses):
+            content_questions_new.append({
+                'question': q.question_text,
+                'my_response': content_responses[index].question_response
+            })
+        else:
+            content_questions_new.append({
+                'question': q.question_text,
+                'my_response': ""
+            })
+        index = index + 1
 
     context = {
         'core_questions': core_questions_new,
         'web_questions': web_questions_new,
         'gd_questions': gd_questions_new,
-        'video_questions': video_questions_new 
+        'video_questions': video_questions_new,
+        'content_questions': content_questions_new
     }
     return render (request, 'base/questions.html', context)
 
@@ -201,10 +281,6 @@ def export(request):
         student_fields.append(NCanswers.values_list('question_response'))
         writer.writerow(student)
     return response
-
-
-
-
 
 def results(request):
     return render(request, 'base/results2.html')

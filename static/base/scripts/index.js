@@ -1,4 +1,4 @@
-var countDownDate = new Date("Dec 5, 2022 15:37:25").getTime();
+var countDownDate = new Date("Jan 20, 2023 00:00:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function () {
@@ -16,11 +16,11 @@ var x = setInterval(function () {
 
   // Output the result in an element with id="demo"
   document.getElementById("demo").innerHTML =
-    days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+    "Audition Starts in: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
   // If the count down is over, write some text
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+    document.getElementById("demo").innerHTML = "Auditions is now live";
   }
 }, 1000);

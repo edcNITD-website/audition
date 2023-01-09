@@ -148,6 +148,8 @@ SITE_ID = 5
 
 LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/register/'
+SOCIALACCOUNT_LOGIN_ON_GET = True
+ACCOUNT_LOGOUT_ON_GET = True
 
 SOCIALACCOUNT_PROVIDERS = {
     'google':{
