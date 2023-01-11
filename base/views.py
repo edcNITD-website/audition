@@ -286,15 +286,175 @@ def results(request):
     return render(request, 'base/results2.html')
 
 def members(request):
-    if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
-        students = Student.objects.all()
-        data = []
-        for student in students:
-            resposne = Response.objects.filter(student=student).all()
-            data.append({
-                'student': student,
-                'resposne': resposne
-            })
-        return render(request, 'base/members.html', { 'data': data })
+    if request.method == 'POST':
+        feedback = request.POST['feedback']
+        user = request.POST['user']
+        member_feedback = MemberFeedback(member=ClubMember.objects.filter(user=request.user).first(), student=Student.objects.filter(user=User.objects.filter(username=user).first()).first())
+        member_feedback.feedback = feedback
+        member_feedback.save()
+        return redirect('/members')
     else:
-        return redirect('/')       
+        if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
+            students = Student.objects.all()
+            data = []
+            no_of_students = Student.objects.all().count()
+            applied_for_gd = 0
+            applied_for_webd = 0
+            applied_for_video = 0
+            applied_for_content = 0
+            for student in students:
+                resposne = Response.objects.filter(student=student).all()
+                all_feedback = MemberFeedback.objects.filter(student=student).all()
+                member_feedback = MemberFeedback.objects.filter(student=student, member=ClubMember.objects.filter(user=request.user).first()).first()
+                student_responses = Response.objects.filter(student=student)
+                domain = set()
+                for student_response in student_responses:
+                    domain.add(student_response.category)
+                    da = ""
+                    for d in domain:
+                        if d == 'Web':
+                            applied_for_webd += 1
+                        if d == 'Content':
+                            applied_for_content += 1
+                        if d == 'Video':
+                            applied_for_video += 1
+                        if d == 'GD':
+                            applied_for_gd += 1
+                context = []
+                context.append({
+                    'no_of_students': no_of_students,
+                    'applied_for_gd': applied_for_gd,
+                    'applied_for_webd': applied_for_webd,
+                    'applied_for_video': applied_for_video,
+                    'applied_for_content': applied_for_content
+                })
+
+                data.append({
+                    'student': student,
+                    'resposne': resposne,
+                    'all_feedback': all_feedback,
+                    'member_feedback': member_feedback
+                })
+            return render(request, 'base/members.html', { 'data': data, 'statistics': context })
+        else:
+            return redirect('/')       
+
+def isSelected(request):
+    if request.method == "POST" and request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
+        student = Student.objects.filter(user=User.objects.filter(username=request.POST['user']).first()).first()
+        student.stage = request.POST['stage']
+        student.save()
+        return redirect('/members')
+
+def nextRoundCSV(request):
+    if request.user.username == 'admin':
+        students = Student.objects.all()
+        max_round = 0
+        for student in students:
+            if max_round < int(student.stage):
+                max_round = int(student.stage)
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = 'attachment; filename="result.csv"'
+        writer = csv.writer(response)
+        writer.writerow(
+                [
+                    "Round " + str(max_round),
+                ]
+            )
+        writer.writerow([])
+        writer.writerow(
+                [
+                    "Student",
+                    "Phone Number"
+                ]
+            )
+        for student in students:
+            if int(student.stage) == max_round:
+                writer.writerow(
+                [
+                    student.name,
+                    student.phone_number
+                ]
+            )
+        return response
+    else:
+        return redirect('/')
+
+def allStudentsCSV(request):
+    if request.user.username == 'admin':
+        students = Student.objects.all()
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = 'attachment; filename="students.csv"'
+        writer = csv.writer(response)
+        writer.writerow(
+                [
+                    "Name",
+                    "Branch",
+                    "Roll Number",
+                    "Place",
+                    "Phone Number",
+                    "Email",
+                    "Domain"
+                ]
+            )
+        for student in students:
+            student_responses = Response.objects.filter(student=student)
+            domain = set()
+            for student_response in student_responses:
+                domain.add(student_response.category)
+            da = ""
+            for d in domain:
+                if d != 'Core':
+                    da = da + d + " "
+            writer.writerow(
+                [
+                    student.name,
+                    student.branch,
+                    student.roll_number,
+                    student.place,
+                    student.phone_number,
+                    student.user.email,
+                    da
+                ]
+            )
+        return response
+    else:
+        return redirect('/')
+
+def studentResponseCSV(request):
+    if request.user.username == 'admin':
+        students = Student.objects.all()
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = 'attachment; filename="responses.csv"'
+        writer = csv.writer(response)
+        writer.writerow(
+                [
+                    "Name",
+                    "Phone Number",
+                    "Question",
+                    "Category",
+                    "Response"
+                ]
+            )
+        for student in students:
+            student_responses = Response.objects.filter(student=student)
+            writer.writerow(
+                [
+                    student.name,
+                    student.phone_number
+                ]
+            )
+            for student_response in student_responses:
+                writer.writerow(
+                    [
+                        "",
+                        "",
+                        student_response.question_text,
+                        student_response.category,
+                        student_response.question_response
+                    ]
+                )
+            writer.writerow([])
+        return response
+    else:
+        return redirect('/')

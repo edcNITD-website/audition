@@ -10,6 +10,50 @@
     <title>Members - Dashboard</title>
   </head>
   <body>
-    <h1>{{data}}</h1>
+    {% comment %} <h1>{{data}}</h1> {% endcomment %}
+    <div>
+      <h2>Statistics</h2>
+      {% for stats in statistics %}
+      <p>No of students registered: {{  stats.no_of_students }}</p>
+      <p>For content: {{  stats.applied_for_content }}</p>
+      <p>For GD: {{  stats.applied_for_gd }}</p>
+      <p>For WebD: {{  stats.applied_for_webd }}</p>
+      <p>For Video Editing: {{  stats.applied_for_video }}</p>
+      {% endfor %}
+    </div>
+    <hr>
+    {% for d in data %}
+      <div>
+        <h2>{{ d.student.name }}</h2>
+        <p>{{ d.student.phone_number }}</p>
+        <form method="POST" action="/is-selected">
+          {% csrf_token %}
+          <input type="hidden" name="user" id="user" value="{{ d.student.user }}" />
+          <label for"stage">Round</label>
+          <input type="text" name="stage" id="stage" value="{{ d.student.stage }}" />
+          <input type="submit" />
+        </form>
+        {% for r in d.resposne %}
+          <div>
+            <p>{{ r.question_text }}</p>
+            <p>{{ r.question_response }}</p>
+          </div>
+        {% endfor %}
+      </div>
+      <hr>
+      <h3>All feedbacks:</h3>
+      {% for feedback in d.all_feedback %}
+        <p>Feedback by {{ feedback.member.user.first_name }} {{ feedback.member.user.last_name }}</p>
+        <p>{{ feedback.feedback }}</p>
+      {% endfor %}
+      <hr>
+      <form method="POST" action="/members">
+        {% csrf_token %}
+        <input type="hidden" name="user" id="user" value="{{ d.student.user }}" />
+        <input type="text" name="feedback" id="feedback" value="{{ d.member_feedback.feedback }}" />
+        <input type="submit" />
+      </form>
+      <hr>
+    {% endfor %}
   </body>
 </html>
