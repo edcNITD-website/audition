@@ -16,7 +16,7 @@
     <title>Student Details</title>
 </head>
 <body>
-  <div class="nav-container">
+  <!-- <div class="nav-container">
     <div class="navbar">
         <a href="/"><img src="{% static 'base/media/edc-logo.png' %}" alt="My image" class="logo" alt=""></a>
         <nav class="nav">
@@ -30,8 +30,49 @@
           <i class="fa fa-bars"></i>
       </a>
     </div>
-</div>
-    <h1 class="titles" style="padding-top: 130px;font-size: 60px;">Auditions</h1>
+</div> -->
+<nav class="navbar">
+  <div class="leftNavBar">
+    <a href="/"><img src="{% static 'base/media/edc-logo.png' %}" /></a>
+  </div>
+  <div class="rightNavBar">
+    <a href="/" class="activelink leftBorder">Home</a>
+    
+    <a
+      href="https://www.edcnitd.co.in/"
+      target="_blank"
+      rel="noopener noreferrer"
+      >EDC</a
+    >
+    <a href="#">Profile</a>
+    
+    
+    <a href="#">Logout</a>
+    
+  </div>
+  <div class="burger" id="burger">
+    <div class="line" id="line-1"></div>
+    <div class="line" id="line-2"></div>
+    <div class="line" id="line-3"></div>
+  </div>
+</nav>
+<!-- responsive navbar -->
+<nav id="navbar-resp" class="navbar-resp visible">
+  <div>
+    <a href="/" class="activelink-resp">Home</a>
+    <a
+      href="https://www.edcnitd.co.in/"
+      target="_blank"
+      rel="noopener noreferrer"
+      >EDC</a
+    >
+    <a href="#">Profile</a>
+    <a href="#">Logout</a>
+    
+  </div>
+</nav>
+
+    <h1 class="titles" style="padding-top: 30px;font-size: 60px;">Auditions</h1>
     <h1 class="heading">Roles We Offer:</h1>
     <!-- <section>
         <div class="flex-container">
@@ -84,29 +125,25 @@
               <div class="boxs">
                  <i class="fa fa-pencil"></i>
                   <div class="text">Content Writers</div>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
-              </div>
+<p>We invite you to explore the various writing domains in our club and sharpen your writing skills, gain experience, and enrich your portfolio.</p>              </div>
           </div>
           <div class="cards">
               <div class="boxs">
                   <i class="fa fa-image"></i>
                   <div class="text">Graphic Designers</div>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
-              </div>
+<p>Take the opportunity to explore the diverse design domains in our club and cultivate your aesthetics, access resources, and expand your portfolio.</p>              </div>
           </div>
           <div class="cards" style="margin-top: 10px;">
               <div class="boxs">
                 <i class="fa fa-laptop"></i>
                   <div class="text">Web Developers</div>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
-              </div>
+<p>Take advantage of the wide range of web development domains in our club and sharpen your skills, access resources, and construct your portfolio through various projects.</p>              </div>
           </div>
           <div class="cards" style="margin-top: 10px;">
               <div class="boxs">
                   <i class="fa fa-video-camera"></i>
                   <div class="text">Video Editors</div>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
-              </div>
+<p>Our club provides a variety of video domains for you to explore and refine your storytelling abilities, get access to resources, and strengthen your portfolio.</p>              </div>
           </div>
          </div>
       </div>
@@ -562,23 +599,45 @@
   if(localStorage.getItem("video-check") == "true") {
     document.getElementById('video-check').click();
   }
-   const loginText = document.querySelector(".title-text .login");
-   const loginForm = document.querySelector("form.login");
-   const loginBtn = document.querySelector("label.login");
-   const signupBtn = document.querySelector("label.signup");
-   const signupLink = document.querySelector("form .signup-link a");
-   signupBtn.onclick = (()=>{
-     loginForm.style.marginLeft = "-50%";
-     loginText.style.marginLeft = "-50%";
-   });
-   loginBtn.onclick = (()=>{
-     loginForm.style.marginLeft = "0%";
-     loginText.style.marginLeft = "0%";
-   });
-   signupLink.onclick = (()=>{
-     signupBtn.click();
-     return false;
-   });
+  //  const loginText = document.querySelector(".title-text .login");
+  //  const loginForm = document.querySelector("form.login");
+  //  const loginBtn = document.querySelector("label.login");
+  //  const signupBtn = document.querySelector("label.signup");
+  //  const signupLink = document.querySelector("form .signup-link a");
+  //  signupBtn.onclick = (()=>{
+  //    loginForm.style.marginLeft = "-50%";
+  //    loginText.style.marginLeft = "-50%";
+  //  });
+  //  loginBtn.onclick = (()=>{
+  //    loginForm.style.marginLeft = "0%";
+  //    loginText.style.marginLeft = "0%";
+  //  });
+  //  signupLink.onclick = (()=>{
+  //    signupBtn.click();
+  //    return false;
+  //  });
+   let navbarResp = document.getElementById("navbar-resp");
+let opacity = document.getElementById("opacity");
+let burger = document.getElementById("burger");
+let line1 = document.getElementById("line-1");
+let line2 = document.getElementById("line-2");
+let line3 = document.getElementById("line-3");
+
+burger.addEventListener("click", () => {
+  navbarResp.classList.toggle("visible");
+  opacity.classList.toggle("opacity");
+});
+
+burger.addEventListener("mouseover", () => {
+  line1.style.backgroundColor = "teal";
+  line2.style.backgroundColor = "teal";
+  line3.style.backgroundColor = "teal";
+});
+burger.addEventListener("mouseout", () => {
+  line1.style.backgroundColor = "white";
+  line2.style.backgroundColor = "white";
+  line3.style.backgroundColor = "white";
+});
    $(document).ready(function(){
    $(window).scroll(function(){
         // sticky navbar on scroll script
@@ -687,6 +746,7 @@
           }
         }
       }
+      
 </script>
 </body>
 </html>

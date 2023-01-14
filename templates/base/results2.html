@@ -12,7 +12,7 @@
     <title>Results</title>
 </head>
 <body>
-  <div class="nav-container">
+  <!-- <div class="nav-container">
     <div class="navbar">
       <a href="https://www.edcnitd.co.in/" target="_blank"><img src="{% static 'base\media\edcW.png' %}" class="logo" alt=""></a>
         <ul class="links">
@@ -24,7 +24,49 @@
           <i class="fa fa-bars"></i>
         </a>
     </div>
-</div>
+</div> -->
+<nav class="navbar">
+  <div class="leftNavBar">
+    <a href="/">
+      <img src="{% static 'base/media/edc-logo.png' %}" />
+    </a>
+  </div>
+  <div class="rightNavBar">
+    <a href="/" class="activelink leftBorder">Home</a>
+    
+    <a
+      href="https://www.edcnitd.co.in/"
+      target="_blank"
+      rel="noopener noreferrer"
+      >EDC</a
+    >
+    <a href="#">Profile</a>
+    
+    
+    <a href="#">Logout</a>
+    
+  </div>
+  <div class="burger" id="burger">
+    <div class="line" id="line-1"></div>
+    <div class="line" id="line-2"></div>
+    <div class="line" id="line-3"></div>
+  </div>
+</nav>
+<!-- responsive navbar -->
+<nav id="navbar-resp" class="navbar-resp visible">
+  <div>
+    <a href="/" class="activelink-resp">Home</a>
+    <a
+      href="https://www.edcnitd.co.in/"
+      target="_blank"
+      rel="noopener noreferrer"
+      >EDC</a
+    >
+    <a href="#">Profile</a>
+    <a href="#">Logout</a>
+    
+  </div>
+</nav>
     <div class="titles">
         Congratulations!
     </div>
@@ -247,7 +289,28 @@ function deleting(textIndex, text) {
     }
   }, sPerChar * 50);
 }
+let navbarResp = document.getElementById("navbar-resp");
+let opacity = document.getElementById("opacity");
+let burger = document.getElementById("burger");
+let line1 = document.getElementById("line-1");
+let line2 = document.getElementById("line-2");
+let line3 = document.getElementById("line-3");
 
+burger.addEventListener("click", () => {
+  navbarResp.classList.toggle("visible");
+  opacity.classList.toggle("opacity");
+});
+
+burger.addEventListener("mouseover", () => {
+  line1.style.backgroundColor = "teal";
+  line2.style.backgroundColor = "teal";
+  line3.style.backgroundColor = "teal";
+});
+burger.addEventListener("mouseout", () => {
+  line1.style.backgroundColor = "white";
+  line2.style.backgroundColor = "white";
+  line3.style.backgroundColor = "white";
+});
     </script>
 </body>
 </html>
