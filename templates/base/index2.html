@@ -77,7 +77,7 @@
           aria-controls="navbarResponsive"
           aria-expanded="false"
           aria-label="Toggle navigation"
-          style="margin-right: -30px;"
+          style="margin-right: -50px; border: none"
         >
           <i class="fa fa-bars" style="color:#a3a3a3; font-size:14px"></i>
         </button>
@@ -105,8 +105,8 @@
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/register/"
-                >Profile</a
+              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/round-1"
+                >Round 1</a
               >
             </li>
             <li class="nav-item">
@@ -162,7 +162,7 @@
                     The rewards of entrepreneurship are worth the life.
                 </p>
                 {% if request.user.is_authenticated %}
-                <a  href="/register/">Profile</a>
+                <a  href="/round-1">Round 1</a>
                 {% else %}
                 <a  href="{% provider_login_url 'google' %}">Register</a>
                 {% endif %}
@@ -175,6 +175,38 @@
       </div>
       <!-- End: Hero Clean Reverse -->
     </header>
+
+    <section class="py-5">
+      <div class="container text-center py-3">
+        <p
+          class="fw-bold mb-4"
+          style="
+            font-size: 1.6rem;
+            padding: 12px;
+            color: #ffffffe8;
+            margin-right: 20px;
+          "
+        > Why EDC ?</p>
+          <span
+            class="text-success"
+            ><strong></strong></span
+          >
+        </p>
+      </div>
+      <div class="container text-center">
+        <p
+          class="fw-bold mb-4"
+          style="
+            font-size: 1.3rem;
+            padding: 12px;
+            color: #ffffffc2;
+            margin-right: 20px;
+          "
+        >Be a part of Team EDC, NIT Durgapur's Entrepreneurship Development Cell and join us in our mission to promote entrepreneurship, sharpen abilities, and advance professionally with the help of resources, workshops, guidance, connections, and competitions. With us, you will have unlimited potential for advancement and several prospects to flaunt your skills.</p>
+      </div>
+    </section>
+
+
     <!-- Start: Brands -->
     <section class="py-5">
       <div class="container text-center py-5">

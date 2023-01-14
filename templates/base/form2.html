@@ -17,6 +17,7 @@
     <title>Student Details</title>
 </head>
 <body>
+  <div id="opacity"></div>
   <!-- <div class="nav-container">
     <div class="navbar">
         <a href="/"><img src="{% static 'base/media/edc-logo.png' %}" alt="My image" class="logo" alt=""></a>
@@ -45,10 +46,10 @@
       rel="noopener noreferrer"
       >EDC</a
     >
-    <a href="#">Profile</a>
+    <a href="/round-1">Round 1</a>
     
     
-    <a href="#">Logout</a>
+    <a href="/accounts/logout">Logout</a>
     
   </div>
   <div class="burger" id="burger">
@@ -67,8 +68,8 @@
       rel="noopener noreferrer"
       >EDC</a
     >
-    <a href="#">Profile</a>
-    <a href="#">Logout</a>
+    <a href="/round-1">Round 1</a>
+    <a href="/accounts/logout">Logout</a>
     
   </div>
 </nav>
@@ -157,12 +158,13 @@
       </div>
   </div>
 </section>
+<p style="text-align: center">Note: Make sure to click the submit button for each section. The responses are editable after submission.</p>
    <div class="example">
    <div class="box">
      <div class="form">
        <h1 class = "titles" style="margin-top: 20px">Student Details</h1>
        <!-- <p id="description">Fill in this form to go ahead with the audition procedure. Hope to see you in the next round. All the best!</p> -->
-       <form id="survey-form" autocomplete="off" method="POST" action="/register/" style="padding-top: 7px">
+       <form id="survey-form" autocomplete="off" method="POST" action="/round-1" style="padding-top: 7px">
         {% csrf_token %}
          <div class="wrapper">
            <div class="input-data">
@@ -274,7 +276,7 @@
                 {% for q in content_questions %}
                   <div class="input-data">
                     <input type="hidden" name="category" value="Content">
-                    <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                    <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                     <div class="underline"></div>
                     <label id="name-label" for="name">{{ q.question }}</label>
                   </div>
@@ -304,7 +306,7 @@
                 {% for q in gd_questions %}
                   <div class="input-data">
                     <input type="hidden" name="category" value="GD">
-                    <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                    <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                     <div class="underline"></div>
                     <label id="name-label" for="name">{{ q.question }}</label>
                   </div>
@@ -334,7 +336,7 @@
                   {% for q in web_questions %}
                     <div class="input-data">
                       <input type="hidden" name="category" value="Web">
-                      <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                      <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                       <div class="underline"></div>
                       <label id="name-label" for="name">{{ q.question }}</label>
                     </div>
@@ -365,7 +367,7 @@
                     {% for q in video_questions %}
                       <div class="input-data">
                         <input type="hidden" name="category" value="Video">
-                        <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                        <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                         <div class="underline"></div>
                         <label id="name-label" for="name">{{ q.question }}</label>
                       </div>

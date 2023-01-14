@@ -652,11 +652,12 @@ form{
   color: white;
   line-height: 32px;
   font-size: 20px;
-
+  padding: 15px;
 }
 .radios input{
   background: none;
   font-size: 20px;
+  margin-right: 5px;
 }
 .logo{
   width: 120px;
@@ -754,10 +755,10 @@ li a{
   padding: 0px 20px;
 } */
 .navbar {
-  z-index: 20;
+  z-index: 200;
   display: flex;
   background-color: #232323;
-  height: 60px;
+  height: 70px;
   position: fixed;
   width: 100%;
   justify-content: space-around;
@@ -786,7 +787,7 @@ div{
   z-index: 100;
 }
 .leftNavBar img {
-  width: 126.33px;
+  width: 100px;
   padding-top: 20px;
 }
 .rightNavBar .activelink {
@@ -803,7 +804,7 @@ div{
 }
 .burger .line {
   /* background-color: rgb(50, 50, 50); */
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.884);
   margin: 3px;
   padding: 1.5px;
   border-radius: 2px;
@@ -816,6 +817,7 @@ div{
 }
 .navbar-resp {
   /* visibility: hidden; */
+  position: relative;
   z-index: 100;
   background-color: #232323;
   height: 230px;
@@ -844,7 +846,7 @@ div{
   height: 100%;
   opacity: 70%;
   z-index: 1;
-  background-color: white;
+  background-color: #232323;
   position: fixed;
 }
 @media (max-width: 800px){

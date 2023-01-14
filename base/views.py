@@ -9,7 +9,7 @@ def index(request):
     return render(request, 'base/index2.html')
 
 @login_required
-def register(request):
+def roundOne(request):
     user= request.user
     if request.method == 'POST':
         name = request.POST['name']        
@@ -33,7 +33,7 @@ def register(request):
         else:    
             student = Student.objects.create( user=user,name=name, year=year, stage=stage, branch=branch, place=place, roll_number=roll_number, phone_number=phone_number)
             student.save()
-        return redirect('/register')
+        return redirect('/round-1')
 
     saved_data = Student.objects.filter(user=user).first()
 
@@ -159,7 +159,7 @@ def questions(request):
             else:
                 pass
 
-        return redirect('/register')    
+        return redirect('/round-1')    
 
     core_questions = CQuestion.objects.filter(category="Core").all()
     web_questions = CQuestion.objects.filter(category="Web").all()
