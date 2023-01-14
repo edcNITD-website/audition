@@ -9,6 +9,7 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
     <title>Auditions</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'base/media/favicon.png' %}">
     <link
       rel="stylesheet"
       href="{% static 'base/styles/bootstrap.min.css'%}"
@@ -49,6 +50,7 @@
       rel="stylesheet"
       href="{% static 'base/styles/untitled-8.css'%}"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'base/styles/styles.css'%}" />
   </head>
@@ -57,14 +59,16 @@
     <!-- Start: Navbar Centered Links -->
     <nav
       class="navbar navbar-expand-lg fixed-top mynav"
-      
       id="mainNav"
+      style="
+        background-color: rgba(0, 0, 0, 0.35);
+      "
     >
-      <div class="container" style="padding: 0">
-        <a class="navbar-brand" href="#page-top"
+      <div class="container" style="padding: 0; justify-content: space-evenly; font-weight: bold; text-transform: capitalize">
+        <a class="navbar-brand" href="/" style="margin-left: -75px;"
           ><span
             ><img
-              src="https://www.edcnitd.co.in/static/img/logo.png"
+              src="{% static 'base/media/edc-logo.png' %}"
               width="100px" /></span></a
         ><button
           data-bs-toggle="collapse"
@@ -73,24 +77,50 @@
           aria-controls="navbarResponsive"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style="margin-right: -30px;"
         >
-          <i class="fa fa-bars"></i>
+          <i class="fa fa-bars" style="color:#a3a3a3; font-size:14px"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <div class="collapse navbar-collapse" id="navbarResponsive" style="
+          padding: 10px
+        ">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" style="color: white" href="{% provider_login_url 'google' %}"
-                >Register</a
+              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/"
+                >Home</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" style="color: white" href="#hero2">Domains</a>
+              <a class="nav-link" target="_blank" style="color: white; font-family: Oswald; font-size: 13px" href="https://edcnitd.co.in"
+                >EDC</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" style="color: white" href="#contact"
+              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="#hero2">Domains</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="#contact"
                 >Contact</a
               >
             </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/register/"
+                >Profile</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/accounts/logout"
+                >Logout</a
+              >
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="{% provider_login_url 'google' %}"
+                >Register</a
+              >
+            </li>
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -102,12 +132,12 @@
       <!-- <h1 class="fw-bold text-success mb-2">Welcome to Auditions</p>
                 
            -->
-      <div class="row">
+      <div class="row" style="margin-left:-25px">
         <div class="col">
           <div>
 
-            <h1 class="edc" style="margin-top: 180px;" >Entrepreneurship </h1>
-            <h1 class="edc" >Development Cell</h1>
+            <h1 class="edc" style="margin-top: 180px; color: #ffffffe8;" >Entrepreneurship </h1>
+            <h1 class="edc" style="color: #ffffffe8;">Development Cell</h1>
             <p
             class="typewriter edc" style="margin-top: 100px;"
           ><span data-text="Welcome to Auditions"></span>
@@ -124,14 +154,18 @@
               <span></span>
 
               <div class="content" style="margin-bottom: 5px;">
-                <h1 style="z-index: 200;">Auditions</h1>
+                <h1 style="z-index: 200;font-family: consolas">Auditions</h1>
                 <p style="padding: 10px">
                     Opportunity knocks, we'll answer the call,
                     Undertaking challenges, we'll stand tall.
                     Never backing down, no matter the strife,
                     The rewards of entrepreneurship are worth the life.
                 </p>
+                {% if request.user.is_authenticated %}
+                <a  href="/register/">Profile</a>
+                {% else %}
                 <a  href="{% provider_login_url 'google' %}">Register</a>
+                {% endif %}
               </div>
             </div>
             <div class="col"><div></div></div>
@@ -149,7 +183,7 @@
           style="
             font-size: 1.6rem;
             padding: 12px;
-
+            color: #ffffffe8;
             margin-right: 20px;
           "
         > Glimses of our endeavours</p>
@@ -217,7 +251,7 @@
       <div class="container py-5">
         <div class="row">
           <div class="col">
-            <h3 class="fw-bold">Domains Available</h3>
+            <h3 class="fw-bold" style="color: #ffffffe8; font-family: consolas">Domains Available</h3>
           </div>
         </div>
         <div class="py-5 p-lg-5">
@@ -328,10 +362,10 @@
       <div class="row mb-5">
         <div class="col-md-8 col-xl-6 text-center mx-auto">
 
-          <p class="fw-bold text-success mb-2">This is from EDC NIT-D</p>
+          <p class="fw-bold text-success mb-2">This is from EDC NITD</p>
           <h3
             class="last-line fw-bold mb-4"
-            style="font-family: Allura, serif;"
+            style="font-family: consolas, serif; color: #ffffffe8; font-size:22px"
           >Unleashing the power of true Entrepreneurial Spirit</span>
             
           </h3>
@@ -340,7 +374,7 @@
       </div>
     </section>
     <!-- Start: Footer Multi Column -->
-    <footer class="footer">
+    <footer class="footer" style="background-color: rgba(0, 0, 0, 0.85)">
       <div class="leftFooter">
         <div class="leftFooterContent">
           <h2>
@@ -403,7 +437,7 @@
         </div>
         <div class="usefulLinks">
           <ul>
-            <li><a href="#" rel="noopener noreferrer">Home</a></li>
+            <li><a href="/" rel="noopener noreferrer">Home</a></li>
           </ul>
           <ul>
             <li>
@@ -411,10 +445,7 @@
             </li>
           </ul>
           <ul>
-            <li><a href="#" rel="noopener noreferrer">Register</a></li>
-          </ul>
-          <ul>
-            <li><a href="#" rel="noopener noreferrer">Login</a></li>
+            <li><a href="{% provider_login_url 'google' %}" rel="noopener noreferrer">Register</a></li>
           </ul>
         </div>
       </div>
