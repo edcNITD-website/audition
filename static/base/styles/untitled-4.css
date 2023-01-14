@@ -1,0 +1,8 @@
+@media (min-width: 992px) {
+  #hero1 {
+    background: url("../media/edchomepagesmallscreen.png") top / cover no-repeat;
+    width: 100%;
+    height: 100vh;
+  }
+}
+

@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 import csv
 # Create your views here.
 def index(request):
-    return render(request, 'base/index.html')
+    return render(request, 'base/index2.html')
 
 @login_required
 def register(request):
