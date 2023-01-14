@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'base/media/favicon.png' %}">
     {% comment %} <link rel="stylesheet" href="{% static 'base/styles/bootstrap.min.css'%}"/> {% endcomment %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {% comment %} <link
@@ -16,7 +17,8 @@
     <title>Student Details</title>
 </head>
 <body>
-  <div class="nav-container">
+  <div id="opacity"></div>
+  <!-- <div class="nav-container">
     <div class="navbar">
         <a href="/"><img src="{% static 'base/media/edc-logo.png' %}" alt="My image" class="logo" alt=""></a>
         <nav class="nav">
@@ -30,8 +32,49 @@
           <i class="fa fa-bars"></i>
       </a>
     </div>
-</div>
-    <h1 class="titles" style="padding-top: 130px;font-size: 60px;">Auditions</h1>
+</div> -->
+<nav class="navbar">
+  <div class="leftNavBar">
+    <a href="/"><img src="{% static 'base/media/edc-logo.png' %}" /></a>
+  </div>
+  <div class="rightNavBar">
+    <a href="/" class="activelink leftBorder">Home</a>
+    
+    <a
+      href="https://www.edcnitd.co.in/"
+      target="_blank"
+      rel="noopener noreferrer"
+      >EDC</a
+    >
+    <a href="/round-1">Round 1</a>
+    
+    
+    <a href="/accounts/logout">Logout</a>
+    
+  </div>
+  <div class="burger" id="burger">
+    <div class="line" id="line-1"></div>
+    <div class="line" id="line-2"></div>
+    <div class="line" id="line-3"></div>
+  </div>
+</nav>
+<!-- responsive navbar -->
+<nav id="navbar-resp" class="navbar-resp visible">
+  <div>
+    <a href="/" class="activelink-resp">Home</a>
+    <a
+      href="https://www.edcnitd.co.in/"
+      target="_blank"
+      rel="noopener noreferrer"
+      >EDC</a
+    >
+    <a href="/round-1">Round 1</a>
+    <a href="/accounts/logout">Logout</a>
+    
+  </div>
+</nav>
+
+    <h1 class="titles" style="padding-top: 30px;font-size: 60px;">Auditions</h1>
     <h1 class="heading">Roles We Offer:</h1>
     <!-- <section>
         <div class="flex-container">
@@ -84,40 +127,44 @@
               <div class="boxs">
                  <i class="fa fa-pencil"></i>
                   <div class="text">Content Writers</div>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
-              </div>
+
+<p>We invite you to explore the various writing domains in our club and sharpen your writing skills, gain experience, and enrich your portfolio.</p>              </div>
+
           </div>
           <div class="cards">
               <div class="boxs">
                   <i class="fa fa-image"></i>
                   <div class="text">Graphic Designers</div>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
-              </div>
+
+<p>Take the opportunity to explore the diverse design domains in our club and cultivate your aesthetics, access resources, and expand your portfolio.</p>              </div>
+
           </div>
           <div class="cards" style="margin-top: 10px;">
               <div class="boxs">
                 <i class="fa fa-laptop"></i>
                   <div class="text">Web Developers</div>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
-              </div>
+
+<p>Take advantage of the wide range of web development domains in our club and sharpen your skills, access resources, and construct your portfolio through various projects.</p>              </div>
           </div>
           <div class="cards" style="margin-top: 10px;">
               <div class="boxs">
                   <i class="fa fa-video-camera"></i>
                   <div class="text">Video Editors</div>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
-              </div>
+
+<p>Our club provides a variety of video domains for you to explore and refine your storytelling abilities, get access to resources, and strengthen your portfolio.</p>              </div>
+
           </div>
          </div>
       </div>
   </div>
 </section>
+<p style="text-align: center">Note: Make sure to click the submit button for each section. The responses are editable after submission.</p>
    <div class="example">
    <div class="box">
      <div class="form">
-       <h1 class = "titles">Student Details</h1>
+       <h1 class = "titles" style="margin-top: 20px">Student Details</h1>
        <!-- <p id="description">Fill in this form to go ahead with the audition procedure. Hope to see you in the next round. All the best!</p> -->
-       <form id="survey-form" autocomplete="off" method="POST" action="/register/">
+       <form id="survey-form" autocomplete="off" method="POST" action="/round-1" style="padding-top: 7px">
         {% csrf_token %}
          <div class="wrapper">
            <div class="input-data">
@@ -174,12 +221,12 @@
 <div class="example2" id="form2">
 <div class="box">
   <div class="form">
-      <div class="titles" id="q-title">
+      <div class="titles" id="q-title" style="margin-top: 20px">
          Core team Questions
       </div>
       <div class="form-container">
         <div class="form-inner">
-          <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login">
+          <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login" style="padding-top: 10px">
             {% csrf_token %}
             <div class="wrapper">
               {% for q in core_questions %}
@@ -218,18 +265,18 @@
 <div class="example2 content-box" id="form2" style="display:none">
   <div class="box">
     <div class="form">
-        <div class="titles" id="q-title">
+        <div class="titles" id="q-title" style="margin-top: 20px">
            Content Writing Questions
         </div>
         <div class="form-container">
           <div class="form-inner">
-            <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login">
+            <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login" style="padding-top: 10px">
               {% csrf_token %}
               <div class="wrapper">
                 {% for q in content_questions %}
                   <div class="input-data">
                     <input type="hidden" name="category" value="Content">
-                    <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                    <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                     <div class="underline"></div>
                     <label id="name-label" for="name">{{ q.question }}</label>
                   </div>
@@ -248,18 +295,18 @@
 <div class="example2 gd-box" id="form2" style="display:none">
   <div class="box">
     <div class="form">
-        <div class="titles" id="q-title">
+        <div class="titles" id="q-title" style="margin-top: 20px">
            Graphic Design Questions
         </div>
         <div class="form-container">
           <div class="form-inner">
-            <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login">
+            <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login" style="padding-top: 10px">
               {% csrf_token %}
               <div class="wrapper">
                 {% for q in gd_questions %}
                   <div class="input-data">
                     <input type="hidden" name="category" value="GD">
-                    <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                    <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                     <div class="underline"></div>
                     <label id="name-label" for="name">{{ q.question }}</label>
                   </div>
@@ -278,18 +325,18 @@
   <div class="example2 web-box" id="form2" style="display:none">
     <div class="box">
       <div class="form">
-          <div class="titles" id="q-title">
+          <div class="titles" id="q-title" style="margin-top: 20px">
              Web Development Questions
           </div>
           <div class="form-container">
             <div class="form-inner">
-              <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login">
+              <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login" style="padding-top: 10px">
                 {% csrf_token %}
                 <div class="wrapper">
                   {% for q in web_questions %}
                     <div class="input-data">
                       <input type="hidden" name="category" value="Web">
-                      <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                      <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                       <div class="underline"></div>
                       <label id="name-label" for="name">{{ q.question }}</label>
                     </div>
@@ -309,18 +356,18 @@
     <div class="example2 video-box" id="form2" style="display:none">
       <div class="box">
         <div class="form">
-            <div class="titles" id="q-title">
+            <div class="titles" id="q-title" style="margin-top: 20px">
                Video Editing Questions
             </div>
             <div class="form-container">
               <div class="form-inner">
-                <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login">
+                <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login" style="padding-top: 10px">
                   {% csrf_token %}
                   <div class="wrapper">
                     {% for q in video_questions %}
                       <div class="input-data">
                         <input type="hidden" name="category" value="Video">
-                        <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
+                        <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                         <div class="underline"></div>
                         <label id="name-label" for="name">{{ q.question }}</label>
                       </div>
@@ -494,7 +541,7 @@
       <br />
       <i class="fa fa-phone"></i> : +91 9123001251(Purvi)
       <br>
-      <i class="fa fa-phone"></i> : +91 9831436985(Manzer)
+      <i class="fa fa-phone"></i> : +91 8335810111(Yash)
       <br />
       <i class="fa fa-envelope-o"></i> : edc@nitdgp.ac.in
     </p>
@@ -532,7 +579,7 @@
     </div>
     <div class="usefulLinks">
       <ul>
-        <li><a href="#" rel="noopener noreferrer">Home</a></li>
+        <li><a href="/" rel="noopener noreferrer">Home</a></li>
       </ul>
       <ul>
         <li>
@@ -540,10 +587,7 @@
         </li>
       </ul>
       <ul>
-        <li><a href="#" rel="noopener noreferrer">Register</a></li>
-      </ul>
-      <ul>
-        <li><a href="#" rel="noopener noreferrer">Login</a></li>
+        <li><a href="{% provider_login_url 'google' %}" rel="noopener noreferrer">Register</a></li>
       </ul>
     </div>
   </div>
@@ -562,23 +606,45 @@
   if(localStorage.getItem("video-check") == "true") {
     document.getElementById('video-check').click();
   }
-   const loginText = document.querySelector(".title-text .login");
-   const loginForm = document.querySelector("form.login");
-   const loginBtn = document.querySelector("label.login");
-   const signupBtn = document.querySelector("label.signup");
-   const signupLink = document.querySelector("form .signup-link a");
-   signupBtn.onclick = (()=>{
-     loginForm.style.marginLeft = "-50%";
-     loginText.style.marginLeft = "-50%";
-   });
-   loginBtn.onclick = (()=>{
-     loginForm.style.marginLeft = "0%";
-     loginText.style.marginLeft = "0%";
-   });
-   signupLink.onclick = (()=>{
-     signupBtn.click();
-     return false;
-   });
+  //  const loginText = document.querySelector(".title-text .login");
+  //  const loginForm = document.querySelector("form.login");
+  //  const loginBtn = document.querySelector("label.login");
+  //  const signupBtn = document.querySelector("label.signup");
+  //  const signupLink = document.querySelector("form .signup-link a");
+  //  signupBtn.onclick = (()=>{
+  //    loginForm.style.marginLeft = "-50%";
+  //    loginText.style.marginLeft = "-50%";
+  //  });
+  //  loginBtn.onclick = (()=>{
+  //    loginForm.style.marginLeft = "0%";
+  //    loginText.style.marginLeft = "0%";
+  //  });
+  //  signupLink.onclick = (()=>{
+  //    signupBtn.click();
+  //    return false;
+  //  });
+   let navbarResp = document.getElementById("navbar-resp");
+let opacity = document.getElementById("opacity");
+let burger = document.getElementById("burger");
+let line1 = document.getElementById("line-1");
+let line2 = document.getElementById("line-2");
+let line3 = document.getElementById("line-3");
+
+burger.addEventListener("click", () => {
+  navbarResp.classList.toggle("visible");
+  opacity.classList.toggle("opacity");
+});
+
+burger.addEventListener("mouseover", () => {
+  line1.style.backgroundColor = "teal";
+  line2.style.backgroundColor = "teal";
+  line3.style.backgroundColor = "teal";
+});
+burger.addEventListener("mouseout", () => {
+  line1.style.backgroundColor = "white";
+  line2.style.backgroundColor = "white";
+  line3.style.backgroundColor = "white";
+});
    $(document).ready(function(){
    $(window).scroll(function(){
         // sticky navbar on scroll script
@@ -687,6 +753,7 @@
           }
         }
       }
+      
 </script>
 </body>
 </html>

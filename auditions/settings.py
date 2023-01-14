@@ -155,7 +155,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SITE_ID = 5
 
 LOGIN_URL = '/accounts/login'
-LOGIN_REDIRECT_URL = '/register/'
+LOGIN_REDIRECT_URL = '/round-1'
 SOCIALACCOUNT_LOGIN_ON_GET = True
 ACCOUNT_LOGOUT_ON_GET = True
 
