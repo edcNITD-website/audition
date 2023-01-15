@@ -1097,4 +1097,7 @@ div{
 
 .oswald{
   font-family: 'Oswald',sans-serif;
+  font-size: 13px;
+  text-transform:uppercase;
+  letter-spacing: 0.4ch;
 }
