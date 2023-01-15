@@ -789,11 +789,11 @@ burger.addEventListener("mouseout", () => {
         let labels = document.getElementsByClassName('question-t');
         for (const label in labels) {
           let qLen = labels[label].innerHTML.length;
-          let height = (qLen/20)*1.1;
+          let height = (qLen/20)*1.4;
           let vw = document.documentElement.clientWidth;
           // let vh = document.documentElement.clientHeight;
           if(vw>700){
-            height = Math.max(height*0.5,1);
+            height = Math.max(height*0.6,1.75);
           }
           let heightRem = height.toString()+"rem";
           let parent = labels[label].parentElement;
