@@ -382,6 +382,11 @@ def isSelected(request):
 def nextRoundCSV(request):
     if request.user.username == 'admin':
         students = Student.objects.all()
+        new_students = []
+        for student in students:
+            if ClubMember.objects.filter(user=student.user).first() is None:
+                new_students.append(student)
+        students = new_students
         max_round = 0
         for student in students:
             if max_round < int(student.stage):
@@ -416,6 +421,11 @@ def nextRoundCSV(request):
 def allStudentsCSV(request):
     if request.user.username == 'admin':
         students = Student.objects.all()
+        new_students = []
+        for student in students:
+            if ClubMember.objects.filter(user=student.user).first() is None:
+                new_students.append(student)
+        students = new_students
         response = HttpResponse(content_type="text/csv")
         response["Content-Disposition"] = 'attachment; filename="students.csv"'
         writer = csv.writer(response)
@@ -457,6 +467,11 @@ def allStudentsCSV(request):
 def studentResponseCSV(request):
     if request.user.username == 'admin':
         students = Student.objects.all()
+        new_students = []
+        for student in students:
+            if ClubMember.objects.filter(user=student.user).first() is None:
+                new_students.append(student)
+        students = new_students
         response = HttpResponse(content_type="text/csv")
         response["Content-Disposition"] = 'attachment; filename="responses.csv"'
         writer = csv.writer(response)
@@ -494,29 +509,28 @@ def studentResponseCSV(request):
 
 def allStudents(request):
     if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
-        student = Student.objects.all()
-        return render(request, 'base/table-admin2.html', { 'students': student })
+        students = Student.objects.all()
+        new_students = []
+        for student in students:
+            if ClubMember.objects.filter(user=student.user).first() is None:
+                new_students.append(student)
+        return render(request, 'base/table-admin2.html', { 'students': new_students })
     else:
         return redirect('/')
 
 def studentId(request, slug):
     if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
-        students = Student.objects.all()
-        index = 0
+        student = Student.objects.get(id=slug)
         data = []
-        for student in students:
-            if index == int(slug):
-                responses = Response.objects.filter(student=student).all()
-                all_feedback = MemberFeedback.objects.filter(student=student).all()
-                member_feedback = MemberFeedback.objects.filter(student=student, member=ClubMember.objects.filter(user=request.user).first()).first()
-                data.append({
-                    'student': student,
-                    'responses': responses,
-                    'all_feedback': all_feedback,
-                    'member_feedback': member_feedback
-                })
-                break
-            index = index + 1
+        responses = Response.objects.filter(student=student).all()
+        all_feedback = MemberFeedback.objects.filter(student=student).all()
+        member_feedback = MemberFeedback.objects.filter(student=student, member=ClubMember.objects.filter(user=request.user).first()).first()
+        data.append({
+            'student': student,
+            'responses': responses,
+            'all_feedback': all_feedback,
+            'member_feedback': member_feedback
+        })
         return render(request, 'base/profile2.html', { 'data': data })
     else:
         return redirect('/')

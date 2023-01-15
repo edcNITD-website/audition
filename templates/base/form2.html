@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="{% static 'base/media/favicon.png' %}">
     {% comment %} <link rel="stylesheet" href="{% static 'base/styles/bootstrap.min.css'%}"/> {% endcomment %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
     {% comment %} <link
       rel="stylesheet"
       href="{% static 'base/styles/bootstrap.min.css'%}"
@@ -58,22 +59,23 @@
     </div>
 </div> -->
 <nav class="navbar">
-  <div class="leftNavBar">
+  <div class="leftNavBar"  style="font-family: 'Oswald',sans-serif;">
     <a href="/"><img src="{% static 'base/media/edc-logo.png' %}" /></a>
   </div>
-  <div class="rightNavBar">
-    <a href="/" class="activelink leftBorder">Home</a>
+  <div class="rightNavBar" >
+    <a href="/" class="leftBorder oswald">Home</a>
     
     <a
       href="https://www.edcnitd.co.in/"
       target="_blank"
       rel="noopener noreferrer"
+      class="oswald"
       >EDC</a
     >
-    <a href="/round-1">Round 1</a>
+    <a href="/round-1" class="activelink oswald">Round 1</a>
     
     
-    <a href="/accounts/logout">Logout</a>
+    <a href="/accounts/logout" class="oswald">Logout</a>
     
   </div>
   <div class="burger" id="burger">
@@ -83,17 +85,18 @@
   </div>
 </nav>
 <!-- responsive navbar -->
-<nav id="navbar-resp" class="navbar-resp visible">
+<nav id="navbar-resp" class="navbar-resp visible oswald">
   <div>
-    <a href="/" class="activelink-resp">Home</a>
+    <a href="/" class="oswald">Home</a>
     <a
       href="https://www.edcnitd.co.in/"
       target="_blank"
       rel="noopener noreferrer"
+      class="oswald"
       >EDC</a
     >
-    <a href="/round-1">Round 1</a>
-    <a href="/accounts/logout">Logout</a>
+    <a href="/round-1" class="activelink-resp oswald">Round 1</a>
+    <a href="/accounts/logout" class="oswald">Logout</a>
     
   </div>
 </nav>
