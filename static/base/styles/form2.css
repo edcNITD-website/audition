@@ -411,7 +411,7 @@ section{
   background: none;
   text-decoration: none;
   border: none;
-  font-size: 21px;
+  font-size: 15px;
   border-bottom: 2px solid silver;
 }
 
@@ -628,6 +628,12 @@ button:hover{
 }
 .form-inner form .input-data input:focus{
   border:3px solid teal;
+}
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 1.5rem 0rem 0rem 0rem;
 }
 .wrapper .form-container{
   width: 100%;
