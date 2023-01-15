@@ -36,7 +36,7 @@
           {% for student in students %}
           <tr id="details">
             <th scope="row">{{ forloop.counter0 }}</th>
-            <td><a href="/student/{{ forloop.counter0 }}">{{ student.name }}</a></td>
+            <td><a href="/student/{{student.id}}">{{ student.name }}</a></td>
             <td>{{ student.branch }}</td>
             <td>{{ student.year }}</td>
             <td>{{ student.user.email }}</td>
