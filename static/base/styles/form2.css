@@ -349,7 +349,6 @@ section{
 }
 .titles{
     color: white;
-
     /* color: rgba(130, 104, 194, 0.8); */
     font-size: 3em;
     font-weight: bold;
@@ -757,7 +756,7 @@ li a{
 .navbar {
   z-index: 200;
   display: flex;
-  background-color: #232323;
+  background-color: rgba(0, 0, 0,0.35);
   height: 70px;
   position: fixed;
   width: 100%;
@@ -819,7 +818,7 @@ div{
   /* visibility: hidden; */
   position: relative;
   z-index: 100;
-  background-color: #232323;
+  background:transparent;
   height: 230px;
   overflow: hidden;
   transition: height 0.7s ease-in-out;
@@ -859,6 +858,9 @@ div{
   }
   .navbar-resp {
       width: 100%;
+  }
+  .box:hover{
+    width: 85%;
   }
 }
 .footer {

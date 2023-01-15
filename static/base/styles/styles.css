@@ -29,6 +29,7 @@
 
 body {
   overflow: scroll;
+  overflow-x: hidden;
 }
 body::-webkit-scrollbar {
   display: none;
@@ -315,7 +316,6 @@ body::-webkit-scrollbar {
   border-right: solid var(--text-color) 10px;
   animation: cursor 1s ease-in-out infinite;
 }
-
 @keyframes cursor {
   from {
     border-color: var(--text-color);
