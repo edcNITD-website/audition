@@ -258,7 +258,7 @@
                   <input type="hidden" name="category" value="Core">
                   <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" required />
                   <div class="underline"></div>
-                  <label id="name-label" for="name">{{ q.question }}</label>
+                  <label id="name-label" for="name" class="question-t">{{ q.question }}</label>
                 </div>
               {% endfor %}
             </div>
@@ -302,7 +302,7 @@
                     <input type="hidden" name="category" value="Content">
                     <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                     <div class="underline"></div>
-                    <label id="name-label" for="name">{{ q.question }}</label>
+                    <label id="name-label" for="name" class="question-t">{{ q.question }}</label>
                   </div>
                 {% endfor %}
               </div>
@@ -332,7 +332,7 @@
                     <input type="hidden" name="category" value="GD">
                     <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                     <div class="underline"></div>
-                    <label id="name-label" for="name">{{ q.question }}</label>
+                    <label id="name-label" for="name" class="question-t">{{ q.question }}</label>
                   </div>
                 {% endfor %}
               </div>
@@ -362,7 +362,7 @@
                       <input type="hidden" name="category" value="Web">
                       <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                       <div class="underline"></div>
-                      <label id="name-label" for="name">{{ q.question }}</label>
+                      <label id="name-label" for="name" class="question-t">{{ q.question }}</label>
                     </div>
                   {% endfor %}
                 </div>
@@ -393,7 +393,7 @@
                         <input type="hidden" name="category" value="Video">
                         <input type="text" style="color: white;" name="response{{forloop.counter}}" id="question.{{forloop.counter}}" value="{{ q.my_response }}" autocomplete="new-password" />
                         <div class="underline"></div>
-                        <label id="name-label" for="name">{{ q.question }}</label>
+                        <label id="name-label" for="name" class="question-t">{{ q.question }}</label>
                       </div>
                     {% endfor %}
                   </div>
@@ -783,7 +783,19 @@ burger.addEventListener("mouseout", () => {
             document.querySelector(".alert").style.display = "none";
           });
         }
-      
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded",()=>{
+        let labels = document.getElementsByClassName('question-t');
+        for (const label in labels) {
+          let qLen = labels[label].innerHTML.length;
+          let height = (qLen/20)*0.9;
+          let heightRem = height.toString()+"rem";
+          let parent = labels[label].parentElement;
+          parent.style.marginTop = heightRem;
+          console.log(heightRem);
+        }
+      });
 </script>
 </body>
 </html>
