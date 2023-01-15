@@ -61,3 +61,8 @@ class MemberFeedback(models.Model):
     feedback = models.TextField()
     def __str__(self):
         return self.member.user.first_name + " " + self.member.user.last_name + " | " + self.student.user.first_name + " " + self.student.user.last_name
+
+class Result(models.Model):
+    result_declared = models.BooleanField(default=False)
+    def __str__(self):
+        return "Results page status : " + str(self.result_declared)

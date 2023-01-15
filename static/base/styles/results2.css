@@ -8,7 +8,7 @@
 body{
   background-image:
   linear-gradient(to right,rgba(0,0, 0, 0.5), rgba(0,0, 0, 0.5)),
-  url('edc_img1.jpg');
+  url('../media/edc_img1.jpg');
   background-attachment: fixed;
 }
 .titles{
