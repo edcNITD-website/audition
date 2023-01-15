@@ -40,10 +40,6 @@
       rel="noopener noreferrer"
       >EDC</a
     >
-    <a href="#">Profile</a>
-    
-    
-    <a href="#">Logout</a>
     
   </div>
   <div class="burger" id="burger">
@@ -62,9 +58,6 @@
       rel="noopener noreferrer"
       >EDC</a
     >
-    <a href="#">Profile</a>
-    <a href="#">Logout</a>
-    
   </div>
 </nav>
     <div class="titles">
@@ -88,31 +81,17 @@
     </tr>
     </thead>
     <tbody class="table-hover">
+      {% for d in data %}
     <tr>
-    <td class="text-left">Anshu Agarwal</td>
-    <td class="text-left">Event Management</td>
+    <td class="text-left">{{ d.name }}</td>
+    <td class="text-left">{{ d.domain }}</td>
     </tr>
-    <tr>
-    <td class="text-left">ipsum</td>
-    <td class="text-left">Content Writing, Event Management</td>
-    </tr>
-    <tr>
-    <td class="text-left">lorem</td>
-    <td class="text-left">Content Writing</td>
-    </tr>
-    <tr>
-    <td class="text-left">XYZ</td>
-    <td class="text-left">Content Writing</td>
-    </tr>
-    <tr>
-    <td class="text-left">ABC</td>
-    <td class="text-left">Event Management</td>
-    </tr>
+    {% endfor %}
     </tbody>
     </table>
 </div>
 
-<div class="titles animate__animated animate__fadeInUp" style="padding-top:40px; padding-bottom: 20px;">Tech Team</div>
+{% comment %} <div class="titles animate__animated animate__fadeInUp" style="padding-top:40px; padding-bottom: 20px;">Tech Team</div>
 <!-- <div class="table-title">
     <h3>Data Table</h3>
     </div> -->
@@ -147,7 +126,7 @@
     </tr>
     </tbody>
     </table>
-</div>
+</div> {% endcomment %}
 <footer class="footer">
   <div class="leftFooter">
     <div class="leftFooterContent">
@@ -217,12 +196,6 @@
         <li>
           <a href="https://www.edcnitd.co.in/" target="_blank" rel="noopener noreferrer">EDC</a>
         </li>
-      </ul>
-      <ul>
-        <li><a href="#" rel="noopener noreferrer">Register</a></li>
-      </ul>
-      <ul>
-        <li><a href="#" rel="noopener noreferrer">Login</a></li>
       </ul>
     </div>
   </div>

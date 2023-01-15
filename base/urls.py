@@ -9,8 +9,10 @@ urlpatterns = [
     path('export', views.export, name='export'),
     path('results', views.results, name="results"),
     path('members', views.members, name="members"),
+    path('all-students', views.allStudents, name="allStudents"),
     path('is-selected', views.isSelected, name="isSelected"),
     path('nextRoundCSV', views.nextRoundCSV, name="nextRoundCSV"),
     path('allStudentsCSV', views.allStudentsCSV, name="allStudentsCSV"),
     path('studentResponseCSV', views.studentResponseCSV, name="studentResponseCSV"),
+    path('student/<str:slug>', views.studentId, name="studentId"),
 ]

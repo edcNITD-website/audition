@@ -103,6 +103,13 @@
                 >Contact</a
               >
             </li>
+            {% if result == True %}
+            <li class="nav-item">
+              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/results"
+                >Results</a
+              >
+            </li>
+            {% endif %}
             {% if request.user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/round-1"

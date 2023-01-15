@@ -1,12 +1,16 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
-from .models import Student, CQuestion, NCQuestion , Response, ClubMember, MemberFeedback
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import Student, CQuestion, NCQuestion , Response, ClubMember, MemberFeedback, Result
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required 
-import csv
+from django.contrib import messages
+import csv, uuid
 # Create your views here.
 def index(request):
-    return render(request, 'base/index2.html')
+    result = False
+    if Result.objects.filter(result_declared=True).first() is not None:
+        result = True
+    return render(request, 'base/index2.html', { 'result': result })
 
 @login_required
 def roundOne(request):
@@ -33,6 +37,7 @@ def roundOne(request):
         else:    
             student = Student.objects.create( user=user,name=name, year=year, stage=stage, branch=branch, place=place, roll_number=roll_number, phone_number=phone_number)
             student.save()
+        messages.success(request, "Data saved successfully")
         return redirect('/round-1')
 
     saved_data = Student.objects.filter(user=user).first()
@@ -142,13 +147,16 @@ def profile(request):
 def questions(request):
     if request.method == 'POST':
         user = request.user
+        if Student.objects.filter(user=user).all().count() == 0:
+            messages.error(request, 'Please fill your details first')
+            return redirect('/round-1')
         student = Student.objects.filter(user=user)
         member = student.first()
         phone_number = member.phone_number
         name = member.name
-        Cquestions= CQuestion.objects.all()
-        NCquestions = NCQuestion.objects.all()
         category = request.POST['category']
+        Cquestions= CQuestion.objects.filter(category=category).all()
+        NCquestions = NCQuestion.objects.all()
         Response.objects.filter(student=member, category=category).all().delete()
         for i in range(1,len(Cquestions)+1):
             response= "response"+str(i)
@@ -158,7 +166,8 @@ def questions(request):
                 
             else:
                 pass
-
+        
+        messages.success(request, 'Data saved successfully')
         return redirect('/round-1')    
 
     core_questions = CQuestion.objects.filter(category="Core").all()
@@ -283,7 +292,30 @@ def export(request):
     return response
 
 def results(request):
-    return render(request, 'base/results2.html')
+    if Result.objects.filter(result_declared=True).first() is not None:
+        students = Student.objects.all()
+        max_round = 0
+        data = []
+        for student in students:
+            if max_round < int(student.stage):
+                max_round = int(student.stage)
+        for student in students:
+            student_responses = Response.objects.filter(student=student)
+            domain = set()
+            for student_response in student_responses:
+                domain.add(student_response.category)
+            da = "Core, "
+            for d in domain:
+                if d != 'Core':
+                    da = da + d + ", "
+            if int(student.stage) == max_round:
+                data.append({
+                    'name': student.name,
+                    'domain': da[0:len(da) - 2]
+                })
+        return render(request, 'base/results2.html', { 'data': data })
+    else:
+        return redirect('/')
 
 def members(request):
     if request.method == 'POST':
@@ -292,7 +324,7 @@ def members(request):
         member_feedback = MemberFeedback(member=ClubMember.objects.filter(user=request.user).first(), student=Student.objects.filter(user=User.objects.filter(username=user).first()).first())
         member_feedback.feedback = feedback
         member_feedback.save()
-        return redirect('/members')
+        return redirect(request.META.get('HTTP_REFERER'))
     else:
         if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
             students = Student.objects.all()
@@ -341,10 +373,11 @@ def members(request):
 
 def isSelected(request):
     if request.method == "POST" and request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
+        print(request.POST)
         student = Student.objects.filter(user=User.objects.filter(username=request.POST['user']).first()).first()
         student.stage = request.POST['stage']
         student.save()
-        return redirect('/members')
+        return redirect(request.META.get('HTTP_REFERER'))
 
 def nextRoundCSV(request):
     if request.user.username == 'admin':
@@ -456,5 +489,34 @@ def studentResponseCSV(request):
                 )
             writer.writerow([])
         return response
+    else:
+        return redirect('/')
+
+def allStudents(request):
+    if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
+        student = Student.objects.all()
+        return render(request, 'base/table-admin2.html', { 'students': student })
+    else:
+        return redirect('/')
+
+def studentId(request, slug):
+    if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
+        students = Student.objects.all()
+        index = 0
+        data = []
+        for student in students:
+            if index == int(slug):
+                responses = Response.objects.filter(student=student).all()
+                all_feedback = MemberFeedback.objects.filter(student=student).all()
+                member_feedback = MemberFeedback.objects.filter(student=student, member=ClubMember.objects.filter(user=request.user).first()).first()
+                data.append({
+                    'student': student,
+                    'responses': responses,
+                    'all_feedback': all_feedback,
+                    'member_feedback': member_feedback
+                })
+                break
+            index = index + 1
+        return render(request, 'base/profile2.html', { 'data': data })
     else:
         return redirect('/')
