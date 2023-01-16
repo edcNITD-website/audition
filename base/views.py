@@ -507,14 +507,59 @@ def studentResponseCSV(request):
     else:
         return redirect('/')
 
-def allStudents(request):
-    if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
+def rejectedStudentsCSV(request):
+    if request.user.username == 'admin':
         students = Student.objects.all()
         new_students = []
         for student in students:
             if ClubMember.objects.filter(user=student.user).first() is None:
                 new_students.append(student)
-        return render(request, 'base/table-admin2.html', { 'students': new_students })
+        students = new_students
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = 'attachment; filename="rejected.csv"'
+        writer = csv.writer(response)
+        max_round = 0
+        for student in students:
+            if max_round < int(student.stage):
+                max_round = int(student.stage)
+        writer.writerow(
+                [
+                    "Name",
+                    "Phone Number",
+                    "Round"
+                ]
+            )
+        for student in students:
+            if int(student.stage) != max_round:
+                writer.writerow(
+                [
+                    student.name,
+                    student.phone_number,
+                    student.stage
+                ]
+            )
+        return response
+    else:
+        return redirect('/')
+
+def allStudents(request):
+    if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
+        students = Student.objects.all()
+        new_students = []
+        context = []
+        reviewed = ''
+        for student in students:
+            if ClubMember.objects.filter(user=student.user).first() is None:
+                new_students.append(student)
+                if MemberFeedback.objects.filter(student=student).all().count() == 0:
+                    reviewed = 'No'
+                else:
+                    reviewed = 'Yes'
+                context.append({
+                    'student': student,
+                    'reviewed': reviewed
+                })
+        return render(request, 'base/table-admin2.html', { 'data': context  })
     else:
         return redirect('/')
 
