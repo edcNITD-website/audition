@@ -349,7 +349,6 @@ section{
 }
 .titles{
     color: white;
-
     /* color: rgba(130, 104, 194, 0.8); */
     font-size: 3em;
     font-weight: bold;
@@ -412,7 +411,7 @@ section{
   background: none;
   text-decoration: none;
   border: none;
-  font-size: 21px;
+  font-size: 15px;
   border-bottom: 2px solid silver;
 }
 
@@ -630,6 +629,12 @@ button:hover{
 .form-inner form .input-data input:focus{
   border:3px solid teal;
 }
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* margin: 1.5rem 0rem 0rem 0rem; */
+}
 .wrapper .form-container{
   width: 100%;
   overflow: hidden;
@@ -645,7 +650,7 @@ button:hover{
 form{
   padding-left: 40px;
   padding-right: 40px;
-  font-size: 20px;
+  font-size: 15px;
 }
 .radios{
   padding-top: 15px;
@@ -757,7 +762,7 @@ li a{
 .navbar {
   z-index: 200;
   display: flex;
-  background-color: #232323;
+  background-color: rgba(0, 0, 0,0.35);
   height: 70px;
   position: fixed;
   width: 100%;
@@ -819,7 +824,7 @@ div{
   /* visibility: hidden; */
   position: relative;
   z-index: 100;
-  background-color: #232323;
+  background:transparent;
   height: 230px;
   overflow: hidden;
   transition: height 0.7s ease-in-out;
@@ -859,6 +864,9 @@ div{
   }
   .navbar-resp {
       width: 100%;
+  }
+  .box:hover{
+    width: 85%;
   }
 }
 .footer {
@@ -1085,3 +1093,11 @@ div{
   cursor: pointer;
 }
 
+
+
+.oswald{
+  font-family: 'Oswald',sans-serif;
+  font-size: 13px;
+  text-transform:uppercase;
+  letter-spacing: 0.4ch;
+}
