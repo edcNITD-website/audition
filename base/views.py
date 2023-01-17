@@ -551,7 +551,7 @@ def getDomains(student):
     domains_str = ""
     for domain in domains:
         domains_str += domain + ", "
-    print(domains_str)
+    # print(domains_str)
     return domains_str
 
 def allStudents(request):
@@ -566,6 +566,7 @@ def allStudents(request):
                 new_student['domains'] = getDomains(student)
                 new_student['id'] = student.id
                 new_student['name']=student.name
+                new_student['branch']=student.branch
                 new_student['year'] = student.year
                 new_student['user'] = student.user
                 new_student['phone_number'] = student.phone_number
@@ -575,7 +576,7 @@ def allStudents(request):
                 # print(new_student)
                 # print(student)
                 count = MemberFeedback.objects.filter(student=student).all().count()
-                print(count==0)
+                # print(count==0)
                 if count == 0:
                     new_student['reviewed'] = 'No'
                 else:
@@ -584,7 +585,7 @@ def allStudents(request):
                 context.append({
                     'student': new_student
                 })
-        print(context)
+        # print(context)
         return render(request, 'base/table-admin2.html', { 'data': context  })
     else:
         return redirect('/')
