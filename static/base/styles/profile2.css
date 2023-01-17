@@ -252,6 +252,8 @@ body {
   .answer{
     font-size: 17px;
     margin-bottom: 15px;
+    margin-top: 0.3rem;
+    color: rgb(34, 255, 255);
   }
   .question{
     font-size: 20px;

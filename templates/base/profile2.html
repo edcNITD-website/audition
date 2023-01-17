@@ -101,14 +101,14 @@
                     <div class="form-answers">
                         {% for d in data %}
                         <p class="question">Name</p>
-                        <p class="answer">{{ d.student.name }}</p>
+                        <p class="answer">Answer: {{ d.student.name }}</p>
                         <p class="question">Department</p>
-                        <p class="answer">{{ d.student.branch }}</p>
+                        <p class="answer">Answer: {{ d.student.branch }}</p>
                         <p class="question">Phone Number</p>
-                        <p class="answer">{{ d.student.phone_number }}</p>
+                        <p class="answer">Answer: {{ d.student.phone_number }}</p>
                         {% for r in d.responses %}
                             <p class="question">{{ r.question_text }}</p>
-                            <p class="answer">{{ r.question_response }}</p>
+                            <p class="answer">Answer: {{ r.question_response }}</p>
                         {% endfor %}
                         {% endfor %}
                     </div>
