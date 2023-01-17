@@ -43,21 +43,6 @@
 </div>
 {% endfor %}
   <div id="opacity"></div>
-  <!-- <div class="nav-container">
-    <div class="navbar">
-        <a href="/"><img src="{% static 'base/media/edc-logo.png' %}" alt="My image" class="logo" alt=""></a>
-        <nav class="nav">
-          <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/register">Profile</a></li>
-            <li><a href="/accounts/logout">Logout</a></li>
-        </ul>
-        </nav>
-        <a id="menu-icon" class="menu-icon">
-          <i class="fa fa-bars"></i>
-      </a>
-    </div>
-</div> -->
 <nav class="navbar">
   <div class="leftNavBar"  style="font-family: 'Oswald',sans-serif;">
     <a href="/"><img src="{% static 'base/media/edc-logo.png' %}" /></a>
@@ -103,50 +88,6 @@
 
     <h1 class="titles" style="font-size: 60px;">Auditions</h1>
     <h1 class="heading">Roles We Offer:</h1>
-    <!-- <section>
-        <div class="flex-container">
-            <div class="profile-card">
-                <div class="circle"></div>
-                <div class="content">
-                    <h2>Content Writing</h2>
-                   <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ipsum quam vitae amet tempora </p>
-                </div>
-                <h4 class="team">Content Writing</h4>
-                <img src="notebook.gif" alt="">
-                <h5 class="read">Read more</h5>
-            </div>
-            <div class="profile-card2">
-                <div class="circle"></div>
-                <div class="content">
-                    <h2>Graphic Designing</h2>
-                   <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ipsum quam vitae amet tempora.Quidem ipsum quam vitae amet</p>
-                </div>
-                <h4 class="team">Graphic Designing</h4>
-                <img src="monitor.gif" alt="">
-                <h5 class="read">Read more</h5>
-            </div>
-            <div class="profile-card">
-              <div class="circle"></div>
-              <div class="content">
-                  <h2>Web Development</h2>
-                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ipsum facilis dicta, cum molestiae vel ex itaque, autem suscipit.</p>
-              </div>
-              <h4 class="team">Web Development</h4>
-              <img src="hacker.gif" alt="">
-              <h5 class="read">Read more</h5>
-          </div>
-          <div class="profile-card2">
-            <div class="circle"></div>
-            <div class="content">
-                <h2>Video Editing</h2>
-               <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem  voluptatum dicta, cum molestiae vel ex itaque, autem suscipit.</p>
-            </div>
-            <h4 class="team">Video Editing</h4>
-            <img src="film-strip.gif" alt="">
-            <h5 class="read">Read more</h5>
-        </div>
-        </div>     
-</section> -->
 <section class="roles" id="roles">
   <div class="max-width">
       <div class="serv-content">
@@ -230,7 +171,7 @@
             <label id="name-label" for="name">Roll Number</label>
           </div>
           <div>
-            <button id="submit" type="submit"><span></span> Submit</button>
+            <button id="submit" type="submit"><span></span> Save & Next</button>
           </div>
            {% comment %} <div class="radios">
             What do you choose? <br>
@@ -247,13 +188,13 @@
 </div>
 <div class="example2" id="form2">
 <div class="box">
-  <div class="form">
+  <div class="form" id="survey-form-core">
       <div class="titles" id="q-title" style="margin-top: 20px;transform: none;">
          Core team Questions
       </div>
       <div class="form-container">
-        <div class="form-inner">
-          <form id="survey-form" autocomplete="off" method="POST"action="/questions/" class="login" style="padding-top: 10px">
+        <div class="form-inner" id="core-qurestions">
+          <form  autocomplete="off" method="POST"action="/questions/" class="login" style="padding-top: 10px">
             {% csrf_token %}
             <div class="wrapper">
               {% for q in core_questions %}
@@ -266,7 +207,7 @@
               {% endfor %}
             </div>
             <div>
-              <button id="submit" type="submit"><span></span> Submit</button>
+              <button id="submit" type="submit"><span></span> Save & Next</button>
             </div>
           </form>
         </div>
@@ -276,10 +217,10 @@
 </div>
 
 <div class="example2" id="form2">
-  <div class="box">
+  <div class="box" id="survey-form-domain">
     <div class="form">
       <div class="radios">
-        <h3>What do you choose?</h3> <br>
+        <h3>What more do you choose apart from event management?</h3> <br>
         <input type="checkbox" value="content-check" name="content-check" id="content-check" onchange="auditioningFor(this.value);">Content<br>
         <input type="checkbox" value="gd-check" name="gd-check" id="gd-check" onchange="auditioningFor(this.value);">Graphic Designing<br>
         <input type="checkbox" value="video-check" name="video-check" id="video-check" onchange="auditioningFor(this.value);">Video Editing<br>
@@ -409,139 +350,6 @@
           </div>
         </div>
       </div>
-<!-- 2nd part -->
-{% comment %} <div class="example2" style="display: none;" id="form2">
-   <div class="box">
-     <div class="form">
-         <div class="titles" id="q-title">
-            Core team Questionss
-         </div>
-         
-       <!-- <p id="description">Fill in this form to go ahead with the audition procedure. Hope to see you in the next round. All the best!</p> -->
-       <div class="form-container">
-       <div class="slide-controls" id="slide-control">
-         <input type="radio" name="slide" id="login" checked>
-         <input type="radio" name="slide" id="signup">
-         <label for="login" class="slide login">Core team</label>
-         <label for="signup" class="slide signup">Tech team</label>
-         <div class="slider-tab"></div>
-      </div>
-      <div class="form-inner">
-       <form id="survey-form" autocomplete="off" action="#" class="login">
-         <!-- <div class="titles login">
-            Questionaire Time!
-         </div> -->
-         <div class="wrapper">
-            <div class="radios">
-               What do you want to audition for? <br>
-               <input type="radio" value="event" name="showform" id="showform" onchange="showhideForm(this.value);">Event management <br>
-               <input type="radio" value="content" name="showform" id="showform" onchange="showhideForm(this.value);">Content Writing <br>
-               <input type="radio" value="both" name="showform" id="showform" onchange="showhideForm(this.value);">All of the above
-            </div>
-            <div id="event-manage" style="display: none;">
-              <div class="input-data">
-                <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
-                <div class="underline"></div>
-                <label id="name-label" for="name">What are your strengths and weaknesses?</label>
-              </div>
-              <div class="input-data">
-               <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
-               <div class="underline"></div>
-               <label id="name-label" for="name">What do you do if you have been unjustly blamed for something you did not do?</label>
-             </div>
-            </div>
-           <div id="content-write" style="display: none;">
-            <div class="input-data">
-              <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
-              <div class="underline"></div>
-              <label id="name-label" for="name">Tell us about a time you made a mistake.</label>
-            </div>
-            <div class="radios">
-              What do you choose? <br>
-              <input type="radio">lorem<br>
-              <input type="radio">ipsum
-           </div>
-             <div class="input-data">
-               <input type="text" style="color: white;" id="name" name="name" required />
-               <div class="underline"></div>
-               <label id="email-label" for="email">What can we expect from you as a member of EDC or what will be your contribution towards EDC?</label>
-             </div>
-           </div>
-           
-           <!-- <div>
-             <button id="submit" type="submit"><span></span> Submit</button>
-           </div>
-           <div>
-            <button id="submit" type="submit"><span></span>Save and <br> edit later</button>
-          </div> -->
-         </div>
-        </form>
-
-       <div id="survey-form-tech" autocomplete="off" action="#" class="signup">
-         <div class="wrapper">
-          <div class="radios">
-            What do you want to audition for? <br>
-            <input type="radio" value="gd" name="showform2" id="showform2" onchange="showhideForm2(this.value);">Graphic Designing <br>
-            <input type="radio" value="webd" name="showform2" id="showform2" onchange="showhideForm2(this.value);">Web Development <br>
-            <input type="radio" value="video" name="showform2" id="showform2" onchange="showhideForm2(this.value);">Video Editing
-         </div>
-         <div id="gds" style="display: none;">
-          <div class="radios">
-            What do you choose? <br>
-            <input type="radio">lorem<br>
-            <input type="radio">ipsum
-         </div>
-        <div class="input-data">
-          <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
-          <div class="underline"></div>
-          <label id="name-label" for="name">Give the link to your github profile.</label>
-        </div>
-         </div>
-            <div id="webds" style="display: none;">
-              <div class="input-data">
-                <input type="text" style="color: white;" id="name" name="name" autocomplete="new-password" required />
-                <div class="underline"></div>
-                <label id="name-label" for="name">What do you know about after-effects?</label>
-              </div>
-              <div class="radios">
-                What do you choose? <br>
-                <input type="radio">lorem<br>
-                <input type="radio">ipsum
-             </div>
-            </div>
-           <div id="videos" style="display: none;">
-            <div class="input-data">
-              <input type="text" id="name" style="color: white;" name="name" autocomplete="new-password" required />
-              <div class="underline"></div>
-              <label id="name-label" for="name">What do you know about backend and frontend web development</label>
-            </div>
-             <div class="input-data">
-               <input type="name" id="name" style="color: white;" name="name" required />
-               <div class="underline"></div>
-               <label id="email-label" for="email">Which software do you use for designing posters?</label>
-             </div>
-           </div>
-           <!-- <div>
-             <button id="submit" type="submit"><span></span> Submit</button>
-           </div>
-           <div>
-            <button id="submit" type="submit"><span></span>Save and edit later</button>
-          </div> -->
-         </div>
-       </div>
-      </div>
-      </div>
-     </div>
-   </div>
-</div> {% endcomment %}
-{% comment %} <div class="submit">
-<div>
-  <button id="submit" type="submit" style="margin-right: 15px;"><span></span> Submit</button>
-</div>
-<div>
- <button id="submit2" type="submit2" style="margin-left: 15px;" ><span></span>Save and edit later</button>
-</div>
-</div> {% endcomment %}
 
 <footer class="footer">
   <div class="leftFooter">

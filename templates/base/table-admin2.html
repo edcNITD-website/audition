@@ -19,7 +19,8 @@
         <option value="4">video</option>
       </select> -->
       <div class="myinput">
-        <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for roles..">
+        <input type="text" id="myInput" placeholder="Search for roles..">
+        <button onclick="searchPage()">Search</button>
       </div>
     <table class="table my-4 bg-dark text-light">
         <thead>
@@ -30,6 +31,7 @@
             <th scope="col">Year of Study</th>
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
+            <th scope="col">Domains</th>
             <th scope="col">Round</th>
             <th scope="col">Reviewed</th>
           </tr>
@@ -37,34 +39,35 @@
         <tbody>
           {% for d in data %}
           <tr id="details">
-            <th scope="row">{{ forloop.counter0 }}</th>
-            <td><a href="/student/{{d.student.id}}">{{ d.student.name }}</a></td>
-            <td>{{ d.student.branch }}</td>
-            <td>{{ d.student.year }}</td>
-            <td>{{ d.student.user.email }}</td>
-            <td>{{ d.student.phone_number }}</td>
-            <td>{{ d.student.stage }}</td>
-            <td>{{ d.reviewed }}</td>
+            <th class="student-detail" scope="row">{{ forloop.counter0 }}</th>
+            <td class="student-detail"><a href="/student/{{d.student.id}}">{{ d.student.name }}</a></td>
+            <td class="student-detail">{{ d.student.branch }}</td>
+            <td class="student-detail">{{ d.student.year }}</td>
+            <td class="student-detail">{{ d.student.user.email }}</td>
+            <td class="student-detail">{{ d.student.phone_number }}</td>
+            <td class="student-detail">{{ d.student.domains }}</td>
+            <td class="student-detail">{{ d.student.stage }}</td>
+            <td class="student-detail">{{ d.student.reviewed }}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script>
-      function searchFunction(){
-        var input, filter, head, team, a, i, txtValue;
-        input = document.getElementById('myInput');
-        filter = input.value.toUpperCase();
-        head = document.getElementById('details');
-        team = document.getElementsByClassName('myteam');
-        for (let i = 0; i < team.length; i++) {
-          a = team[i].getElementsByTagName("a")[0];
-          txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-    team[i].style.display = "";
-    } else {
-      team[i].style.display = "none";
-    }
+      function searchPage(){
+        const searchBar = document.getElementById('myInput');
+        const searchTerm = searchBar.value.toString().toLowerCase();
+        console.log(searchTerm);
+        const detailElements = document.getElementsByClassName("student-detail");
+        for (const detailElement of detailElements) {
+            detailElement.parentElement.style.display = "none"
+        }
+        for (const detailElement of detailElements) {
+          let display = detailElement.innerText.toLowerCase().includes(searchTerm);
+          if(display==true){
+            detailElement.parentElement.style.display = "table-row"
+          }
+          
         }
       }
     </script>

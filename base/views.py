@@ -38,7 +38,7 @@ def roundOne(request):
             student = Student.objects.create( user=user,name=name, year=year, stage=stage, branch=branch, place=place, roll_number=roll_number, phone_number=phone_number)
             student.save()
         messages.success(request, "Data saved successfully")
-        return redirect('/round-1')
+        return redirect('/round-1#survey-form-core')
 
     saved_data = Student.objects.filter(user=user).first()
 
@@ -542,6 +542,18 @@ def rejectedStudentsCSV(request):
     else:
         return redirect('/')
 
+def getDomains(student):
+    students_responses = Response.objects.filter(student=student)
+    # print(students_responses)
+    domains = set()
+    for response in students_responses:
+        domains.add(response.category)
+    domains_str = ""
+    for domain in domains:
+        domains_str += domain + ", "
+    print(domains_str)
+    return domains_str
+
 def allStudents(request):
     if request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
         students = Student.objects.all()
@@ -550,15 +562,29 @@ def allStudents(request):
         reviewed = ''
         for student in students:
             if ClubMember.objects.filter(user=student.user).first() is None:
-                new_students.append(student)
-                if MemberFeedback.objects.filter(student=student).all().count() == 0:
-                    reviewed = 'No'
+                new_student = {}
+                new_student['domains'] = getDomains(student)
+                new_student['id'] = student.id
+                new_student['name']=student.name
+                new_student['year'] = student.year
+                new_student['user'] = student.user
+                new_student['phone_number'] = student.phone_number
+                new_student['stage'] = student.stage
+                
+                # new_student['']
+                # print(new_student)
+                # print(student)
+                count = MemberFeedback.objects.filter(student=student).all().count()
+                print(count==0)
+                if count == 0:
+                    new_student['reviewed'] = 'No'
                 else:
-                    reviewed = 'Yes'
+                    new_student['reviewed'] = 'Yes'
+                new_students.append(new_student)
                 context.append({
-                    'student': student,
-                    'reviewed': reviewed
+                    'student': new_student
                 })
+        print(context)
         return render(request, 'base/table-admin2.html', { 'data': context  })
     else:
         return redirect('/')

@@ -5,6 +5,10 @@
     box-sizing: border-box;
     font-family: consolas;
 }
+html {
+  scroll-behavior: smooth;
+  scroll-padding: 5rem 0px 0px 20px;
+}
 body{
     background-position: center;
     background-repeat: no-repeat;
@@ -1100,4 +1104,9 @@ div{
   font-size: 13px;
   text-transform:uppercase;
   letter-spacing: 0.4ch;
+}
+
+#survey-form-core{
+  scroll-snap-type: y mandatory;
+  scroll-snap-align: start;
 }
