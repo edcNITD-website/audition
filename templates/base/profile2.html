@@ -104,8 +104,14 @@
                         <p class="answer">Answer: {{ d.student.name }}</p>
                         <p class="question">Department</p>
                         <p class="answer">Answer: {{ d.student.branch }}</p>
+                        <p class="question">Roll No.</p>
+                        <p class="answer">Answer: {{ d.student.roll_number }}</p>
+                        <p class="question">Email</p>
+                        <p class="answer">Answer: {{ d.student.user.email }}</p>
                         <p class="question">Phone Number</p>
                         <p class="answer">Answer: {{ d.student.phone_number }}</p>
+                        <p class="question">Domains</p>
+                        <p class="answer">Answer: {{ d.domains }}</p>
                         {% for r in d.responses %}
                             <p class="question">{{ r.question_text }}</p>
                             <p class="answer">Answer: {{ r.question_response }}</p>
