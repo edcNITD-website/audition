@@ -28,6 +28,7 @@
             <th scope="col">Sl. No.</th>
             <th scope="col">Name</th>
             <th scope="col">Department</th>
+            <th scope="col">Roll No.</th>
             <th scope="col">Year of Study</th>
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
@@ -42,6 +43,7 @@
             <th class="student-detail" scope="row">{{ forloop.counter0 }}</th>
             <td class="student-detail"><a href="/student/{{d.student.id}}">{{ d.student.name }}</a></td>
             <td class="student-detail">{{ d.student.branch }}</td>
+            <td class="student-detail">{{ d.student.roll_number }}</td>
             <td class="student-detail">{{ d.student.year }}</td>
             <td class="student-detail">{{ d.student.user.email }}</td>
             <td class="student-detail">{{ d.student.phone_number }}</td>

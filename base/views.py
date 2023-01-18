@@ -426,7 +426,7 @@ def allUserExceptStudentsCSV(request):
             if(Student.objects.all().filter(user=user).first()==None):
                 if(ClubMember.objects.all().filter(user=user).first()==None):
                     new_users.append(user)
-        print(new_users)
+        # print(new_users)
         # students = Student.objects.all()
         # new_students = []
         # students = new_students
@@ -599,6 +599,7 @@ def allStudents(request):
                 new_student['id'] = student.id
                 new_student['name']=student.name
                 new_student['branch']=student.branch
+                new_student['roll_number'] = student.roll_number
                 new_student['year'] = student.year
                 new_student['user'] = student.user
                 new_student['phone_number'] = student.phone_number
@@ -629,8 +630,10 @@ def studentId(request, slug):
         responses = Response.objects.filter(student=student).all()
         all_feedback = MemberFeedback.objects.filter(student=student).all()
         member_feedback = MemberFeedback.objects.filter(student=student, member=ClubMember.objects.filter(user=request.user).first()).first()
+        domains = getDomains(student)
         data.append({
             'student': student,
+            'domains': domains,
             'responses': responses,
             'all_feedback': all_feedback,
             'member_feedback': member_feedback
