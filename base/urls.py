@@ -13,6 +13,7 @@ urlpatterns = [
     path('is-selected', views.isSelected, name="isSelected"),
     path('nextRoundCSV', views.nextRoundCSV, name="nextRoundCSV"),
     path('allStudentsCSV', views.allStudentsCSV, name="allStudentsCSV"),
+    path('allUserExceptStudentsCSV', views.allUserExceptStudentsCSV, name="allUserExceptStudentsCSV"),
     path('studentResponseCSV', views.studentResponseCSV, name="studentResponseCSV"),
     path('rejectedStudentsCSV', views.rejectedStudentsCSV, name="rejectedStudentsCSV"),
     path('student/<str:slug>', views.studentId, name="studentId"),
