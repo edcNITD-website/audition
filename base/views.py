@@ -418,6 +418,38 @@ def nextRoundCSV(request):
     else:
         return redirect('/')
 
+def allUserExceptStudentsCSV(request):
+    if request.user.username == 'admin':
+        users = User.objects.all()
+        new_users = []
+        for user in users:
+            if(Student.objects.all().filter(user=user).first()==None):
+                if(ClubMember.objects.all().filter(user=user).first()==None):
+                    new_users.append(user)
+        print(new_users)
+        # students = Student.objects.all()
+        # new_students = []
+        # students = new_students
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = 'attachment; filename="students-not-registered.csv"'
+        writer = csv.writer(response)
+        writer.writerow(
+                [
+                    "Name",
+                    "Email"
+                ]
+            )
+        for user in new_users:
+            writer.writerow(
+                [
+                    user.first_name + " " + user.last_name,
+                    user.email
+                ]
+            )
+        return response
+    else:
+        return redirect('/')
+
 def allStudentsCSV(request):
     if request.user.username == 'admin':
         students = Student.objects.all()
