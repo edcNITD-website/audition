@@ -16,29 +16,31 @@ def index(request):
 def roundOne(request):
     user= request.user
     if request.method == 'POST':
-        name = request.POST['name']        
-        place = request.POST['place']
-        branch = request.POST['branch']
-        roll_number = request.POST['roll_number']
-        phone_number = request.POST['phone_number']
-        year = request.POST['year']
-        stage = '0'
-        if Student.objects.filter(user=user).first() is not None:
-            s = Student.objects.get(user=user)
-            s.user = user
-            s.name = name
-            s.place = place
-            s.year = year
-            s.branch = branch
-            s.roll_number = roll_number
-            s.phone_number = phone_number
-            s.stage = '0'
-            s.save(update_fields=['name', 'place', 'year', 'branch', 'roll_number', 'phone_number'])
-        else:    
-            student = Student.objects.create( user=user,name=name, year=year, stage=stage, branch=branch, place=place, roll_number=roll_number, phone_number=phone_number)
-            student.save()
-        messages.success(request, "Data saved successfully")
-        return redirect('/round-1#survey-form-core')
+        messages.error(request,"Registrations closed! Try contacting an EDC memeber if you still want in!")
+        return redirect('/')
+    #     name = request.POST['name']
+    #     place = request.POST['place']
+    #     branch = request.POST['branch']
+    #     roll_number = request.POST['roll_number']
+    #     phone_number = request.POST['phone_number']
+    #     year = request.POST['year']
+    #     stage = '0'
+    #     if Student.objects.filter(user=user).first() is not None:
+    #         s = Student.objects.get(user=user)
+    #         s.user = user
+    #         s.name = name
+    #         s.place = place
+    #         s.year = year
+    #         s.branch = branch
+    #         s.roll_number = roll_number
+    #         s.phone_number = phone_number
+    #         s.stage = '0'
+    #         s.save(update_fields=['name', 'place', 'year', 'branch', 'roll_number', 'phone_number'])
+    #     else:    
+    #         student = Student.objects.create( user=user,name=name, year=year, stage=stage, branch=branch, place=place, roll_number=roll_number, phone_number=phone_number)
+    #         student.save()
+    #     messages.success(request, "Data saved successfully")
+    #     return redirect('/round-1#survey-form-core')
 
     saved_data = Student.objects.filter(user=user).first()
 
@@ -608,6 +610,8 @@ def studentResponseCSV(request):
                 [
                     "Name",
                     "Phone Number",
+                    "Roll No.",
+                    "Department",
                     "Question",
                     "Category",
                     "Response"
@@ -618,7 +622,9 @@ def studentResponseCSV(request):
             writer.writerow(
                 [
                     student.name,
-                    student.phone_number
+                    student.phone_number,
+                    student.roll_number,
+                    student.branch,
                 ]
             )
             for student_response in student_responses:

@@ -111,22 +111,22 @@
             </li>
             {% endif %}
             {% if request.user.is_authenticated %}
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/round-1"
                 >Round 1</a
               >
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/accounts/logout"
                 >Logout</a
               >
             </li>
             {% else %}
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="{% provider_login_url 'google' %}"
                 >Register</a
               >
-            </li>
+            </li> -->
             {% endif %}
           </ul>
         </div>
@@ -162,17 +162,13 @@
 
               <div class="content" style="margin-bottom: 5px;">
                 <h1 style="z-index: 200;font-family: consolas">Auditions</h1>
-                <p style="padding: 10px">
+                <!-- <p style="padding: 10px">
                     Opportunity knocks, we'll answer the call,
                     Undertaking challenges, we'll stand tall.
                     Never backing down, no matter the strife,
                     The rewards of entrepreneurship are worth the life.
-                </p>
-                {% if request.user.is_authenticated %}
-                <a  href="/round-1">Round 1</a>
-                {% else %}
-                <a  href="{% provider_login_url 'google' %}">Register</a>
-                {% endif %}
+                </p> -->
+                <h2 id="close-reg">Registrations have been closed! If you still feel the fire that you can contribute to EDC and want to Join, then contact Ashish Jha (Phone: 9619843681) or Mehul Menon (Phone: 9123782487)</h2>
               </div>
             </div>
             <div class="col"><div></div></div>
@@ -482,9 +478,6 @@
             <li>
               <a href="https://www.edcnitd.co.in/" target="_blank" rel="noopener noreferrer">EDC</a>
             </li>
-          </ul>
-          <ul>
-            <li><a href="{% provider_login_url 'google' %}" rel="noopener noreferrer">Register</a></li>
           </ul>
         </div>
       </div>

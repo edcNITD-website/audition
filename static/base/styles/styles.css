@@ -485,3 +485,9 @@ body::-webkit-scrollbar {
     margin-left: 6.5rem;
   }
 }
+
+#close-reg{
+  font-size: 1.2rem;
+  font-family: 'consolas',sans-serif;
+  
+}
