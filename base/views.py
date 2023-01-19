@@ -496,6 +496,103 @@ def allStudentsCSV(request):
     else:
         return redirect('/')
 
+def techStudentsCSV(request):
+    if request.user.username == 'admin':
+        students = Student.objects.all()
+        new_students = []
+        for student in students:
+            if ClubMember.objects.filter(user=student.user).first() is None:
+                new_students.append(student)
+        students = new_students
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = 'attachment; filename="tech-students.csv"'
+        writer = csv.writer(response)
+        writer.writerow(
+                [
+                    "Name",
+                    "Branch",
+                    "Roll Number",
+                    "Place",
+                    "Phone Number",
+                    "Email",
+                    "Domain"
+                ]
+            )
+        for student in students:
+            student_responses = Response.objects.filter(student=student)
+            domain = set()
+            for student_response in student_responses:
+                domain.add(student_response.category)
+            da = ""
+            for d in domain:
+                if d != 'Core':
+                    da = da + d + " "
+            for d in domain:
+                if d =='GD'or d=='Video': 
+                    writer.writerow(
+                        [
+                            student.name,
+                            student.branch,
+                            student.roll_number,
+                            student.place,
+                            student.phone_number,
+                            student.user.email,
+                            da
+                        ]
+            )
+        return response
+    else:
+        return redirect('/')
+    
+def webStudentsCSV(request):
+    if request.user.username == 'admin':
+        students = Student.objects.all()
+        new_students = []
+        for student in students:
+            if ClubMember.objects.filter(user=student.user).first() is None:
+                new_students.append(student)
+        students = new_students
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = 'attachment; filename="web-students.csv"'
+        writer = csv.writer(response)
+        writer.writerow(
+                [
+                    "Name",
+                    "Branch",
+                    "Roll Number",
+                    "Place",
+                    "Phone Number",
+                    "Email",
+                    "Domain"
+                ]
+            )
+        for student in students:
+            student_responses = Response.objects.filter(student=student)
+            domain = set()
+            for student_response in student_responses:
+                domain.add(student_response.category)
+            da = ""
+            for d in domain:
+                if d != 'Core':
+                    da = da + d + " "
+            for d in domain:
+                if d =='Web': 
+                    writer.writerow(
+                        [
+                            student.name,
+                            student.branch,
+                            student.roll_number,
+                            student.place,
+                            student.phone_number,
+                            student.user.email,
+                            da
+                        ]
+            )
+        return response
+    else:
+        return redirect('/')
+
+
 def studentResponseCSV(request):
     if request.user.username == 'admin':
         students = Student.objects.all()
