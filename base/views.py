@@ -632,6 +632,8 @@ def studentResponseCSV(request):
                     [
                         "",
                         "",
+                        "",
+                        "",
                         student_response.question_text,
                         student_response.category,
                         student_response.question_response
