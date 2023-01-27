@@ -295,7 +295,7 @@ def export(request):
 
 def results(request):
     if Result.objects.filter(result_declared=True).first() is not None:
-        students = Student.objects.all()
+        students = Student.objects.all().order_by("user__first_name","user__last_name")
         max_round = 0
         data = []
         for student in students:
@@ -375,7 +375,7 @@ def members(request):
 
 def isSelected(request):
     if request.method == "POST" and request.user.is_authenticated and ClubMember.objects.filter(user=request.user).first() is not None:
-        print(request.POST)
+        # print(request.POST)
         student = Student.objects.filter(user=User.objects.filter(username=request.POST['user']).first()).first()
         student.stage = request.POST['stage']
         student.save()
