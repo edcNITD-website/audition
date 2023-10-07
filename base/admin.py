@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Student, CQuestion, NCQuestion , Response, ClubMember, MemberFeedback, Result
+from .models import *
 
 from import_export.admin import ImportExportModelAdmin
 

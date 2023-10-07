@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="{% static 'members/styles/questions.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rokkitt:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        Questions
+    </header>
+    <div class="new">
+        <a href="{% url 'add'  %}">
+            Add Question
+        </a>
+    </div>
+    <main>
+        <section class="data">
+            <div class="list">
+                <div class="heading">
+                    Core
+                </div>
+                <div class="items">
+                    {% for i in core %}
+                    <div class="item">
+                        <div class="index">
+                            {{forloop.counter}}
+                        </div>
+                        <div class="question">
+                            {{i.question_text}}
+                        </div>
+                        <div class="type">
+                            {{i.type}}
+                        </div>
+                        <div class="icons">
+                            <a href="{% url 'edit' i.id %}" class="edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="{% url 'delete' i.id %}" class="delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="list">
+                <div class="heading">
+                    Webd
+                </div>
+                <div class="items">
+                    {% for i in web %}
+                    <div class="item">
+                        <div class="index">
+                            {{forloop.counter}}
+                        </div>
+                        <div class="question">
+                            {{i.question_text}}
+                        </div>
+                        <div class="type">
+                            {{i.type}}
+                        </div>
+                        <div class="icons">
+                            <a href="{% url 'edit' i.id  %}" class="edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="{% url 'delete' i.id %}" class="delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="list">
+                <div class="heading">
+                    GD
+                </div>
+                <div class="items">
+                    {% for i in gd %}
+                    <div class="item">
+                        <div class="index">
+                            {{forloop.counter}}
+                        </div>
+                        <div class="question">
+                            {{i.question_text}}
+                        </div>
+                        <div class="type">
+                            {{i.type}}
+                        </div>
+                        <div class="icons">
+                            <a href="{% url 'edit' i.id  %}" class="edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="{% url 'delete' i.id %}" class="delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            </div>
+            <div class="list">
+                <div class="heading">
+                    Video
+                </div>
+                <div class="items">
+                    {% for i in video %}
+                    <div class="item">
+                        <div class="index">
+                            {{forloop.counter}}
+                        </div>
+                        <div class="question">
+                            {{i.question_text}}
+                        </div>
+                        <div class="type">
+                            {{i.type}}
+                        </div>
+                        <div class="icons">
+                            <a href="{% url 'edit' i.id  %}" class="edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="{% url 'delete' i.id %}" class="delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="list">
+                <div class="heading">
+                    Content
+                </div>
+                <div class="items">
+                    {% for i in content %}
+                    <div class="item">
+                        <div class="index">
+                            {{forloop.counter}}
+                        </div>
+                        <div class="question">
+                            {{i.question_text}}
+                        </div>
+                        <div class="type">
+                            {{i.type}}
+                        </div>
+                        <div class="icons">
+                            <a href="{% url 'edit' i.id %}" class="edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="{% url 'delete' i.id %}" class="delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        {% if show == 'add' %}
+
+        <div class="add content ">
+            <div class="heading">
+                New
+            </div>
+            <form action="{% url 'add' %}" id="new" method="post">
+                {% csrf_token %}
+                <div class="input">
+                    <label for="category">Category :</label>
+                    <select name="category" id="category">
+                        <option value="o">Core</option>
+                        <option value="w">Webd</option>
+                        <option value="g">Gd</option>
+                        <option value="v">Video</option>
+                        <option value="c">Content</option>
+                    </select>
+                </div>
+                <div class="input">
+                    <label for="type">Type :</label>
+                    <select name="type" id="type">
+                        <option value="text">Text :</option>
+                    </select>
+                </div>
+                <div class="input">
+                    <label for="question">Question :</label>
+                    <textarea name="question" id="question" cols="25" rows="5" required>
+                    </textarea>
+                </div>
+                <div class="btn">
+                    <input type="reset" value="Reset" class="reset">
+                    <input type="submit" value="Submit" class="submit" required>
+                </div>
+            </form>
+        </div>
+
+        {% endif %}
+
+        {% if show == "edit" %}
+        <div class="edit content">
+            <div class=" heading">
+                Edit
+            </div>
+            <form action="{% url 'edit' item.id %}" id="new" method="post">
+                {% csrf_token %}
+                <div class="input">
+                    <label for="category">Category :</label>
+                    <select name="category" id="category">
+                        <option value="o" {% if item.category == "o" %} selected{% endif %}>Core</option>
+                        <option value="w" {% if item.category == "w" %}selected {% endif %}>Webd</option>
+                        <option value="g" {% if item.category == "g" %} selected {% endif %}>Gd</option>
+                        <option value="v" {% if item.category == "v" %} selected {% endif %}>Video</option>
+                        <option value="c" {% if item.category == "c" %} selected {% endif %}>Content</option>
+                    </select>
+                </div>
+                <div class="input">
+                    <label for="type">Type :</label>
+                    <select name="type" id="type">
+                        <option value="text">Text</option>
+                    </select>
+                </div>
+                <div class="input">
+                    <label for="question">Question :</label>
+                    <textarea name="question" id="question" cols="25" rows="5"
+                        required>{{item.question_text}}</textarea>
+                </div>
+                <div class="btn">
+                    <input type="reset" value="Reset" class="reset">
+                    <input type="submit" value="Update" class="submit" required>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+        {% if show == "delete" %}
+        <div class="delete content">
+            <div class="heading">
+                Delete
+            </div>
+            <form action="{% url 'delete' item.id %}" id="delete" method="post">
+                {% csrf_token %}
+                <p>
+                    Are You sure you want to delete ?
+                </p>
+                <div class="btn">
+                    <input type="reset" value="Cancel" class="reset">
+                    <input type="submit" value="Delete" class="submit">
+                </div>
+            </form>
+        </div>
+        {% endif %}
+    </main>
+</body>

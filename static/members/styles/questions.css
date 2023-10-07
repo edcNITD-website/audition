@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: ivory;
+}
+header{
+    padding: 50px;
+    /* margin: 10px; */
+    color: black;
+    background-color: skyblue;
+    /* border: 2px solid skyblue; */
+    /* border-radius: 10px; */
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+.new{
+    margin: 10px auto ;
+    padding: 15px;
+    border: 2px solid green;
+    width: max-content;
+}
+.new a{
+    color: green;
+    text-decoration: none;
+}
+main{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.data{
+    background-color: rgb(15,15,10);
+    margin: 10px;
+    border-radius: 15px;
+    padding: 5px 0;
+    flex: 2;
+    max-width: 95vw;
+}
+
+.list{
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: lightblue;
+    padding: 10px;
+}
+.heading{
+    background-color: black;
+    padding: 15px 15px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-align: center;
+    color: lightblue;
+}
+.items{
+    padding-block: 5px;
+}
+.item{
+    color: rgb(15,15,10);
+    padding-block: 15px;
+    padding-inline: 5px;
+    display: flex;
+    gap: 15px;
+    border-bottom: 1px dotted grey;
+    justify-content: space-between;
+}
+.item:hover{
+    background-color: skyblue;
+}
+
+
+.item .question{
+    width: 50%;
+}
+.item .type{
+    width: 100px;
+}
+.item .icons{
+    visibility: hidden;
+    justify-self: end;
+}
+.item .icons a{
+    margin: 5px;
+    display: inline-block;
+}
+.item .icons a.edit{
+    color: orange;
+}
+.item .icons a.delete{
+    color: red;
+}
+
+.item:hover .icons{
+    visibility: visible;
+}
+.content{
+    margin: 30px;
+    padding: 10px;
+    flex: 1;
+    border-radius: 10px;
+    background-color: rgb(15,15,10);
+    height: fit-content;
+}
+.modal .content {
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 15px;
+    display: none;
+}
+.content .input{
+    margin: 15px;
+}
+.content label{
+    width: 100px;
+    margin: 5px;
+    display: inline-block;
+}
+.content .input select{
+    border-radius: 5px;
+    padding: 5px;
+    width: 75px;
+    background-color: lightblue;
+}
+.content .input textarea{
+    background-color: lightblue;
+}
+.content .btn{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px;
+}
+.content .btn input{
+    padding: 10px;
+    color: lightblue;
+    border-radius: 10px;
+    border: 2px solid black;
+    transition: .3s;
+}
+.content .btn input:hover{
+    border: 2px solid lightblue;
+}
+.content .btn input.reset{
+    background-color: orangered;
+}
+.content .btn input.submit{
+    background-color: green;
+}
+

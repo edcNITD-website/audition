@@ -1,493 +1,85 @@
-<!DOCTYPE html>
 {% load static %}
 {% load socialaccount %}
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Auditions</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'base/media/favicon.png' %}">
-    <link
-      rel="stylesheet"
-      href="{% static 'base/styles/bootstrap.min.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'base/styles/Allura.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'base/styles/Inter.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'base/styles/untitled-1.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'base/styles/untitled-3.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'base/styles/untitled-4.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'base/styles/untitled-5.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'base/styles/untitled-6.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'base/styles/untitled-7.css'%}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'base/styles/untitled-8.css'%}"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'base/styles/styles.css'%}" />
-  </head>
 
-  <body>
-    <!-- Start: Navbar Centered Links -->
-    <nav
-      class="navbar navbar-expand-lg fixed-top mynav"
-      id="mainNav"
-      style="
-        background-color: rgba(0, 0, 0, 0.35);
-      "
-    >
-      <div class="container" style="padding: 0; justify-content: space-evenly; font-weight: bold; text-transform: capitalize">
-        <a class="navbar-brand" href="/" style="margin-left: -75px;"
-          ><span
-            ><img
-              src="{% static 'base/media/edc-logo.png' %}"
-              width="100px" /></span></a
-        ><button
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarResponsive"
-          class="navbar-toggler float-end"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          style="margin-right: -50px; border: none"
-        >
-          <i class="fa fa-bars" style="color:#a3a3a3; font-size:14px"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive" style="
-          padding: 10px
-        ">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" target="_blank" style="color: white; font-family: Oswald; font-size: 13px" href="https://edcnitd.co.in"
-                >EDC</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="#hero2">Domains</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="#contact"
-                >Contact</a
-              >
-            </li>
-            {% if result == True %}
-            <li class="nav-item">
-              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/results"
-                >Results</a
-              >
-            </li>
-            {% endif %}
-            {% if request.user.is_authenticated %}
-            <!-- <li class="nav-item">
-              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/round-1"
-                >Round 1</a
-              >
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="/accounts/logout"
-                >Logout</a
-              >
-            </li>
-            {% else %}
-            <!-- <li class="nav-item">
-              <a class="nav-link" style="color: white; font-family: Oswald; font-size: 13px" href="{% provider_login_url 'google' %}"
-                >Register</a
-              >
-            </li> -->
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- End: Navbar Centered Links -->
-    <header class="bg-dark" id="hero1" style="height: 120vh">
-      <!-- Start: Hero Clean Reverse -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="{% static 'base/styles/index.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Rokkitt:wght@500;600;700&display=swap"
+        rel="stylesheet">
+</head>
 
-      <!-- <h1 class="fw-bold text-success mb-2">Welcome to Auditions</p>
-                
-           -->
-      <div class="row" style="margin-left:-25px">
-        <div class="col">
-          <div class="yashNahata">
-
-            <h1 class="edc" style="margin-top: 180px; color: #ffffffe8;" >Entrepreneurship </h1>
-            <h1 class="edc" style="color: #ffffffe8;">Development Cell</h1>
-            <p
-            class="typewriter edc" style="margin-top: 100px;"
-          ><span data-text="Welcome to Auditions"></span>
-            
-          </p>
-            
-            </div>
-          
-           
-         
-
-          <div id="register" class="container">
-            <div class="box">
-              <span></span>
-
-              <div class="content" style="margin-bottom: 5px;">
-                <h1 style="z-index: 200;font-family: consolas">Auditions</h1>
-                <!-- <p style="padding: 10px">
-                    Opportunity knocks, we'll answer the call,
-                    Undertaking challenges, we'll stand tall.
-                    Never backing down, no matter the strife,
-                    The rewards of entrepreneurship are worth the life.
-                </p> -->
-                <h2 id="close-reg">Registrations have been closed! If you still feel the fire that you can contribute to EDC and want to Join, then contact Ashish Jha (Phone: 9619843681) or Mehul Menon (Phone: 9123782487)</h2>
-              </div>
-            </div>
-            <div class="col"><div></div></div>
-            <div class="col"><div></div></div>
-          </div>
-        </div>
-      </div>
-      <!-- End: Hero Clean Reverse -->
-    </header>
-
-    <section class="py-5">
-      <div class="container text-center py-3" style ="margin-top: 4rem;">
-        <p
-          class="fw-bold mb-4"
-          style="
-            font-size: 2.5rem;
-            padding: 12px;
-            color: #ffffffe8;
-            margin-right: 20px;
-          "
-        > Why EDC ?</p>
-          <span
-            class="text-success"
-            ><strong></strong></span
-          >
-        </p>
-      </div>
-      <div class="container text-center">
-        <p
-          class="fw-bold mb-4"
-          style="
-            font-size: 1.3rem;
-            padding: 12px;
-            color: #ffffffc2;
-            margin-right: 20px;
-          "
-        >Be a part of Team EDC, NIT Durgapur's Entrepreneurship Development Cell and join us in our mission to promote entrepreneurship, sharpen abilities, and advance professionally with the help of resources, workshops, guidance, connections, and competitions. With us, you will have unlimited potential for advancement and several prospects to flaunt your skills.</p>
-      </div>
-    </section>
-
-
-    <!-- Start: Brands -->
-    <section class="py-5">
-      <div class="container text-center py-5">
-        <p
-          class="fw-bold mb-4"
-          style="
-            font-size: 2.5rem;
-            padding: 12px;
-            color: #ffffffe8;
-            margin-right: 20px;
-          "
-        > Glimpses of our endeavours</p>
-          <span
-            class="text-success"
-            ><strong></strong></span
-          >
-        </p>
-      </div>
-      <div class="bodyGallery">
-        <div class="slider">
-          <div class="slide-track">
-            <div class="slide">
-              <img src="{% static 'base/media/1.jpg'%}" height="400" width="500" alt="" />
-            </div>
-            <div class="slide">
-              <img src="{% static 'base/media/2.jpg'%}" height="400" width="500" alt="" />
-            </div>
-            <div class="slide">
-              <img src="{% static 'base/media/3.JPG'%}" height="400" width="500" alt="" />
-            </div>
-            <div class="slide">
-              <img src="{% static 'base/media/4.jpg'%}" height="400" width="500" alt="" />
-            </div>
-            <div class="slide">
-              <img src="{% static 'base/media/5.jpg'%}" height="400" width="500" alt="" />
-            </div>
-            <div class="slide">
-              <img src="{% static 'base/media/6.JPG'%}" height="400" width="500" alt="" />
-            </div>
-            <div class="slide">
-              <img src="{% static 'base/media/7.jpg'%}" height="400" width="500" alt="" />
-            </div>
-            <div class="slide">
-              <img src="{% static 'base/media/8.jpg'%}" height="400" width="500" alt="" />
-            </div>
-            <div class="slide">
-              <img src="{% static 'base/media/9.jpg'%}" height="400" width="500" alt="" />
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      <!-- <div class="bodyGallery">
-        <div class="slider">
-          <div id="slide-track" >
-            <div class="slide"><img src="./Auditions/1.jpg" /></div>
-            <div class="slide"><img  src="./Auditions/2.jpg" /></div>
-            <div class="slide"><img  src="./Auditions/4.jpg" /></div>
-            <div class="slide"><img  src="./Auditions/5.jpg" /></div>
-            <div class="slide"> <img  src="./Auditions/6.jpg" /></div>
-            <div class="slide"><img  src="./Auditions/7.jpg" /></div>
-            <div class="slide"><img  src="./Auditions/8.jpg" /></div>
-            <div class="slide"><img  src="./Auditions/9.jpg" /></div> 
-          </div>
-        </div>
-      </div> -->
-
-      
-
-    </section>
-    <!-- End: Brands -->
-    <section id="hero2">
-      <!-- Start: Features Cards -->
-      <div class="container py-5">
-        <div class="row">
-          <div class="col">
-            <h3 class="fw-bold" style="color: #ffffffe8; font-family: consolas;font-size: 2.5rem;">Domains Available</h3>
-          </div>
-        </div>
-        <div class="py-5 p-lg-5">
-          <div
-            class="row row-cols-1 row-cols-md-2 mx-auto"
-            style="max-width: 900px"
-          >
-            <div class="col mb-5">
-              <div class="containerbox cardbox card shadow-sm">
-                <div class="glass"></div>
-                <div class=" gradientbox glasscontent card-body px-4 py-5 px-md-5">
-                  <div
-                    class="bs-icon-lg d-flex card-title justify-content-center align-items-center mb-3 bs-icon"
-                    style="margin: auto;"
-                  >
-                  <img src="{% static 'base/media/hacker.gif'%}" style="width: 4.5em;height: 4.5em;" alt="">
-                 
-                  </div>
-                  <h5 class="fw-bold " style="margin-top: 50px;">
-                    Web Development
-                  </h5>
-                  <p class="text-muted card-text mb-4" style="margin-top: 10px;">
-                    Take advantage of the wide range of web development domains in our club and sharpen your skills, 
-                    access resources, and construct your portfolio through various projects.
-                  </p>
-                 
+<body>
+    <section class="home">
+        <div class="cover front">
+            <div class="edc">
+                <div class=" f">
+                    <div>
+                        <h1 class="e">ENTREPRENEURSHIP</h1>
+                    </div>
+                    <div>
+                        <h1 class="d">DEVELOPMENT</h1>
+                    </div>
+                    <div>
+                        <h1 class="c">CELL</h1>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="col mb-5">
-              <div class="containerbox cardbox card shadow-sm">
-                <div class="glass"></div>
-                <div class="gradientbox glasscontent card-body px-4 py-5 px-md-5">
-                  <div
-                    class="bs-icon-lg d-flex justify-content-center align-items-center mb-3 bs-icon"
-                    style="margin: auto;"
-                  >
-                  <img src="{% static 'base/media/film-strip.gif'%}" style="width: 4.5em;height: 4.5em;" alt="">
-                  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-tv text-success" viewBox="0 0 16 16">
-                    <path d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zM13.991 3l.024.001a1.46 1.46 0 0 1 .538.143.757.757 0 0 1 .302.254c.067.1.145.277.145.602v5.991l-.001.024a1.464 1.464 0 0 1-.143.538.758.758 0 0 1-.254.302c-.1.067-.277.145-.602.145H2.009l-.024-.001a1.464 1.464 0 0 1-.538-.143.758.758 0 0 1-.302-.254C1.078 10.502 1 10.325 1 10V4.009l.001-.024a1.46 1.46 0 0 1 .143-.538.758.758 0 0 1 .254-.302C1.498 3.078 1.675 3 2 3h11.991zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2z"/>
-                  </svg> -->
-                  </div>
-                  <h5 class="fw-bold card-title" style="margin-top: 50px;">
-                    Video Editing
-                  </h5>
-                  <p class="text-muted card-text mb-4">
-                    Our club provides a variety of video domains for you to explore and 
-                    refine your storytelling abilities, get access to resources, and strengthen your portfolio.
-                  </p>
-                 
+                <div class="b">
+                    <div>
+                        <h1 class="e">ENTREPRENEURSHIP</h1>
+                    </div>
+                    <div>
+                        <h1 class="d">DEVELOPMENT</h1>
+                    </div>
+                    <div>
+                        <h1 class="c">CELL</h1>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="col mb-4">
-              <div class="containerbox cardbox card shadow-sm">
-                <div class="glass"></div>
-                <div class="gradientbox glasscontent card-body px-4 py-5 px-md-5">
-                  <div
-                    class="bs-icon-lg d-flex justify-content-center align-items-center mb-3 bs-icon"
-                    style="margin: auto;"
-                  >
-                  <img src="{% static 'base/media/notebook.gif'%}" style="width: 4.5em;height: 4.5em;" alt="">
-                  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-pen text-success" viewBox="0 0 16 16">
-                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-                  </svg> -->
-                  </div>
-                  <h5 class="fw-bold card-title front" style="margin-top: 50px;">
-                    Management & Content writing 
-                  </h5>
-                  <p class="text-muted card-text mb-4 back">
-                    We invite you to explore the various writing domains in our club 
-                    and sharpen your writing skills, gain experience, and enrich your portfolio.
-                  </p>
-                 
-                </div>
-              </div>
+            <div class="text">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto possimus dolores molestiae sequi
+                </p>
+                <button type="button">
+                    JOIN
+                </button>
             </div>
-            <div class="col mb-4">
-              <div class="containerbox cardbox card shadow-sm">
-                <div class="glass"></div>
-                <div class="gradientbox glasscontent card-body px-4 py-5 px-md-5">
-                  <div
-                    class="bs-icon-lg d-flex justify-content-center align-items-center mb-3 bs-icon"
-                    style="margin: auto;"
-                  >
-                  <img src="{% static 'base/media/monitor.gif'%}" style="width: 4.5em;height: 4.5em;" alt="">
-                  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-file-earmark-image-fill text-success" viewBox="0 0 16 16">
-                    <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707v5.586l-2.73-2.73a1 1 0 0 0-1.52.127l-1.889 2.644-1.769-1.062a1 1 0 0 0-1.222.15L2 12.292V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3zm-1.498 4a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"/>
-                    <path d="M10.564 8.27 14 11.708V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-.293l3.578-3.577 2.56 1.536 2.426-3.395z"/>
-                  </svg> -->
-                  </div>
-                  <h5 class="fw-bold card-title" style="margin-top: 50px;">
-                    Graphic Designing
-                  </h5>
-                  <p class="text-muted card-text mb-4">
-                    Take the opportunity to explore the diverse design domains in our club and cultivate your aesthetics,
-                    access resources, and expand your portfolio.
-                  </p>
-                 
-                </div>
-              </div>
+        </div>
+        <div class="cover back">
+            <!-- <div class="edc">
+                <div><h1 class="e">ENTREPRENEURSHIP</h1></div>
+                <div><h1 class="d">DEVELOPMENT</h1></div>
+                <div><h1 class="c">CELL</h1></div>
             </div>
-          </div>
-      </div>
-      <!-- End: Features Cards -->
+            <div class="text">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto possimus dolores molestiae sequi
+            </div> -->
+        </div>
     </section>
-    <section id="contact" class="py-5">
-      <div class="row mb-5">
-        <div class="col-md-8 col-xl-6 text-center mx-auto">
+    <section>
+        <div class="content">
+            <!-- <div class="mark">
+                <svg fill="transparent" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M26.7,42.8c0.8,0,1.5,0.7,1.5,1.5v3.2c0,0.8-0.7,1.5-1.5,1.5h-3.2c-0.8,0-1.5-0.7-1.5-1.5v-3.2 c0-0.8,0.7-1.5,1.5-1.5H26.7z"></path> <path d="M28.2,35.1c0-2.1,1.3-4,3.1-4.8h0.1c5.2-2.1,8.8-7.2,8.8-13.2c0-7.8-6.4-14.2-14.2-14.2 c-7.2,0-13.2,5.3-14.2,12.2v0.1c-0.1,0.9,0.6,1.6,1.5,1.6h3.2c0.8,0,1.4-0.5,1.5-1.1v-0.2c0.7-3.7,4-6.5,7.9-6.5 c4.5,0,8.1,3.6,8.1,8.1c0,2.1-0.8,4-2.1,5.5l-0.1,0.1c-0.9,1-2.1,1.6-3.3,2c-4,1.4-6.7,5.2-6.7,9.4v1.5c0,0.8,0.6,1.4,1.4,1.4h3.2 c0.8,0,1.6-0.6,1.6-1.5L28.2,35.1z"></path> </g> </g></svg>
+            </div> -->
+            <h3 class="why">
+                Why EDC ?
+            </h3>
 
-          <p class="fw-bold text-success mb-2">This is from EDC NITD</p>
-          <h3
-            class="last-line fw-bold mb-4"
-            style="font-family: consolas, serif; color: #ffffffe8; font-size:22px"
-          >Unleashing the power of true Entrepreneurial Spirit</span>
-            
-          </h3>
-          <p class="text-muted"></p>
-        </div>
-      </div>
+            <div class="banner">
+                <div class="text">
+                    Be a part of Team EDC, NIT Durgapur's Entrepreneurship Development Cell and join us in our mission to promote entrepreneurship, sharpen abilities, and advance professionally with the help of resources, workshops, guidance, connections, and competitions. With us, you will have unlimited potential for advancement and several prospects to flaunt your skills.
+            </div>
+            </div>
     </section>
-    <!-- Start: Footer Multi Column -->
-    <footer class="footer" style="background-color: rgba(0, 0, 0, 0.85)">
-      <div class="leftFooter">
-        <div class="leftFooterContent">
-          <h2>
-            Entrepreneurship <br />
-            Development Cell
-          </h2>
-          <h3>NIT Durgapur</h3>
-        </div>
-        <p>
-          Made with <i class="fa fa-heart" aria-hidden="true"></i> by Web-Team
-          <br />© 2022 EDC. All Rights Reserved.
-        </p>
-      </div>
-      <div class="middleFooter">
-        <div class="bottomBorder">
-          <h2>CONTACT US</h2>
-        </div>
-        <p>
-          <i class="fa fa-map-marker"></i> : Mahatma Gandhi Avenue,<br />
-          A-Zone, Durgapur, West Bengal <br />
-          Durgapur: 713209
-          <br />
-          <i class="fa fa-phone"></i> : +91 9123001251(Purvi)
-          <br>
-          <i class="fa fa-phone"></i> : +91 8335810111(Yash)
-          <br />
-          <i class="fa fa-envelope-o"></i> : edc@nitdgp.ac.in
-        </p>
-        <div class="socials">
-          <div class="circle" id="twitter">
-            <a href="https://twitter.com/edcnitd" target="_blank" rel="noopener noreferrer"
-              ><i id="twitter-icon" class="fa fa-twitter"></i
-            ></a>
-          </div>
-          <div class="circle" id="fb">
-            <a href="https://www.facebook.com/edc.nitd" target="_blank" rel="noopener noreferrer"
-              ><i id="fb-icon" class="fa fa-facebook"></i
-            ></a>
-          </div>
-          <div class="circle" id="insta">
-            <a href="https://www.instagram.com/edc.nitd/" target="_blank" rel="noopener noreferrer"
-              ><i id="insta-icon" class="fa fa-instagram"></i
-            ></a>
-          </div>
-          <div class="circle" id="yt">
-            <a href="https://www.youtube.com/@entrepreneurshipdevelopmen7605" target="_blank" rel="noopener noreferrer"
-              ><i id="yt-icon" class="fa fa-youtube"></i
-            ></a>
-          </div>
-          <div class="circle" id="linkedin">
-            <a href="https://in.linkedin.com/company/edcnitd" target="_blank" rel="noopener noreferrer"
-              ><i id="linkedin-icon" class="fa fa-linkedin"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="rightFooter">
-        <div class="bottomBorder">
-          <h2>USEFUL LINKS</h2>
-        </div>
-        <div class="usefulLinks">
-          <ul>
-            <li><a href="/" rel="noopener noreferrer">Home</a></li>
-          </ul>
-          <ul>
-            <li>
-              <a href="https://www.edcnitd.co.in/" target="_blank" rel="noopener noreferrer">EDC</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </footer>
-    <!-- End: Footer Multi Column -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'base/scripts/bold-and-dark.js'%}"></script>
-    <script src="{% static 'base/scripts/index2.js'%}">
-      
-    </script>
-
 </body>
+<script src={% static 'base/scripts/index.js' %}></script>
+
 </html>
