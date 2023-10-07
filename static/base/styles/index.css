@@ -1,109 +1,240 @@
-.align {
-  height: calc(100% - 60px);
-  margin: 0px auto;
+* {
+  margin: 0;
+  padding: 0;
 }
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
-  background-color: black !important;
-  font-family: 'Sofia Sans Semi Condensed', sans-serif;
-}
-.container {
-  max-width: 960px !important;
-}
-.neon-text {
-  cursor: pointer;
-  color: #fff;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 7px #bc13fe,
-    0 0 5px #bc13fe, 0 0 5px #bc13fe, 0 0 7px #bc13fe, 0 0 10px #bc13fe;
-  padding: 0.4em;
-}
-
-.sacramento {
-  font-family: "Sacramento", cursive;
-  font-size: 80px;
-}
-
-.neon-text-timer {
-  cursor: pointer;
-  color: #fff;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 20px #bc13fe,
-    0 0 15px #bc13fe, 0 0 15px #bc13fe, 0 0 20px #bc13fe, 0 0 30px #bc13fe;
-
-  padding: 0.4em;
-}
-.headers {
-  font-size: 2 rem;
+  /* position: relative;
+  top: 0;
+  right: 0; */
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--c9);
+  /* overflow: hidden; */
+  --wx: 0;
+  --wy: 0;
+  --px: 0;
+  --py: 0;
+  --sc: 0;
+  --c0: #03effc;
+  --c1: #03d1dd;
+  --c2: #02b3bd;
+  --c3: #02959e;
+  --c4: #02777e;
+  --c5: #015a5f;
+  --c6: #013c3f;
+  --c7: #001e20;
+  --c8: #001C1E;
+  --c9: #000E0F;
+  scrollbar-width: 0;
+  width: 100vw; 
+  overflow-x: hidden;
 }
 
-/* Animation */
-@keyframes fadeInUp {
-  from {
-    transform: translate3d(0, 40px, 0);
+.cover.back {
+  height: 100vh;
+  width: 100vw;
+  background-image: radial-gradient(at 100% -25%, transparent 65%, var(--c3) 65%), radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(../media/DSC_0180.JPG);
+  clip-path: ellipse(75% 80% at 100% 15%);
+  background-size: cover;
+  /* background-blend-mode: darken; */
+  background-color: rgba(0, 0, 0);
+  background-position: center 80%;
+  overflow: hidden;
+  translate:  calc(var(--sc)*1px) calc(var(--sc)*.1px);
+  overflow: hidden;
+  transition: all .05s ease-out;
+}
+
+.edc {
+  padding: 10vh calc(20px + 5vw);
+  line-height: 1em;
+  font-size: calc(8px + 3.5vw);
+  font-weight: 900;
+  -webkit-text-stroke: 1px var(--c1);
+  color: var(--c1);
+  text-shadow: calc(-30px * var(--px) / var(--wx)) calc(-10px * var(--py) / var(--wy)) 3px black;
+  /* perspective: 500px;
+  perspective-origin: 50% 50%; */
+  width: fit-content;
+}
+.edc .f{
+  position: absolute;
+  color: transparent;
+  text-shadow: none;
+  z-index: 5;
+}
+
+.edc h1 {
+  padding: 4vh 0;
+  /* translate: calc(30px * var(--px) / var(--wx)) calc(10px * var(--py) / var(--wy)); */
+  transition: all .1s;
+  transform: rotateX( calc(-30deg * var(--py) / var(--wy))) rotateY( calc(15deg * var(--px) / var(--wx) - 5deg)) translateX(calc(50px * var(--px) / var(--wx))) translateY(calc(20px * var(--py) / var(--wy)));
+  /* -webkit-box-reflect: below -40px linear-gradient(transparent 30%, rgba(0, 0, 0, .1)); */
+}
+@media(max-width: 600px){
+  .edc h1{
+      scale: 1 2;
+      transform: none;
   }
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fadeInUp {
-  from {
-    transform: translate3d(0, 40px, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-.animated {
-  animation-duration: 3s;
-  animation-fill-mode: both;
-  -webkit-animation-duration: 3s;
-  -webkit-animation-fill-mode: both;
-}
-.animatedFadeInUp {
-  opacity: 0;
-}
-
-.fadeInUp {
-  opacity: 0;
-  animation-name: fadeInUp;
-  -webkit-animation-name: fadeInUp;
-}
-
-.typewriter {
-  color: #fff;
-  font-family: monospace;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  /*border-right: 0.15em solid orange; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: 0.15em; /* Adjust as needed */
-  animation: typing 2s steps(100, end), blink-caret 2s step-end infinite;
-}
-
-/* The typing effect */
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
+  .edc .b h1{
+      text-shadow: -5px -5px 5px black;
   }
 }
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: orange;
-  }
+.edc .f h1::first-letter{
+  color: var(--c0);
+  text-shadow: 0 0 25px var(--c0);
 }
 
-@media screen and (max-width: 992px) {
-  .content {
-    padding-top: 150px;
-    max-width: 500px !important;
+.back .edc {
+  text-shadow: none;
+  -webkit-text-stroke: 1px var(--c0);
+  color: transparent;
+  text-shadow: none;
+  /* perspective-origin: calc(50% - var(--sc)*1px) calc(50% - var(--sc)*.2px); */
+}
+/* .back .edc h1{
+  transition: all .1s;
+  transform: rotateX( calc(-30deg * var(--py) / var(--wy))) rotateY( calc(15deg * var(--px) / var(--wx) - 5deg)) translateX(calc(50px * var(--px) / var(--wx) - var(--sc)*1px)) translateY(calc(20px * var(--py) / var(--wy)));
+} */
+
+.cover.front {
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-image: radial-gradient(at 100% 25%, var(--c6) 25%, black 100%);
+  background-color: var(--c9);
+  background-position: center 75%;
+  /* border-bottom: 2px solid var(--blu); */
+}
+
+
+.cover .text p {
+  position: relative;
+  padding: 20px;
+  /* padding-left: 20px; */
+  margin: 10px calc(20px + 5vw);
+  width: 500px;
+  text-shadow: -1px 1px 2px black;
+  max-width: 50vw;
+  color: var(--c2);
+  /* opacity: .5; */
+  /* border-bottom: 2px solid var(--blu); */
+  border-left: 2px solid var(--c0);
+  font-weight: 600;
+  z-index: 2;
+}
+
+.cover button {
+  font-size: 24px;
+  font-weight: 900;
+  background-color: transparent;
+  color: var(--c0);
+  padding: calc(15px) calc(5px + 1vw);
+  border: 2px solid var(--c0);
+  border-radius: 15px;
+  margin: 10px calc(50px + 10vw);
+  /* box-shadow: -10px 10px 5px 3px black; */
+  transition: all .3s ease;
+}
+
+.cover button:hover {
+  /* translate: -10px 10px; */
+  /* box-shadow: 0px 0px 5px 3px black; */
+  background-color: var(--c0);
+  color: var(--c8);
+  box-shadow: 0 0 15px 0 var(--c0);
+}
+
+
+.content {
+  position: relative;
+}
+
+/* .mark {
+  position: relative;
+  width: fit-content;
+  width: 150px;
+  height: 150px;
+  right: 0px;
+  top: 25px;
+  padding: 30px 0 30px 60px;
+  border-radius: 200px;
+  background-color: var(--c3);
+  scale: 2;
+  translate: -50px 250px;
+}
+
+.mark svg {
+  fill: var(--c9);
+
+} */
+
+.why{
+  margin-top: 100PX;
+  font-size: 60px;
+  text-align: center;
+  color: var(--c2);
+  text-shadow: -10px 10px 3px black;
+  /* text-decoration: underline; */
+}
+.banner{
+  position: relative;
+}
+
+.banner::before{
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: var(--c2);
+  clip-path: polygon(0% 0%, 0% 100%, 90% 100%, 100% 50%, 90% 0%);
+  /* width: 50vw; */
+  translate: min(calc(var(--sc) * (var(--wx)) / var(--wy) * 1px  - 125vw) , 0px) 0;
+  box-shadow: inset 0px 0px 100px 5px var(--c9);
+
+}
+
+.content .text{
+  padding: 10vw;
+  position: relative;
+  width: 75vw;
+  color: var(--c9);
+  z-index: 5;
+  /* margin-top: 200px; */
+  font-size: 24px;
+  font-weight: 500;
+  z-index: 5;
+  margin-top: 100px;
+  margin-bottom: 500px;
+}
+/* .content .text::before{
+  content: "";
+  background-color: var(--c2);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+} */
+
+
+
+
+
+@keyframes glow {
+  0%{
+      color: var(--c1);
+      text-shadow: 0 0 25px var(--c0);
+      scale: 1;
+  }
+  100%{
+      color: var(--c0);
+      text-shadow: none;
+      scale: 1.1;
   }
 }

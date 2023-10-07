@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     
     'import_export',
     'django.contrib.sites',
+    'members',
     'base',
     'allauth',
     'allauth.account',

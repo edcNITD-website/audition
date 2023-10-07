@@ -21,12 +21,11 @@ class Student(models.Model):
         return self.name
 # C - Compulsory
 class CQuestion(models.Model):
-    student = models.ForeignKey(Student, null=True, blank=False, on_delete=models.CASCADE)
     question_text = models.CharField(max_length=500, blank=False, null=True)
-    question_response = models.TextField(default="", blank=True, null=True)
     category = models.CharField(max_length=100, default="Core")
+    type = models.CharField(max_length=50, default="text")
     def __str__(self):
-        return self.category + " | " + self.question_text
+        return self.category + " - " + self.question_text
 
 class NCQuestion(models.Model):
     student = models.ForeignKey(Student, null=True, blank=False, on_delete=models.CASCADE)

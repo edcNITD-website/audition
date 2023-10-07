@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import csv, uuid
 # Create your views here.
+
+
 def index(request):
     result = False
     if Result.objects.filter(result_declared=True).first() is not None:
@@ -16,31 +18,32 @@ def index(request):
 def roundOne(request):
     user= request.user
     if request.method == 'POST':
-        messages.error(request,"Registrations closed! Try contacting an EDC memeber if you still want in!")
-        return redirect('/')
-    #     name = request.POST['name']
-    #     place = request.POST['place']
-    #     branch = request.POST['branch']
-    #     roll_number = request.POST['roll_number']
-    #     phone_number = request.POST['phone_number']
-    #     year = request.POST['year']
-    #     stage = '0'
-    #     if Student.objects.filter(user=user).first() is not None:
-    #         s = Student.objects.get(user=user)
-    #         s.user = user
-    #         s.name = name
-    #         s.place = place
-    #         s.year = year
-    #         s.branch = branch
-    #         s.roll_number = roll_number
-    #         s.phone_number = phone_number
-    #         s.stage = '0'
-    #         s.save(update_fields=['name', 'place', 'year', 'branch', 'roll_number', 'phone_number'])
-    #     else:    
-    #         student = Student.objects.create( user=user,name=name, year=year, stage=stage, branch=branch, place=place, roll_number=roll_number, phone_number=phone_number)
-    #         student.save()
-    #     messages.success(request, "Data saved successfully")
-    #     return redirect('/round-1#survey-form-core')
+        # messages.error(request,"Registrations closed! Try contacting an EDC memeber if you still want in!")
+        # return redirect('/')
+        name = request.POST['name']
+        place = request.POST['place']
+        branch = request.POST['branch']
+        roll_number = request.POST['roll_number']
+        phone_number = request.POST['phone_number']
+        year = request.POST['year']
+        stage = '0'
+        if Student.objects.filter(user=user).first() is not None:
+            s = Student.objects.get(user=user)
+            s.user = user
+            s.name = name
+            s.place = place
+            s.year = year
+            s.branch = branch
+            s.roll_number = roll_number
+            s.phone_number = phone_number
+            s.stage = '0'
+            s.save(update_fields=['name', 'place', 'year',
+                   'branch', 'roll_number', 'phone_number'])
+        else:
+            student = Student.objects.create(user=user, name=name, year=year, stage=stage, branch=branch, place=place, roll_number=roll_number, phone_number=phone_number)
+            student.save()
+        messages.success(request, "Data saved successfully")
+        return redirect('/round-1#survey-form-core')
 
     saved_data = Student.objects.filter(user=user).first()
 
